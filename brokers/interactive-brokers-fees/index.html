@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Brokers Fees: Lite vs Pro and the FX Trap</title>
+<meta name="description" content="IBKR is genuinely cheap, but the plan you pick and the way you convert currency decide what you pay. A breakdown with the auto versus manual FX breakeven.">
+<link rel="canonical" href="https://feequity.com/brokers/interactive-brokers-fees/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interactive Brokers Fees: Lite vs Pro and the FX Trap">
+<meta property="og:description" content="IBKR is genuinely cheap, but the plan you pick and the way you convert currency decide what you pay. A breakdown with the auto versus manual FX breakeven.">
+<meta property="og:url" content="https://feequity.com/brokers/interactive-brokers-fees/">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Interactive Brokers Fees: Lite vs Pro and the FX Trap","description":"What Interactive Brokers actually charges, why the Lite plan is not free, and how the currency conversion method you use changes the cost more than commission does.","datePublished":"2026-08-03","dateModified":"2026-08-03","author":{"@type":"Person","name":"Jacob Shasha","url":"https://feequity.com/about/"},"publisher":{"@type":"Organization","name":"Feequity","url":"https://feequity.com/"},"mainEntityOfPage":"https://feequity.com/brokers/interactive-brokers-fees/"}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Brokers","item":"https://feequity.com/brokers/"},{"@type":"ListItem","position":3,"name":"Interactive Brokers fees"}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is IBKR Lite actually free?","acceptedAnswer":{"@type":"Answer","text":"Commission on US stocks and ETFs is zero on Lite, but the plan carries trade-offs that Pro does not: less favourable order routing, lower interest paid on cash, and higher margin rates. Lite is also restricted to US residents. Everyone else is on Pro."}},
+{"@type":"Question","name":"What does IBKR charge per share on Pro?","acceptedAnswer":{"@type":"Answer","text":"On the Pro Fixed plan the published rate is 0.005 dollars per share with a 1 dollar minimum per order. The Tiered plan goes as low as 0.0035 dollars per share and adds exchange, regulatory and clearing fees separately, so it favours higher volume."}},
+{"@type":"Question","name":"How much does IBKR charge to convert currency?","acceptedAnswer":{"@type":"Answer","text":"Two methods with different pricing. Automatic conversion applies a 0.03 percent adjustment to the exchange rate with no separate commission. A manual spot FX order is priced at 0.20 basis points of trade value with a 2 dollar minimum, and the underlying quote is interbank with no markup."}},
+{"@type":"Question","name":"When is manual FX cheaper than automatic conversion at IBKR?","acceptedAnswer":{"@type":"Answer","text":"Around 6,667 dollars. Below that the 2 dollar minimum on a manual order costs more than the 0.03 percent adjustment on automatic conversion. Above it the percentage charge overtakes the fixed minimum. On a 10,000 dollar conversion the estimated cost is about 2 dollars manual against 3 dollars automatic."}},
+{"@type":"Question","name":"Does Interactive Brokers charge an inactivity fee?","acceptedAnswer":{"@type":"Answer","text":"No. IBKR publishes no inactivity fee, no account maintenance fee and no deposit fee, which is unusual among brokers offering direct market access."}},
+{"@type":"Question","name":"What options commission does IBKR charge?","acceptedAnswer":{"@type":"Answer","text":"On the fixed plan the rate is 0.65 dollars per contract, and tiered pricing ranges from 0.15 to 0.65 depending on volume. IBKR states that Lite accounts are charged a fixed rate on the first 1,000 US option contracts each month, and that volume above that moves onto the Pro tiered model."}},
+{"@type":"Question","name":"Is Interactive Brokers cheaper than a zero commission broker?","acceptedAnswer":{"@type":"Answer","text":"For a US investor trading only US stocks, the commission difference is small and other factors matter more. For anyone converting currency, IBKR is usually far cheaper, because a 0.03 percent conversion charge against a typical retail rate of half a percent or more is the largest single saving available."}}
+]}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+  var f=document.querySelector('form.form');
+  if(f)f.addEventListener('submit',function(){
+    gtag('event','tracker_signup',{page_slug:slug});
+  });
+});
+</script>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:790px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.7em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:20px}
+.byline b{color:var(--ink);font-weight:600}
+.disclose{font-size:12.5px;color:var(--soft);background:var(--wash);
+  border-left:3px solid var(--gold);padding:11px 16px;margin-bottom:26px;border-radius:0 6px 6px 0}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.src{font-size:11.5px;color:var(--faint);margin-top:-.6em}
+
+.break{background:var(--slate);color:#fff;border-radius:var(--r);padding:24px 26px;margin:28px 0}
+.break h3{color:#fff;margin:0 0 .4em;font-size:1.1rem}
+.break p{color:#C4CCD2;font-size:15px;max-width:none;margin-bottom:0}
+.break .fig{display:flex;gap:32px;flex-wrap:wrap;margin-top:18px;padding-top:16px;
+  border-top:1px solid #2E3E4A}
+.break .fig div .k{font-size:11px;color:#8B98A2;letter-spacing:.06em;text-transform:uppercase}
+.break .fig div .v{font-size:22px;font-weight:600;margin-top:3px}
+
+.cta{border:1px solid var(--line);background:var(--wash);border-radius:var(--r);
+  padding:22px 24px;margin:28px 0}
+.cta h3{margin:0 0 .4em;font-size:1.05rem}
+.cta p{font-size:15px;color:var(--soft)}
+.cta a.btn{display:inline-block;background:var(--slate);color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px;margin-top:6px}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{border-top:1px solid var(--line);background:var(--wash);padding:26px 0;
+  font-size:12.5px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:660px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .break{padding:20px}
+  .break .fig{gap:20px}
+  #cmp table,#cmp tbody,#cmp tr,#cmp td{display:block;width:100%}
+  #cmp thead{display:none}
+  #cmp tr{padding:13px 0;border-bottom:1px solid var(--line)}
+  #cmp td{border:0;padding:4px 0;display:flex;justify-content:space-between;font-size:14px}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--soft);font-weight:400}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Fee<span>quity</span></a>
+    <nav>
+      <a href="/trackers/">Trackers</a>
+      <a href="/brokers/">Brokers</a>
+      <a href="/tools/">Tools</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <p class="crumb"><a href="/">Home</a> · <a href="/brokers/">Brokers</a> · Interactive Brokers fees</p>
+
+  <h1>Interactive Brokers is cheap. Two settings decide how cheap</h1>
+
+  <p class="byline">
+    Written by <b>Jacob Shasha</b>, private investor ·
+    Updated 3 August 2026 ·
+    <a href="/how-we-test/">How we test</a>
+  </p>
+
+  <div class="disclose">
+    Some links here are partner links, and we may earn a commission if you open an account through
+    one. It never changes the ranking or the numbers, which come from published schedules.
+    <a href="/how-we-make-money/">How we make money</a>.
+  </div>
+
+  <div class="answer">
+    <h2>Short answer</h2>
+    <p>On commission, IBKR is among the cheapest available: <b>0.005 dollars per share</b> on the
+    Pro Fixed plan with a one dollar minimum, or zero on Lite if you are a US resident. But the
+    number that decides your real cost is <b>currency conversion</b>. IBKR charges 0.03 percent to
+    convert automatically, against half a percent or more at a typical retail broker. On ten
+    thousand dollars that is roughly 3 dollars against 50.</p>
+  </div>
+
+  <h2>Lite or Pro, and why it is not a free choice</h2>
+
+  <p>Lite advertises zero commission on US stocks and ETFs. That is true, and it is not the whole
+  picture. <cite>Lite carries less favourable order routing, pays lower interest on cash, and
+  charges higher margin rates than Pro</cite>. It is also <cite>restricted to US residents, so
+  everyone outside the US is on Pro whether they like it or not</cite>.</p>
+
+  <p>On options, <cite>IBKR states that Lite accounts are charged a fixed rate commission on the
+  first 1,000 US option contracts traded per month, and that volume above that moves onto the Pro
+  tiered model</cite>. Worth knowing before you assume the plan scales with you.</p>
+
+  <div id="cmp">
+  <table>
+    <thead>
+      <tr><th>&nbsp;</th><th>IBKR Lite</th><th>IBKR Pro Fixed</th><th>IBKR Pro Tiered</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>US stocks and ETFs</td><td data-k="Lite" class="good">$0</td><td data-k="Pro Fixed">$0.005 per share, $1 min</td><td data-k="Pro Tiered">From $0.0035 per share</td></tr>
+      <tr><td>Options per contract</td><td data-k="Lite">$0.65 fixed to 1,000/mo</td><td data-k="Pro Fixed">$0.65</td><td data-k="Pro Tiered">$0.15 to $0.65</td></tr>
+      <tr><td>Exchange and regulatory fees</td><td data-k="Lite">Included</td><td data-k="Pro Fixed">Included</td><td data-k="Pro Tiered" class="bad">Charged separately</td></tr>
+      <tr><td>Order routing</td><td data-k="Lite" class="bad">Less favourable</td><td data-k="Pro Fixed" class="good">Smart routing</td><td data-k="Pro Tiered" class="good">Smart routing</td></tr>
+      <tr><td>Interest on cash</td><td data-k="Lite" class="bad">Lower</td><td data-k="Pro Fixed" class="good">Higher</td><td data-k="Pro Tiered" class="good">Higher</td></tr>
+      <tr><td>Margin rate</td><td data-k="Lite" class="bad">Higher</td><td data-k="Pro Fixed" class="good">Lower</td><td data-k="Pro Tiered" class="good">Lower</td></tr>
+      <tr><td>Who can use it</td><td data-k="Lite">US residents only</td><td data-k="Pro Fixed">Anyone</td><td data-k="Pro Tiered">Anyone</td></tr>
+      <tr><td>Inactivity fee</td><td data-k="Lite" class="good">None</td><td data-k="Pro Fixed" class="good">None</td><td data-k="Pro Tiered" class="good">None</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="src">Commission and plan figures from Interactive Brokers' published schedules and
+  broker review sources, checked 3 August 2026. Pricing varies by IBKR entity and by country and
+  changes over time. Confirm in your own Client Portal.</p>
+
+  <h2>Currency conversion, where the real money is</h2>
+
+  <p>If you live outside the US and buy US shares, or hold anything listed in another currency,
+  this section matters more than every commission figure above combined.</p>
+
+  <p>IBKR offers two ways to convert, and they are priced completely differently.</p>
+
+  <h3>Automatic conversion</h3>
+  <p>Triggered when you buy an asset in a currency you do not hold. <cite>The cost is a 0.03
+  percent adjustment applied to the exchange rate, with no separate commission</cite>. It happens
+  in the background and you will not see a line item for it.</p>
+
+  <h3>Manual spot FX</h3>
+  <p>You place a currency order yourself. <cite>Priced at 0.20 basis points of trade value with a 2
+  dollar minimum, against an interbank quote with no markup</cite>. IBKR is explicit about the
+  philosophy: <cite>it passes through the prices it receives and charges a separate low commission,
+  rather than marking up quotes and charging nothing in commission as many currency brokers
+  do</cite>.</p>
+
+  <div class="break">
+    <h3>The breakeven is around 6,667 dollars</h3>
+    <p>Below that, the 2 dollar minimum on a manual order costs more than the 0.03 percent
+    adjustment. Above it, the percentage overtakes the fixed minimum and manual wins.</p>
+    <div class="fig">
+      <div><div class="k">$10,000 manual</div><div class="v mono">~$2</div></div>
+      <div><div class="k">$10,000 automatic</div><div class="v mono">~$3</div></div>
+      <div><div class="k">Typical retail broker</div><div class="v mono">~$50</div></div>
+    </div>
+  </div>
+
+  <p>The third column is the point. Arguing over one dollar between IBKR's two methods is a
+  rounding error next to the fifty you would hand over elsewhere on the same conversion. If you
+  invest across currencies, this is the largest single cost decision available to you, and it is
+  usually made by default without anyone mentioning it.</p>
+
+  <h2>What IBKR does not charge</h2>
+
+  <p><cite>No inactivity fee, no account maintenance fee and no deposit fee</cite>. That is
+  genuinely unusual for a broker offering direct market access, and it removes the slow leak that
+  catches people who trade rarely.</p>
+
+  <p>The cost that does catch new users is market data. The free basic tier is limited, and
+  real-time data for specific exchanges is a monthly subscription. Budget for it if you need it,
+  and skip it if you are a long term holder who does not.</p>
+
+  <h2>Who it suits</h2>
+
+  <p>Anyone converting currency, without much argument. Anyone borrowing on margin, because the
+  rates are consistently among the lowest published. Anyone buying outside their home market,
+  because the exchange coverage is unmatched.</p>
+
+  <p>It suits you less if you are a US resident trading only US stocks and want a simple app. The
+  commission difference against a zero commission broker is small at that point, and the platform
+  is built for people who want control rather than simplicity. Our
+  <a href="/brokers/lowest-cost/">broker cost comparison</a> covers what separates the mainstream
+  options in that case.</p>
+
+  <div class="cta">
+    <h3>Work out your own number</h3>
+    <p>Our free Google Sheets tracker holds your positions with live prices and totals your
+    commissions, platform charges and currency conversion into one annual figure, so you can see
+    what a switch would actually save.</p>
+    <a class="btn" href="/tools/portfolio-tracker/">Get the spreadsheet</a>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+
+  <dl class="faq">
+    <dt>Is IBKR Lite actually free?</dt>
+    <dd>Commission on US stocks and ETFs is zero on Lite, but the plan carries trade-offs that Pro
+    does not: less favourable order routing, lower interest paid on cash, and higher margin rates.
+    Lite is also restricted to US residents. Everyone else is on Pro.</dd>
+
+    <dt>What does IBKR charge per share on Pro?</dt>
+    <dd>On the Pro Fixed plan the published rate is 0.005 dollars per share with a 1 dollar minimum
+    per order. The Tiered plan goes as low as 0.0035 dollars per share and adds exchange,
+    regulatory and clearing fees separately, so it favours higher volume.</dd>
+
+    <dt>How much does IBKR charge to convert currency?</dt>
+    <dd>Two methods with different pricing. Automatic conversion applies a 0.03 percent adjustment
+    to the exchange rate with no separate commission. A manual spot FX order is priced at 0.20
+    basis points of trade value with a 2 dollar minimum, and the underlying quote is interbank with
+    no markup.</dd>
+
+    <dt>When is manual FX cheaper than automatic conversion at IBKR?</dt>
+    <dd>Around 6,667 dollars. Below that the 2 dollar minimum on a manual order costs more than the
+    0.03 percent adjustment on automatic conversion. Above it the percentage charge overtakes the
+    fixed minimum. On a 10,000 dollar conversion the estimated cost is about 2 dollars manual
+    against 3 dollars automatic.</dd>
+
+    <dt>Does Interactive Brokers charge an inactivity fee?</dt>
+    <dd>No. IBKR publishes no inactivity fee, no account maintenance fee and no deposit fee, which
+    is unusual among brokers offering direct market access.</dd>
+
+    <dt>What options commission does IBKR charge?</dt>
+    <dd>On the fixed plan the rate is 0.65 dollars per contract, and tiered pricing ranges from
+    0.15 to 0.65 depending on volume. IBKR states that Lite accounts are charged a fixed rate on
+    the first 1,000 US option contracts each month, and that volume above that moves onto the Pro
+    tiered model.</dd>
+
+    <dt>Is Interactive Brokers cheaper than a zero commission broker?</dt>
+    <dd>For a US investor trading only US stocks, the commission difference is small and other
+    factors matter more. For anyone converting currency, IBKR is usually far cheaper, because a
+    0.03 percent conversion charge against a typical retail rate of half a percent or more is the
+    largest single saving available.</dd>
+  </dl>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Feequity publishes research about investing tools and brokers. It does not provide
+    investment advice and nothing here is a recommendation to buy or sell any security.</p>
+    <p>Fees shown were accurate on the date stated and change without notice. Pricing varies by
+    IBKR entity and by country. Always check the provider's own schedule before opening an
+    account.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-test/">How we test</a>
+      <a href="/how-we-make-money/">How we make money</a>
+      <a href="/access-log/">Access log</a>
+      <a href="/corrections/">Corrections</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p style="margin-top:12px">&copy; 2026 Feequity</p>
+  </div>
+</footer>
+
+</body>
+</html>

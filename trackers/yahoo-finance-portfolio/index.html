@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Track a Portfolio in Yahoo Finance (2026 Guide)</title>
+<meta name="description" content="A step by step guide to building a portfolio in Yahoo Finance, adding transactions and dividends, plus the three things it still will not track for you.">
+<link rel="canonical" href="https://feequity.com/trackers/yahoo-finance-portfolio/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Track a Portfolio in Yahoo Finance (2026 Guide)">
+<meta property="og:description" content="A step by step guide to building a portfolio in Yahoo Finance, adding transactions and dividends, plus the three things it still will not track for you.">
+<meta property="og:url" content="https://feequity.com/trackers/yahoo-finance-portfolio/">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Track a Portfolio in Yahoo Finance","description":"Step by step guide to portfolio tracking in Yahoo Finance, including transactions, dividends and cash, and where the tool stops being enough.","datePublished":"2026-08-03","dateModified":"2026-08-03","author":{"@type":"Person","name":"Jacob Shasha","url":"https://feequity.com/about/"},"publisher":{"@type":"Organization","name":"Feequity","url":"https://feequity.com/"},"mainEntityOfPage":"https://feequity.com/trackers/yahoo-finance-portfolio/"}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Portfolio trackers","item":"https://feequity.com/trackers/"},{"@type":"ListItem","position":3,"name":"Yahoo Finance portfolio"}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is Yahoo Finance portfolio tracking free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Creating portfolios, adding holdings, recording transactions and tracking dividends are all available on a free Yahoo account. Yahoo sells a paid tier for research features, but portfolio tracking itself is not behind it."}},
+{"@type":"Question","name":"Do I need a Yahoo account to track a portfolio?","acceptedAnswer":{"@type":"Answer","text":"Yes. Without signing in you can build a watchlist in the browser session, but it will not save. Holdings, transactions and cash all require an account because the data is stored on Yahoo's servers."}},
+{"@type":"Question","name":"Can Yahoo Finance import my portfolio from my broker?","acceptedAnswer":{"@type":"Answer","text":"Yahoo supports linking some brokerage accounts, and coverage varies by broker and by country. Holdings from a linked account cannot be edited manually. If your broker is not supported, you can import a CSV file instead."}},
+{"@type":"Question","name":"Does Yahoo Finance show sector allocation?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Key Metrics view includes asset and sector diversity alongside dividend information, so you can see roughly how concentrated your portfolio is without paying for anything."}},
+{"@type":"Question","name":"Does Yahoo Finance track what my broker charges me?","acceptedAnswer":{"@type":"Answer","text":"No. You can record a fee as a cash transaction, but Yahoo does not total your commissions, platform charges and currency conversion costs into an annual figure, and it does not show what those costs do to your return over time."}},
+{"@type":"Question","name":"Can I export my Yahoo Finance portfolio?","acceptedAnswer":{"@type":"Answer","text":"Yes. Portfolios can be exported to a file, which is worth doing periodically as a backup and as a way to move your data into a spreadsheet where you control the calculations."}},
+{"@type":"Question","name":"What is the best free alternative to Yahoo Finance portfolio tracking?","acceptedAnswer":{"@type":"Answer","text":"Google Finance covers similar ground with a cleaner interface but fewer metrics. A spreadsheet takes longer to set up and gives you data you own and calculations you can change, which matters most if you want to track costs."}}
+]}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+  var f=document.querySelector('form.form');
+  if(f)f.addEventListener('submit',function(){
+    gtag('event','tracker_signup',{page_slug:slug});
+  });
+});
+</script>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;letter-spacing:-.01em;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:26px}
+.byline b{color:var(--ink);font-weight:600}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+ol.steps{counter-reset:s;list-style:none;margin:1.2em 0}
+ol.steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:1.1em}
+ol.steps li:before{content:counter(s);position:absolute;left:0;top:2px;width:25px;height:25px;
+  background:var(--slate);color:#fff;border-radius:50%;font-size:12px;font-weight:600;
+  display:flex;align-items:center;justify-content:center}
+ul.plain{list-style:none;margin:1em 0}
+ul.plain li{padding-left:20px;position:relative;margin-bottom:.55em}
+ul.plain li:before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:700}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.yes{color:var(--up);font-weight:600}
+.no{color:var(--down);font-weight:600}
+
+.cta{background:var(--slate);border-radius:var(--r);padding:24px 26px;margin:30px 0;color:#fff}
+.cta h3{margin:0 0 .5em;color:#fff;font-size:1.1rem}
+.cta p{color:#C4CCD2;font-size:15px;max-width:none}
+.cta a.btn{display:inline-block;background:var(--gold);color:var(--slate);text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px;margin-top:8px}
+.cta .small{font-size:12px;color:#8B98A2;margin:10px 0 0}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{border-top:1px solid var(--line);background:var(--wash);padding:26px 0;
+  font-size:12.5px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:640px){
+  body{font-size:16px}
+  .top nav a{margin-left:12px;font-size:12px}
+  table{font-size:13px}
+  .cta{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Fee<span>quity</span></a>
+    <nav>
+      <a href="/trackers/">Trackers</a>
+      <a href="/brokers/">Brokers</a>
+      <a href="/tools/">Tools</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <p class="crumb"><a href="/">Home</a> · <a href="/trackers/">Portfolio trackers</a> · Yahoo Finance</p>
+
+  <h1>How to track a portfolio in Yahoo Finance</h1>
+
+  <p class="byline">
+    Written by <b>Jacob Shasha</b>, private investor ·
+    Updated 3 August 2026 ·
+    <a href="/how-we-test/">How we test</a>
+  </p>
+
+  <div class="answer">
+    <h2>Short answer</h2>
+    <p>Sign in, open <b>My Portfolio</b>, create a portfolio, add your tickers, then add a
+    transaction to each one with the share count and the price you paid. Yahoo will then track
+    value, gain and dividends for you, free. It will not tell you what your broker is costing
+    you, and that is the gap worth knowing about before you start.</p>
+  </div>
+
+  <h2>Set up the portfolio</h2>
+
+  <p>Yahoo separates <b>watchlists</b>, which are just symbols you follow, from <b>portfolios</b>,
+  which hold share counts and prices. If you want performance figures rather than a list of
+  quotes, you want a portfolio.</p>
+
+  <ol class="steps">
+    <li>Sign in to Yahoo Finance. A free account is enough, and without one nothing you enter
+    will save.</li>
+    <li>Open <b>My Portfolio</b> from the top navigation.</li>
+    <li>Under <b>Create Manually</b>, choose <b>Start Creating</b>.</li>
+    <li>Name the portfolio and pick its currency. Choose the currency you actually think in,
+    because changing it later means rebuilding.</li>
+    <li>Select <b>Create portfolio</b>.</li>
+  </ol>
+
+  <h2>Add your holdings</h2>
+
+  <p>Adding a ticker only puts the symbol on the list. Yahoo has no idea how many shares you own
+  until you record a transaction, which is the step most people miss and then wonder why the
+  portfolio shows no gain.</p>
+
+  <ol class="steps">
+    <li>Open the portfolio and choose <b>Add tickers</b>.</li>
+    <li>Search for each symbol and add it.</li>
+    <li>Switch to the <b>Holdings</b> tab.</li>
+    <li>Click the expand arrow beside a symbol, then <b>Transactions</b> and
+    <b>Add transaction</b>.</li>
+    <li>Enter the date, share count and price paid. Yahoo fills in the historical price for the
+    date you choose, so check it against your own contract note rather than accepting it.</li>
+  </ol>
+
+  <h3>Multiple purchases of the same stock</h3>
+  <p>Add a separate transaction for each purchase rather than averaging them yourself. Yahoo calls
+  these lots, and keeping them separate is what makes your cost basis correct later.</p>
+
+  <h3>Cash and things Yahoo has no symbol for</h3>
+  <p>Enter <code class="mono">$$CASH</code> as a symbol to track uninvested cash. The same trick
+  works for anything else you want on the books: any custom symbol beginning with two dollar signs
+  and containing only letters and numbers will be accepted, so a private holding can live under
+  something like <code class="mono">$$PROPERTY</code>.</p>
+
+  <h2>What it does well</h2>
+
+  <p>Yahoo covers more ground than people expect from a free tool, and it is worth being clear
+  about that before looking at what it misses.</p>
+
+  <ul class="plain">
+    <li><b>Dividends arrive on their own.</b> Once a transaction exists, payments appear without
+    you entering anything.</li>
+    <li><b>Sector and asset breakdown</b> sits in the Key Metrics view, so concentration is visible
+    without paying.</li>
+    <li><b>Cash movements</b> can be recorded as deposits, withdrawals, income and fees.</li>
+    <li><b>Broker linking</b> exists for some brokers, though coverage varies by provider and by
+    country. Linked holdings cannot be edited by hand.</li>
+    <li><b>Export</b> is available, which is worth doing occasionally as a backup.</li>
+  </ul>
+
+  <h2>Where it stops</h2>
+
+  <p>Three limits matter, and only one of them is really about features.</p>
+
+  <h3>1. It does not track what you are paying</h3>
+  <p>You can log a fee as a cash transaction, but nothing totals your commissions, platform charges
+  and currency conversion costs into a yearly number. That absence is easy to live with and
+  expensive to ignore. Four trades a month at five dollars is 240 dollars a year before any
+  currency conversion, and on a portfolio of a few thousand that is a meaningful share of whatever
+  return you earn. Our <a href="/brokers/lowest-cost/">broker cost comparison</a> covers where that money
+  actually goes.</p>
+
+  <h3>2. You cannot add your own calculations</h3>
+  <p>The views are Yahoo's views. If you want to see cost as a percentage of holdings, or weight
+  positions by conviction, or model what a cheaper broker would have left you with, there is
+  nowhere to put it.</p>
+
+  <h3>3. Your data lives on their servers</h3>
+  <p>Interface changes have repeatedly moved or removed custom views, and long-standing users have
+  found saved layouts replaced without warning. The data is exportable, which is exactly why it is
+  worth exporting.</p>
+
+  <h2>Yahoo Finance against a spreadsheet</h2>
+
+  <table>
+    <tr><th>&nbsp;</th><th>Yahoo Finance</th><th>Spreadsheet</th></tr>
+    <tr><td>Setup time</td><td>Minutes</td><td>Half an hour</td></tr>
+    <tr><td>Live prices</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+    <tr><td>Dividends automatically</td><td class="yes">Yes</td><td class="no">Manual</td></tr>
+    <tr><td>Sector breakdown</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+    <tr><td>Annual cost of your broker</td><td class="no">No</td><td class="yes">Yes</td></tr>
+    <tr><td>Your own columns and formulas</td><td class="no">No</td><td class="yes">Yes</td></tr>
+    <tr><td>Who holds the data</td><td>Yahoo</td><td>You</td></tr>
+    <tr><td>Ads</td><td>Yes</td><td>None</td></tr>
+  </table>
+
+  <p><a href="/trackers/google-finance-portfolio/">Google Finance</a> covers similar ground and rebuilt its portfolio tool in
+  June 2026, so it is worth a look before settling on either.</p>
+
+  <p>For most people the honest answer is to use both. Yahoo is faster for a daily glance at
+  prices and dividends. A spreadsheet is where you work out what the whole thing is actually
+  costing you, which is the number nobody shows you by default.</p>
+
+  <div class="cta">
+    <h3>The fee tracker we built</h3>
+    <p>A Google Sheets portfolio tracker with live prices, sector allocation, and a tab that turns
+    your commissions and currency charges into one annual figure. Free, no signup wall, and it
+    stays in your own Drive.</p>
+    <a class="btn" href="/tools/portfolio-tracker/">Get the spreadsheet</a>
+    <p class="small">Works with Google Sheets. Prices update through Google Finance, delayed up to
+    20 minutes.</p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+
+  <dl class="faq">
+    <dt>Is Yahoo Finance portfolio tracking free?</dt>
+    <dd>Yes. Creating portfolios, adding holdings, recording transactions and tracking dividends
+    are all available on a free Yahoo account. Yahoo sells a paid tier for research features, but
+    portfolio tracking itself is not behind it.</dd>
+
+    <dt>Do I need a Yahoo account to track a portfolio?</dt>
+    <dd>Yes. Without signing in you can build a watchlist in the browser session, but it will not
+    save. Holdings, transactions and cash all require an account because the data is stored on
+    Yahoo's servers.</dd>
+
+    <dt>Can Yahoo Finance import my portfolio from my broker?</dt>
+    <dd>Yahoo supports linking some brokerage accounts, and coverage varies by broker and by
+    country. Holdings from a linked account cannot be edited manually. If your broker is not
+    supported, you can import a CSV file instead.</dd>
+
+    <dt>Does Yahoo Finance show sector allocation?</dt>
+    <dd>Yes. The Key Metrics view includes asset and sector diversity alongside dividend
+    information, so you can see roughly how concentrated your portfolio is without paying for
+    anything.</dd>
+
+    <dt>Does Yahoo Finance track what my broker charges me?</dt>
+    <dd>No. You can record a fee as a cash transaction, but Yahoo does not total your commissions,
+    platform charges and currency conversion costs into an annual figure, and it does not show
+    what those costs do to your return over time.</dd>
+
+    <dt>Can I export my Yahoo Finance portfolio?</dt>
+    <dd>Yes. Portfolios can be exported to a file, which is worth doing periodically as a backup
+    and as a way to move your data into a spreadsheet where you control the calculations.</dd>
+
+    <dt>What is the best free alternative to Yahoo Finance portfolio tracking?</dt>
+    <dd>Google Finance covers similar ground with a cleaner interface but fewer metrics. A
+    spreadsheet takes longer to set up and gives you data you own and calculations you can change,
+    which matters most if you want to track costs.</dd>
+  </dl>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Feequity publishes research about investing tools and brokers. It does not provide
+    investment advice and nothing here is a recommendation to buy or sell any security.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-test/">How we test</a>
+      <a href="/how-we-make-money/">How we make money</a>
+      <a href="/access-log/">Access log</a>
+      <a href="/corrections/">Corrections</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p style="margin-top:12px">&copy; 2026 Feequity</p>
+  </div>
+</footer>
+
+</body>
+</html>

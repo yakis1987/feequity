@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lowest Cost Brokerage: Where the Money Actually Goes</title>
+<meta name="description" content="Commissions are zero almost everywhere. The real cost is the cash option your broker puts you in by default, and it is rarely the best one available.">
+<link rel="canonical" href="https://feequity.com/brokers/lowest-cost/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lowest Cost Brokerage: Where the Money Actually Goes">
+<meta property="og:description" content="Commissions are zero almost everywhere. The real cost is the cash option your broker puts you in by default, and it is rarely the best one available.">
+<meta property="og:url" content="https://feequity.com/brokers/lowest-cost/">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Lowest Cost Brokerage: Where the Money Actually Goes","description":"Commission is no longer where brokers make money. The largest hidden cost is which cash option your account defaults into, and both major brokers offer several paying very different rates.","datePublished":"2026-08-03","dateModified":"2026-08-03","author":{"@type":"Person","name":"Jacob Shasha","url":"https://feequity.com/about/"},"publisher":{"@type":"Organization","name":"Feequity","url":"https://feequity.com/"},"mainEntityOfPage":"https://feequity.com/brokers/lowest-cost/"}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Brokers","item":"https://feequity.com/brokers/"},{"@type":"ListItem","position":3,"name":"Lowest cost brokerages"}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Which brokerage has the lowest fees?","acceptedAnswer":{"@type":"Answer","text":"Commission is zero on US stocks at every major broker, so it no longer separates them. The bigger question is which cash option your account defaults into, because the same broker can pay very different rates depending on that setting. Currency conversion and margin rates matter next, and only if you are exposed to them."}},
+{"@type":"Question","name":"Is zero commission really free?","acceptedAnswer":{"@type":"Answer","text":"No. Zero commission means the trade is free, not that the account is free. Brokers earn from the spread on your uninvested cash, from currency conversion, from margin lending and from order flow. Schwab held 453.7 billion dollars of client sweep cash at the end of December 2025 and reported a net interest margin of 2.90 percent for the quarter, which is where a large share of brokerage revenue now comes from."}},
+{"@type":"Question","name":"How much does uninvested cash cost me?","acceptedAnswer":{"@type":"Answer","text":"It depends on the cash option your account uses rather than on the broker name. At Fidelity the FDIC-Insured Deposit Sweep paid roughly 1.82 percent APY in April 2026, while its government money market core positions SPAXX and FZFXX yielded about 3.32 and 3.33 percent in late February 2026. That gap sits inside one broker."}},
+{"@type":"Question","name":"What is a sweep and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"A sweep is where your uninvested cash automatically sits. Brokers offer more than one option and assign a default when you open the account. The default is usually not the highest paying option available to you, and changing it is a setting rather than an account move."}},
+{"@type":"Question","name":"Are cash sweep rates the same for everyone?","acceptedAnswer":{"@type":"Answer","text":"No. Both major brokers publish tiered rates. Schwab tiers its Bank Sweep by the total cash balance swept from your account, starting with a band from zero to 24,999.99 dollars. Fidelity tiers by sweep balance and by total eligible assets held, so larger clients generally receive higher rates."}},
+{"@type":"Question","name":"Can a broker pay nothing on cash?","acceptedAnswer":{"@type":"Answer","text":"Yes. Schwab's own Cash Features Program Disclosure Statement states that in certain circumstances the interest rate could be zero. Rates on all cash features vary over time and there is no guarantee that one feature stays higher than another."}},
+{"@type":"Question","name":"How do I work out what my broker actually costs me?","acceptedAnswer":{"@type":"Answer","text":"Add four things: commissions across a year, any platform or account charges, currency conversion on foreign trades, and the interest you are not earning on idle cash compared with the best option available to you. The last one is the largest for most people and the one nobody calculates."}}
+]}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+  var f=document.querySelector('form.form');
+  if(f)f.addEventListener('submit',function(){
+    gtag('event','tracker_signup',{page_slug:slug});
+  });
+});
+</script>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.7em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:20px}
+.byline b{color:var(--ink);font-weight:600}
+.disclose{font-size:12.5px;color:var(--soft);background:var(--wash);
+  border-left:3px solid var(--gold);padding:11px 16px;margin-bottom:26px;border-radius:0 6px 6px 0}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.src{font-size:11.5px;color:var(--faint);margin-top:-.6em}
+
+.calc{background:var(--slate);border-radius:var(--r);padding:24px 26px;margin:30px 0;color:#fff}
+.calc h3{margin:0 0 4px;color:#fff;font-size:1.1rem}
+.calc .sub{color:#95A2AC;font-size:13px;margin-bottom:18px;max-width:none}
+.calc .row{display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:9px 0;border-bottom:1px solid #2E3E4A}
+.calc label{font-size:14px;color:#C4CCD2}
+.calc input{width:120px;background:#14212B;border:1px solid #354856;color:#fff;
+  border-radius:6px;padding:8px 10px;font-size:14px;text-align:right;
+  font-family:ui-monospace,monospace}
+.calc input:focus{outline:2px solid var(--gold);outline-offset:0}
+.calc .out{display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:18px;padding-top:16px;border-top:2px solid var(--gold)}
+.calc .out .lab{font-size:13px;color:#95A2AC}
+.calc .out .val{font-size:26px;font-weight:600}
+.calc .decade{font-size:13px;color:#95A2AC;margin:8px 0 0;text-align:right}
+
+.cta{border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin:28px 0;
+  background:var(--wash)}
+.cta h3{margin:0 0 .4em;font-size:1.05rem}
+.cta p{font-size:15px;color:var(--soft)}
+.cta a.btn{display:inline-block;background:var(--slate);color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px;margin-top:6px}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{border-top:1px solid var(--line);background:var(--wash);padding:26px 0;
+  font-size:12.5px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:680px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .calc{padding:20px}
+  .calc input{width:96px}
+  #cmp table,#cmp tbody,#cmp tr,#cmp td{display:block;width:100%}
+  #cmp thead{display:none}
+  #cmp tr{padding:13px 0;border-bottom:1px solid var(--line)}
+  #cmp td{border:0;padding:4px 0;display:flex;justify-content:space-between;font-size:14px}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px;font-weight:600}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--soft);font-weight:400}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Fee<span>quity</span></a>
+    <nav>
+      <a href="/trackers/">Trackers</a>
+      <a href="/brokers/">Brokers</a>
+      <a href="/tools/">Tools</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <p class="crumb"><a href="/">Home</a> · <a href="/brokers/">Brokers</a> · Lowest cost</p>
+
+  <h1>The most expensive setting in your brokerage account is the one you never chose</h1>
+
+  <p class="byline">
+    Written by <b>Jacob Shasha</b>, private investor ·
+    Updated 3 August 2026 ·
+    <a href="/how-we-test/">How we test</a>
+  </p>
+
+  <div class="disclose">
+    Some links here are partner links, and we may earn a commission if you open an account through
+    one. It never changes the ranking or the numbers, which come from each broker's own published
+    schedule. <a href="/how-we-make-money/">How we make money</a>.
+  </div>
+
+  <div class="answer">
+    <h2>Short answer</h2>
+    <p>Commission on US stocks is zero at every major broker, so it no longer separates them.
+    The cost that does is the <b>cash sweep</b>, the setting that decides where your uninvested
+    money sits. Brokers offer several, they pay very different rates, and the one your account
+    starts on is rarely the best one available to you. At Fidelity the gap between two of its own
+    options was roughly <b>1.5 percentage points</b> earlier this year. That is a setting, not a
+    broker choice.</p>
+  </div>
+
+  <h2>Commission stopped being the number that matters</h2>
+
+  <p>Every large US broker now advertises zero commission on online stock and ETF trades.
+  <cite>Fidelity charges nothing on online US equity and ETF trades and 0.65 dollars per options
+  contract</cite>, and <cite>Charles Schwab publishes the same zero commission and the same 0.65
+  dollars per contract</cite>. When two brokers charge the same nothing, the headline number has
+  stopped doing any work.</p>
+
+  <p>The revenue moved. <cite>Schwab held 453.7 billion dollars of client transactional sweep cash
+  at the end of December 2025, and reported a net interest margin of 2.90 percent for the
+  quarter</cite>. That is the business now, and it runs on the cash sitting in your account.</p>
+
+  <h2>The cash sweep, and why it is the number to check</h2>
+
+  <p>Your uninvested cash does not sit in a vault. It goes into a <b>cash feature</b>, sometimes
+  called a sweep or a core position, and the broker chooses a default for you when the account
+  opens. Each broker offers more than one, and the difference between them is larger than any
+  commission you will ever pay.</p>
+
+  <h3>Fidelity</h3>
+  <p>The rate depends entirely on which core position your account uses.
+  <cite>Its FDIC-Insured Deposit Sweep paid roughly 1.82 percent APY as of April 2026</cite>,
+  while <cite>its government money market options yielded about 3.32 percent for SPAXX and 3.33
+  percent for FZFXX in late February 2026</cite>. Rates on the sweep are also
+  <cite>tiered by sweep balance and by total eligible assets held, so larger clients generally
+  receive higher rates</cite>.</p>
+
+  <h3>Charles Schwab</h3>
+  <p><cite>Bank Sweep rates are tiered by the total cash balance swept from your brokerage account,
+  starting with a band from zero to 24,999.99 dollars</cite>. A separate programme runs on a
+  different basis entirely: <cite>the Schwab Intelligent Portfolios sweep paid 3.26 percent APY
+  effective 1 July 2026, reset monthly to the previous month-end seven-day yield of the Schwab
+  Government Money Fund</cite>.</p>
+
+  <p>Schwab is also unusually direct about the floor.
+  <cite>Its Cash Features Program Disclosure Statement states that in certain circumstances the
+  interest rate could be zero</cite>, and that there is no guarantee any one feature stays higher
+  than another.</p>
+
+  <div class="cta">
+    <h3>The two minute check</h3>
+    <p>Open your account settings and find the cash feature, core position or sweep. Note the
+    rate. Then look at the other options your broker offers on the same page. If the one you are
+    in is not the highest, you are paying the difference every day, and switching is a setting
+    rather than an account move.</p>
+  </div>
+
+  <h2>The other three costs</h2>
+
+  <h3>Currency conversion</h3>
+  <p>Buy a share listed outside your account currency and your money is converted, with the broker
+  taking a cut of the conversion. It rarely appears as a line item because it is built into the
+  rate you receive, which is exactly why it goes unnoticed. It applies on the way in and again on
+  the way out.</p>
+
+  <h3>Margin interest</h3>
+  <p>Irrelevant if you never borrow, and dominant if you do.
+  <cite>Interactive Brokers prices margin as a benchmark rate plus a spread that varies by plan,
+  currency and loan size, with the Pro plan starting at a lower spread than Lite</cite>. Schwab
+  and Fidelity both publish base-rate schedules. All of them move without notice, so the only
+  rate worth quoting is the one showing in your own account today.</p>
+
+  <h3>Account charges</h3>
+  <p>Largely gone at the big US brokers. <cite>Fidelity and Schwab both publish zero annual fees,
+  zero inactivity fees and zero closing fees</cite>. Outside the US this is far less consistent
+  and worth reading rather than assuming.</p>
+
+  <h2>Side by side</h2>
+
+  <div id="cmp">
+  <table>
+    <thead>
+      <tr><th>&nbsp;</th><th>Fidelity</th><th>Charles Schwab</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Stock and ETF commission</td>
+        <td data-k="Fidelity" class="good">$0</td>
+        <td data-k="Schwab" class="good">$0</td>
+      </tr>
+      <tr>
+        <td>Options per contract</td>
+        <td data-k="Fidelity">$0.65</td>
+        <td data-k="Schwab">$0.65</td>
+      </tr>
+      <tr>
+        <td>Default cash sweep</td>
+        <td data-k="Fidelity">FDIC sweep, about 1.82% APY (Apr 2026)</td>
+        <td data-k="Schwab">Bank Sweep, tiered from the $0 band</td>
+      </tr>
+      <tr>
+        <td>Higher paying option available</td>
+        <td data-k="Fidelity" class="good">SPAXX 3.32%, FZFXX 3.33% (Feb 2026)</td>
+        <td data-k="Schwab">Sweep money funds, rates vary</td>
+      </tr>
+      <tr>
+        <td>Rates tiered by balance</td>
+        <td data-k="Fidelity">Yes, plus total eligible assets</td>
+        <td data-k="Schwab">Yes, by swept cash balance</td>
+      </tr>
+      <tr>
+        <td>Annual, inactivity, closing fees</td>
+        <td data-k="Fidelity" class="good">None</td>
+        <td data-k="Schwab" class="good">None</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="src">Commission and account fee figures published by each broker. Cash rates as dated
+  above and taken from each broker's own disclosures. Rates change without notice and are tiered,
+  so the figure applying to your account may differ. Verified 3 August 2026. Check your own
+  account before acting.</p>
+
+  <div class="calc">
+    <h3>What your broker costs you a year</h3>
+    <p class="sub">Including the interest you are not being paid on idle cash. Defaults show the gap
+    between two cash options at the same broker.</p>
+
+    <div class="row">
+      <label for="c1">Commission per trade</label>
+      <input class="mono" id="c1" type="number" value="0" min="0" step="0.5" inputmode="decimal">
+    </div>
+    <div class="row">
+      <label for="c2">Trades per month</label>
+      <input class="mono" id="c2" type="number" value="4" min="0" step="1" inputmode="numeric">
+    </div>
+    <div class="row">
+      <label for="c3">Annual platform fee</label>
+      <input class="mono" id="c3" type="number" value="0" min="0" step="5" inputmode="decimal">
+    </div>
+    <div class="row">
+      <label for="c4">Uninvested cash held</label>
+      <input class="mono" id="c4" type="number" value="10000" min="0" step="500" inputmode="decimal">
+    </div>
+    <div class="row">
+      <label for="c5">Rate your cash option pays (%)</label>
+      <input class="mono" id="c5" type="number" value="1.82" min="0" step="0.05" inputmode="decimal">
+    </div>
+    <div class="row">
+      <label for="c6">Best option at your broker (%)</label>
+      <input class="mono" id="c6" type="number" value="3.32" min="0" step="0.05" inputmode="decimal">
+    </div>
+
+    <div class="out">
+      <span class="lab">Total per year</span>
+      <span class="val mono" id="total">$0</span>
+    </div>
+    <p class="decade mono" id="decade"></p>
+  </div>
+
+  <h2>So which one is cheapest</h2>
+
+  <p>On the numbers that get advertised, they are identical. Both charge nothing to trade US
+  stocks, both charge 0.65 dollars per options contract, and neither charges an annual or
+  inactivity fee. Choosing between them on commission is choosing between two zeroes.</p>
+
+  <p>The cost that separates accounts sits one level down, in a setting most people never open.
+  Someone holding cash should check which sweep they are in before comparing brokers at all.
+  Someone buying foreign shares should look at the conversion charge, which applies in both
+  directions on every trade. Someone borrowing should look at the margin rate and treat the rest
+  as noise, and our <a href="/brokers/interactive-brokers-fees/">breakdown of Interactive Brokers fees</a> covers the
+  cheapest published option there.</p>
+
+  <p>The one thing true for everyone: the cost you can see is rarely the cost you are paying.
+  Neither <a href="/trackers/yahoo-finance-portfolio/">Yahoo Finance</a> nor <a href="/trackers/google-finance-portfolio/">Google Finance</a> will total it
+  for you.</p>
+
+  <div class="cta">
+    <h3>Work out your own number</h3>
+    <p>Our free Google Sheets tracker holds your positions with live prices and totals your
+    commissions, platform charges and currency costs into one annual figure. It stays in your own
+    Drive and there is no signup wall.</p>
+    <a class="btn" href="/tools/portfolio-tracker/">Get the spreadsheet</a>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+
+  <dl class="faq">
+    <dt>Which brokerage has the lowest fees?</dt>
+    <dd>Commission is zero on US stocks at every major broker, so it no longer separates them. The
+    bigger question is which cash option your account defaults into, because the same broker can
+    pay very different rates depending on that setting. Currency conversion and margin rates matter
+    next, and only if you are exposed to them.</dd>
+
+    <dt>Is zero commission really free?</dt>
+    <dd>No. Zero commission means the trade is free, not that the account is free. Brokers earn
+    from the spread on your uninvested cash, from currency conversion, from margin lending and from
+    order flow. Schwab held 453.7 billion dollars of client sweep cash at the end of December 2025
+    and reported a net interest margin of 2.90 percent for the quarter, which is where a large
+    share of brokerage revenue now comes from.</dd>
+
+    <dt>How much does uninvested cash cost me?</dt>
+    <dd>It depends on the cash option your account uses rather than on the broker name. At Fidelity
+    the FDIC-Insured Deposit Sweep paid roughly 1.82 percent APY in April 2026, while its
+    government money market core positions SPAXX and FZFXX yielded about 3.32 and 3.33 percent in
+    late February 2026. That gap sits inside one broker.</dd>
+
+    <dt>What is a sweep and why does it matter?</dt>
+    <dd>A sweep is where your uninvested cash automatically sits. Brokers offer more than one
+    option and assign a default when you open the account. The default is usually not the highest
+    paying option available to you, and changing it is a setting rather than an account move.</dd>
+
+    <dt>Are cash sweep rates the same for everyone?</dt>
+    <dd>No. Both major brokers publish tiered rates. Schwab tiers its Bank Sweep by the total cash
+    balance swept from your account, starting with a band from zero to 24,999.99 dollars. Fidelity
+    tiers by sweep balance and by total eligible assets held, so larger clients generally receive
+    higher rates.</dd>
+
+    <dt>Can a broker pay nothing on cash?</dt>
+    <dd>Yes. Schwab's own Cash Features Program Disclosure Statement states that in certain
+    circumstances the interest rate could be zero. Rates on all cash features vary over time and
+    there is no guarantee that one feature stays higher than another.</dd>
+
+    <dt>How do I work out what my broker actually costs me?</dt>
+    <dd>Add four things: commissions across a year, any platform or account charges, currency
+    conversion on foreign trades, and the interest you are not earning on idle cash compared with
+    the best option available to you. The last one is the largest for most people and the one
+    nobody calculates.</dd>
+  </dl>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Feequity publishes research about investing tools and brokers. It does not provide
+    investment advice and nothing here is a recommendation to buy or sell any security.</p>
+    <p>Rates and fees shown were accurate on the date stated and change without notice. Always
+    check the provider's own schedule before opening an account.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-test/">How we test</a>
+      <a href="/how-we-make-money/">How we make money</a>
+      <a href="/access-log/">Access log</a>
+      <a href="/corrections/">Corrections</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p style="margin-top:12px">&copy; 2026 Feequity</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ids=['c1','c2','c3','c4','c5','c6'];
+  var out=document.getElementById('total'), dec=document.getElementById('decade');
+  function n(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+  function money(v){return v.toLocaleString('en-US',{style:'currency',currency:'USD',
+    minimumFractionDigits:0,maximumFractionDigits:0});}
+  function calc(){
+    var commissions=n('c1')*n('c2')*12;
+    var platform=n('c3');
+    var drag=n('c4')*Math.max(0,(n('c6')-n('c5')))/100;
+    var total=commissions+platform+drag;
+    out.textContent=money(total);
+    dec.textContent = total>0 ? money(total*10)+' over ten years' : '';
+  }
+  ids.forEach(function(id){
+    var el=document.getElementById(id);
+    el.addEventListener('input',calc);
+  });
+  calc();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Portfolio Tracker Spreadsheet with Fee Tracking</title>
+<meta name="description" content="A free Google Sheets portfolio tracker with live prices, sector allocation and a tab that totals what your broker charges you every year. No signup wall.">
+<link rel="canonical" href="https://feequity.com/tools/portfolio-tracker/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Portfolio Tracker Spreadsheet with Fee Tracking">
+<meta property="og:description" content="A free Google Sheets portfolio tracker with live prices, sector allocation and a tab that totals what your broker charges you every year. No signup wall.">
+<meta property="og:url" content="https://feequity.com/tools/portfolio-tracker/">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Feequity Portfolio Tracker","applicationCategory":"FinanceApplication","operatingSystem":"Web, via Google Sheets","description":"A free Google Sheets portfolio tracker with live prices, sector allocation and an annual broker cost calculation.","url":"https://feequity.com/tools/portfolio-tracker/","author":{"@type":"Person","name":"Jacob Shasha"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://feequity.com/tools/"},{"@type":"ListItem","position":3,"name":"Portfolio tracker"}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is the portfolio tracker really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. There is no paid version, no trial and no card. You give an email address, the copy link arrives, and the sheet is yours."}},
+{"@type":"Question","name":"Where does my data go?","acceptedAnswer":{"@type":"Answer","text":"Into your own Google Drive. Opening the link creates a private copy in your account. We cannot see it, edit it or open it, and nothing you type is sent anywhere."}},
+{"@type":"Question","name":"Where do the prices come from?","acceptedAnswer":{"@type":"Answer","text":"From the GOOGLEFINANCE function built into Google Sheets. There is no API key and no cost. Quotes can be delayed by up to 20 minutes, which is fine for tracking and not suitable for trading."}},
+{"@type":"Question","name":"Which markets does it cover?","acceptedAnswer":{"@type":"Answer","text":"US tickers work with the symbol alone. Many other exchanges work with an exchange prefix, for example SWX:NESN for Nestle. Coverage is not complete. We tested Tokyo and it did not return a price, so non-US holders should check their own tickers first."}},
+{"@type":"Question","name":"Do I need to know spreadsheets?","acceptedAnswer":{"@type":"Answer","text":"No. You fill in seven columns that are tinted so you can see where to type. Everything else is a formula and is protected against accidental edits. If you can use a shopping list you can use this."}},
+{"@type":"Question","name":"How is this different from Yahoo or Google Finance?","acceptedAnswer":{"@type":"Answer","text":"Those are faster to set up and Yahoo handles dividends automatically. Neither totals what your broker charges you into an annual figure, and neither lets you add your own calculations. That is the gap this fills."}},
+{"@type":"Question","name":"Will it keep working?","acceptedAnswer":{"@type":"Answer","text":"It is a Google Sheet with standard formulas, so it does not depend on us staying online. Once you have a copy it is yours permanently, whatever happens to this site."}}
+]}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+  var f=document.querySelector('form.form');
+  if(f)f.addEventListener('submit',function(){
+    gtag('event','tracker_signup',{page_slug:slug});
+  });
+});
+</script>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:66ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+.hero{background:var(--wash);border-bottom:1px solid var(--line);padding:44px 0 40px}
+.hero h1{font-size:clamp(1.8rem,4.4vw,2.5rem);line-height:1.18;letter-spacing:-.025em;
+  margin-bottom:14px;max-width:22ch}
+.hero .lede{font-size:18px;color:var(--soft);max-width:56ch;margin-bottom:22px}
+.hero .lede b{color:var(--ink)}
+
+.form{display:flex;gap:9px;flex-wrap:wrap;max-width:460px}
+.form input{flex:1 1 220px;padding:13px 15px;font-size:15px;border:1px solid #CBD3D9;
+  border-radius:8px;font-family:inherit;background:#fff}
+.form input:focus{outline:2px solid var(--gold);outline-offset:0;border-color:var(--gold)}
+.form button{background:var(--slate);color:#fff;border:0;border-radius:8px;padding:13px 24px;
+  font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+.form button:hover{background:#263947}
+.tiny{font-size:12.5px;color:var(--faint);margin-top:11px}
+
+main{padding:38px 0 60px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h2:first-child{margin-top:0}
+h3{font-size:1.02rem;margin:1.6em 0 .35em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:28px}
+.byline b{color:var(--ink);font-weight:600}
+
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:13px;margin:1.5em 0}
+.tab{border:1px solid var(--line);border-radius:var(--r);padding:17px 19px;background:#fff}
+.tab .n{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin-bottom:7px}
+.tab h3{margin:0 0 5px;font-size:15px}
+.tab p{font-size:13.5px;color:var(--soft);margin:0;max-width:none}
+
+.shot{border:1px solid var(--line);border-radius:var(--r);background:var(--wash);
+  padding:44px 20px;text-align:center;color:var(--faint);font-size:13px;margin:1.5em 0}
+
+.money{background:var(--slate);color:#fff;border-radius:var(--r);padding:26px 28px;margin:30px 0}
+.money h3{color:#fff;margin:0 0 .5em;font-size:1.12rem}
+.money p{color:#C4CCD2;font-size:15px;max-width:none}
+.money .fig{display:flex;gap:34px;flex-wrap:wrap;margin-top:18px;padding-top:18px;
+  border-top:1px solid #2E3E4A}
+.money .fig div .k{font-size:11px;color:#8B98A2;letter-spacing:.06em;text-transform:uppercase}
+.money .fig div .v{font-size:23px;font-weight:600;margin-top:3px}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.yes{color:var(--up);font-weight:600}
+.no{color:var(--down);font-weight:600}
+
+.honest{border:1px solid var(--gold);background:#FFF9E6;border-radius:var(--r);padding:19px 22px;margin:1.6em 0}
+.honest h3{margin:0 0 .5em;font-size:1rem}
+.honest ul{list-style:none;margin:0}
+.honest li{padding-left:19px;position:relative;margin-bottom:.5em;font-size:14.5px;max-width:none}
+.honest li:before{content:"·";position:absolute;left:5px;color:var(--gold);font-weight:700}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{border-top:1px solid var(--line);background:var(--wash);padding:26px 0;
+  font-size:12.5px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:640px){
+  body{font-size:16px}
+  .top nav a{margin-left:12px;font-size:12px}
+  .hero{padding:32px 0 30px}
+  .money{padding:20px}
+  .money .fig{gap:22px}
+  #cmp table,#cmp tbody,#cmp tr,#cmp td{display:block;width:100%}
+  #cmp thead{display:none}
+  #cmp tr{padding:13px 0;border-bottom:1px solid var(--line)}
+  #cmp td{border:0;padding:4px 0;display:flex;justify-content:space-between;font-size:14px}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--soft);font-weight:400}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Fee<span>quity</span></a>
+    <nav>
+      <a href="/trackers/">Trackers</a>
+      <a href="/brokers/">Brokers</a>
+      <a href="/tools/">Tools</a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>A portfolio tracker that also shows what your broker takes</h1>
+    <p class="lede">Live prices, sector allocation and gain in one sheet. Plus the tab nobody else
+    builds: <b>what your commissions, platform charges and currency conversion actually cost you
+    every year</b>.</p>
+
+    <form class="form" id="get" method="post" action="https://assets.mailerlite.com/jsonp/2552819/forms/194781901333988508/subscribe">
+      <input type="email" name="fields[email]" placeholder="you@example.com" required
+             aria-label="Email address" autocomplete="email">
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+      <button type="submit">Send me the sheet</button>
+    </form>
+    <p class="tiny" id="getnote">Free, no card, no trial. One email with the link. Unsubscribe whenever.</p>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <p class="byline">
+    Built by <b>Jacob Shasha</b>, private investor ·
+    Updated 3 August 2026 ·
+    <a href="/how-we-test/">How we test</a>
+  </p>
+
+  <h2>What is in it</h2>
+
+  <div class="tabs">
+    <div class="tab">
+      <p class="n">Tab 1</p>
+      <h3>Holdings</h3>
+      <p>Type a ticker and the price arrives on its own. Value, cost, gain and return calculate
+      themselves. Fifty rows ready.</p>
+    </div>
+    <div class="tab">
+      <p class="n">Tab 2</p>
+      <h3>Dashboard</h3>
+      <p>Total value, gain and return at a glance, with allocation by sector and a chart that
+      updates as you add positions.</p>
+    </div>
+    <div class="tab">
+      <p class="n">Tab 3</p>
+      <h3>Fees</h3>
+      <p>Enter what your broker charges. It returns one annual number, and what that number
+      becomes over ten years.</p>
+    </div>
+    <div class="tab">
+      <p class="n">Tab 4</p>
+      <h3>Instructions</h3>
+      <p>Which markets work, which do not, and what to do when a ticker returns nothing.</p>
+    </div>
+  </div>
+
+  <div class="shot">Screenshot: the dashboard with three positions</div>
+
+  <h2>The tab that changes how the portfolio reads</h2>
+
+  <p>Every free tracker shows you what your portfolio is worth. None of them show you what it
+  costs to hold. Five dollars a trade sounds like nothing, and it is nothing, right up until you
+  multiply it by a decade.</p>
+
+  <div class="money">
+    <h3>Four trades a month at five dollars</h3>
+    <p>With a 0.5 percent currency conversion charge on ten foreign trades a year, on a portfolio
+    of roughly eight thousand dollars.</p>
+    <div class="fig">
+      <div><div class="k">Per year</div><div class="v mono">$377</div></div>
+      <div><div class="k">Share of portfolio</div><div class="v mono">4.58%</div></div>
+      <div><div class="k">Over ten years</div><div class="v mono">$3,771</div></div>
+    </div>
+  </div>
+
+  <p>That is the whole idea. Once the number exists, the question of whether your broker is the
+  right one stops being abstract. If it looks high, our
+  <a href="/brokers/lowest-cost/">broker cost comparison</a> covers where the money actually
+  goes, and the <a href="/brokers/interactive-brokers-fees/">Interactive Brokers breakdown</a> shows what the cheapest
+  published option charges.</p>
+
+  <h2>How it works</h2>
+
+  <p>Prices come from <code class="mono">GOOGLEFINANCE</code>, the function built into Google
+  Sheets. No API key, no subscription, nothing to maintain. You type <code class="mono">AAPL</code>
+  and the rest of the row fills itself in.</p>
+
+  <p>Input columns are tinted so you always know where to type. Everything computed sits on white
+  and is protected, so a stray keystroke will not break the sheet. Sector is a dropdown of the
+  eleven standard categories, which keeps your allocation from splitting into "Tech" and
+  "Technology" as two separate slices.</p>
+
+  <h2>What it does not do</h2>
+
+  <div class="honest">
+    <h3>Read this before you download</h3>
+    <ul>
+      <li><b>No broker sync.</b> You enter holdings yourself. A first portfolio takes about twenty
+      minutes, and after that it is a minute per trade.</li>
+      <li><b>Prices lag.</b> Up to twenty minutes. Fine for tracking, useless for trading.</li>
+      <li><b>Coverage is partial outside the US.</b> Nestle works with the SWX prefix. We tested
+      Toyota on the Tokyo exchange and no price came back. Check your own tickers first.</li>
+      <li><b>Dividends are manual.</b> Yahoo Finance does this automatically and we do not.</li>
+    </ul>
+  </div>
+
+  <h2>Against the free trackers</h2>
+
+  <div id="cmp">
+  <table>
+    <thead>
+      <tr><th>&nbsp;</th><th>This sheet</th><th>Yahoo Finance</th><th>Google Finance</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Annual broker cost</td><td data-k="This sheet" class="yes">Yes</td><td data-k="Yahoo" class="no">No</td><td data-k="Google" class="no">No</td></tr>
+      <tr><td>Live prices</td><td data-k="This sheet" class="yes">Yes</td><td data-k="Yahoo" class="yes">Yes</td><td data-k="Google" class="yes">Yes</td></tr>
+      <tr><td>Sector allocation</td><td data-k="This sheet" class="yes">Yes</td><td data-k="Yahoo" class="yes">Yes</td><td data-k="Google" class="yes">AI answers</td></tr>
+      <tr><td>Dividends automatic</td><td data-k="This sheet" class="no">No</td><td data-k="Yahoo" class="yes">Yes</td><td data-k="Google" class="no">No</td></tr>
+      <tr><td>Setup by file upload</td><td data-k="This sheet" class="no">No</td><td data-k="Yahoo">CSV import</td><td data-k="Google" class="yes">Yes</td></tr>
+      <tr><td>Add your own columns</td><td data-k="This sheet" class="yes">Yes</td><td data-k="Yahoo" class="no">No</td><td data-k="Google" class="no">No</td></tr>
+      <tr><td>Works on a phone today</td><td data-k="This sheet" class="yes">Yes</td><td data-k="Yahoo" class="yes">Yes</td><td data-k="Google" class="no">Rolling out</td></tr>
+      <tr><td>Who holds the data</td><td data-k="This sheet">You</td><td data-k="Yahoo">Yahoo</td><td data-k="Google">Google</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>We have written up both in full: how to set up a
+  <a href="/trackers/yahoo-finance-portfolio/">Yahoo Finance portfolio</a> and how
+  <a href="/trackers/google-finance-portfolio/">Google Finance rebuilt its tracker in June 2026</a>.</p>
+
+  <p>Honest recommendation: use one of the free trackers for a daily glance, and use this when you
+  want to know what the arrangement is costing you. They are not really competing.</p>
+
+  <h2>Frequently asked questions</h2>
+
+  <dl class="faq">
+    <dt>Is the portfolio tracker really free?</dt>
+    <dd>Yes. There is no paid version, no trial and no card. You give an email address, the copy
+    link arrives, and the sheet is yours.</dd>
+
+    <dt>Where does my data go?</dt>
+    <dd>Into your own Google Drive. Opening the link creates a private copy in your account. We
+    cannot see it, edit it or open it, and nothing you type is sent anywhere.</dd>
+
+    <dt>Where do the prices come from?</dt>
+    <dd>From the GOOGLEFINANCE function built into Google Sheets. There is no API key and no cost.
+    Quotes can be delayed by up to 20 minutes, which is fine for tracking and not suitable for
+    trading.</dd>
+
+    <dt>Which markets does it cover?</dt>
+    <dd>US tickers work with the symbol alone. Many other exchanges work with an exchange prefix,
+    for example SWX:NESN for Nestle. Coverage is not complete. We tested Tokyo and it did not
+    return a price, so non-US holders should check their own tickers first.</dd>
+
+    <dt>Do I need to know spreadsheets?</dt>
+    <dd>No. You fill in seven columns that are tinted so you can see where to type. Everything else
+    is a formula and is protected against accidental edits. If you can use a shopping list you can
+    use this.</dd>
+
+    <dt>How is this different from Yahoo or Google Finance?</dt>
+    <dd>Those are faster to set up and Yahoo handles dividends automatically. Neither totals what
+    your broker charges you into an annual figure, and neither lets you add your own calculations.
+    That is the gap this fills.</dd>
+
+    <dt>Will it keep working?</dt>
+    <dd>It is a Google Sheet with standard formulas, so it does not depend on us staying online.
+    Once you have a copy it is yours permanently, whatever happens to this site.</dd>
+  </dl>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Feequity publishes research about investing tools and brokers. It does not provide
+    investment advice and nothing here is a recommendation to buy or sell any security.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-test/">How we test</a>
+      <a href="/how-we-make-money/">How we make money</a>
+      <a href="/access-log/">Access log</a>
+      <a href="/corrections/">Corrections</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p style="margin-top:12px">&copy; 2026 Feequity</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var f=document.getElementById('get'), note=document.getElementById('getnote');
+  if(!f||f.action.indexOf('mailerlite')===-1)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=f.querySelector('button');
+    b.disabled=true; b.textContent='Sending';
+    fetch(f.action,{method:'POST',mode:'no-cors',body:new FormData(f)})
+      .then(function(){
+        f.style.display='none';
+        note.innerHTML='Check your inbox, the link is on its way. If nothing arrives within a few '+
+          'minutes, look in spam or write to <a href="mailto:hello@feequity.com">hello@feequity.com</a>.';
+      })
+      .catch(function(){
+        b.disabled=false; b.textContent='Send me the sheet';
+        note.innerHTML='That did not go through. Try again, or email '+
+          '<a href="mailto:hello@feequity.com">hello@feequity.com</a> and the link comes back by hand.';
+      });
+  });
+})();
+</script>
+</body>
+</html>
