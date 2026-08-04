@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expense Ratio Calculator for a Whole Portfolio</title>
+<meta name="description" content="Other calculators compare two funds. This one takes every fund you hold, weights it, and adds what your broker charges on top. Every figure dated and sourced.">
+<link rel="canonical" href="https://feequity.com/tools/expense-ratio-calculator/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Expense Ratio Calculator for a Whole Portfolio">
+<meta property="og:description" content="Other calculators compare two funds. This one takes every fund you hold, weights it, and adds what your broker charges on top. Every figure dated and sourced.">
+<meta property="og:url" content="https://feequity.com/tools/expense-ratio-calculator/">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Portfolio Expense Ratio Calculator","url":"https://feequity.com/tools/expense-ratio-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Calculates the weighted expense ratio of a whole portfolio, the annual cost in dollars, and the compounded drag over time. Optionally adds broker commissions, currency conversion and cash sweep drag.","author":{"@type":"Person","name":"Jacob Shasha","url":"https://feequity.com/about/"},"publisher":{"@type":"Organization","name":"Feequity","url":"https://feequity.com/"}}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do you calculate the expense ratio of a whole portfolio?","acceptedAnswer":{"@type":"Answer","text":"Weight each fund by how much money you hold in it, not by how many funds you own. Multiply each fund's expense ratio by its share of the portfolio, then add the results. A small position in an expensive fund matters far less than the headline number suggests, and a large position in a cheap one dominates the average."}},
+{"@type":"Question","name":"Is a 1 percent expense ratio a lot?","acceptedAnswer":{"@type":"Answer","text":"On 10,000 dollars it is 100 dollars in the first year, which sounds survivable. The reason it is not is that the fee is charged on the balance, so it grows as the balance grows, and the money paid out never compounds again. Over a long horizon the total is usually a multiple of the first year figure rather than a simple sum of it."}},
+{"@type":"Question","name":"Do I actually pay the expense ratio, or is it taken from the fund?","acceptedAnswer":{"@type":"Answer","text":"It is deducted inside the fund, so no charge ever appears on your statement. What you see instead is the fund returning slightly less than the index it tracks. That invisibility is the reason expense ratios go unexamined for years."}},
+{"@type":"Question","name":"Which broker costs are included here?","acceptedAnswer":{"@type":"Answer","text":"Stock and options commissions, currency conversion on foreign trades, and the gap between the cash rate your account defaults into and the best rate the same broker offers. Every default figure comes from the broker's own published schedule and carries the date it was checked."}},
+{"@type":"Question","name":"Why is my broker not in the list?","acceptedAnswer":{"@type":"Answer","text":"A broker is added only after its figures have been confirmed against its own published schedule rather than a third-party summary. Three are listed today. Anything not on the list can be entered by hand using the manual option."}}
+]}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+</script>
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
+(window,document,"clarity","script","xwrly79k01");
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+});
+</script>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.7em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+ul,ol{margin:0 0 1em 1.15em}
+li{margin-bottom:.35em}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:20px}
+.byline b{color:var(--ink);font-weight:600}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.src{font-size:11.5px;color:var(--faint);margin-top:-.6em;max-width:var(--measure)}
+
+/* calculator */
+.calc{background:var(--slate);border-radius:var(--r);padding:24px 26px;margin:30px 0;color:#fff}
+.calc h3{margin:0 0 4px;color:#fff;font-size:1.1rem}
+.calc .sub{color:#95A2AC;font-size:13px;margin-bottom:18px;max-width:none}
+.calc label{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:#95A2AC;margin-bottom:5px}
+.calc input,.calc select{width:100%;background:#132029;border:1px solid #33454F;color:#fff;
+  border-radius:7px;padding:9px 11px;font-size:15px;font-family:inherit;
+  font-variant-numeric:tabular-nums}
+.calc input:focus,.calc select:focus{outline:2px solid var(--gold);outline-offset:1px;
+  border-color:var(--gold)}
+.calc input::placeholder{color:#5E707C}
+
+.fund-head,.fund-row{display:grid;grid-template-columns:1fr 130px 100px 34px;gap:10px;
+  align-items:end;margin-bottom:10px}
+.fund-head{margin-bottom:6px}
+.fund-head span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#95A2AC}
+.fund-head span:nth-child(2),.fund-head span:nth-child(3){text-align:right}
+.fund-row input:nth-child(2),.fund-row input:nth-child(3){text-align:right}
+.xbtn{background:transparent;border:1px solid #33454F;color:#8A99A5;border-radius:7px;
+  height:38px;font-size:17px;cursor:pointer;line-height:1}
+.xbtn:hover{border-color:var(--down);color:#E08B8B}
+.addbtn{background:transparent;border:1px dashed #44576380;color:#B9C2C9;border-radius:7px;
+  padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+.addbtn:hover{border-color:var(--gold);color:#fff}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+
+.step2{border-top:1px solid #33454F;margin-top:22px;padding-top:20px}
+.toggle{background:transparent;border:0;color:var(--gold);font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;padding:0;display:flex;align-items:center;gap:8px}
+.toggle .chev{transition:transform .18s ease;display:inline-block}
+.toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+#step2body[hidden]{display:none}
+.stamp{font-size:11.5px;color:#8A99A5;margin-top:9px;max-width:none}
+.stamp b{color:#C4CDD4;font-weight:600}
+
+.out{margin-top:20px;padding-top:16px;border-top:2px solid var(--gold)}
+.outrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:7px 0;border-bottom:1px solid #2A3A45;font-size:14px;color:#C4CDD4}
+.outrow:last-of-type{border-bottom:0}
+.outrow b{font-size:15px;color:#fff;font-variant-numeric:tabular-nums}
+.headline{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  margin-top:14px;padding-top:14px;border-top:1px solid #33454F}
+.headline span{font-size:13px;color:#95A2AC;max-width:none}
+.headline b{font-size:1.75rem;color:var(--gold);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;line-height:1.1}
+.note{font-size:13px;color:#95A2AC;margin:12px 0 0;max-width:none;line-height:1.5}
+.warn{color:#E0B98B}
+
+.cta{border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin:28px 0;
+  background:var(--wash)}
+.cta h3{margin:0 0 .4em;font-size:1.05rem}
+.cta p{margin-bottom:.6em}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{background:var(--wash);border-top:1px solid var(--line);padding:30px 0 40px;
+  font-size:13px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+
+@media(max-width:640px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .calc{padding:20px 18px}
+  .fund-head{display:none}
+  .fund-row{grid-template-columns:1fr 1fr;gap:8px;padding-bottom:12px;margin-bottom:12px;
+    border-bottom:1px solid #2A3A45}
+  .fund-row input:first-child{grid-column:1 / -1}
+  .fund-row .xbtn{grid-column:1 / -1;width:100%;height:34px}
+  .grid3,.grid2{grid-template-columns:1fr;gap:12px}
+  .headline{flex-direction:column;gap:4px}
+  .headline b{font-size:1.5rem}
+  #cmp thead{display:none}
+  #cmp tr{display:block;border-bottom:1px solid var(--line);padding:10px 0}
+  #cmp td{display:flex;justify-content:space-between;border:0;padding:3px 0;text-align:right}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px;font-weight:600}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--faint);font-size:12px;
+    font-weight:400;text-align:left}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Fee<span>quity</span></a>
+    <nav>
+      <a href="/trackers/">Trackers</a>
+      <a href="/brokers/">Brokers</a>
+      <a href="/tools/">Tools</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <p class="crumb"><a href="/">Home</a> · <a href="/tools/">Tools</a> · Expense ratio calculator</p>
+
+  <h1>Expense ratio calculator, for a whole portfolio</h1>
+
+  <p class="byline">
+    Built by <b>Jacob Shasha</b>, private investor ·
+    Published 4 August 2026 ·
+    <a href="/how-we-test/">How we test</a>
+  </p>
+
+  <div class="answer">
+    <h2>Short answer</h2>
+    <p>Every other calculator on this subject compares two funds. Almost nobody holds two funds.
+    This one takes everything you hold, weights each fund by the money in it, and returns the
+    expense ratio of the portfolio itself. Then it adds what your broker charges on top, which no
+    fund calculator does at all, because the two costs are usually researched by different people.</p>
+  </div>
+
+  <div class="calc">
+    <h3>Your portfolio</h3>
+    <p class="sub">Enter each fund and what you hold in it. Expense ratio as a percentage, so 0.03
+    rather than 0.0003. Nothing is sent anywhere and nothing is stored.</p>
+
+    <div class="fund-head" aria-hidden="true">
+      <span>Fund</span><span>Amount held</span><span>Expense ratio</span><span></span>
+    </div>
+    <div id="funds"></div>
+    <button type="button" class="addbtn" id="addFund">Add another fund</button>
+
+    <div class="grid3">
+      <div>
+        <label for="contrib">Added each year</label>
+        <input id="contrib" type="number" inputmode="decimal" value="6000" min="0" step="100">
+      </div>
+      <div>
+        <label for="ret">Return before fees %</label>
+        <input id="ret" type="number" inputmode="decimal" value="7" step="0.1">
+      </div>
+      <div>
+        <label for="yrs">Years</label>
+        <input id="yrs" type="number" inputmode="numeric" value="25" min="1" max="60" step="1">
+      </div>
+    </div>
+
+    <div class="step2">
+      <button type="button" class="toggle" id="step2btn" aria-expanded="false"
+              aria-controls="step2body">
+        <span class="chev">&rsaquo;</span> Add what your broker charges
+      </button>
+
+      <div id="step2body" hidden>
+        <div class="grid2">
+          <div>
+            <label for="broker">Broker</label>
+            <select id="broker">
+              <option value="fidelity">Fidelity</option>
+              <option value="schwab">Charles Schwab</option>
+              <option value="ibkr">Interactive Brokers (Pro)</option>
+              <option value="manual">Other, I will enter it</option>
+            </select>
+          </div>
+          <div>
+            <label for="cash">Uninvested cash held</label>
+            <input id="cash" type="number" inputmode="decimal" value="5000" min="0" step="500">
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div>
+            <label for="trades">Stock trades a year</label>
+            <input id="trades" type="number" inputmode="numeric" value="12" min="0" step="1">
+          </div>
+          <div>
+            <label for="opts">Option contracts a year</label>
+            <input id="opts" type="number" inputmode="numeric" value="0" min="0" step="1">
+          </div>
+          <div>
+            <label for="fx">Currency converted a year</label>
+            <input id="fx" type="number" inputmode="decimal" value="0" min="0" step="500">
+          </div>
+        </div>
+
+        <div class="grid3" id="manualBox" hidden>
+          <div>
+            <label for="mCom">Cost per stock trade</label>
+            <input id="mCom" type="number" inputmode="decimal" value="0" min="0" step="0.01">
+          </div>
+          <div>
+            <label for="mFx">Conversion charge %</label>
+            <input id="mFx" type="number" inputmode="decimal" value="0.5" min="0" step="0.01">
+          </div>
+          <div>
+            <label for="mCash">Cash rate gap %</label>
+            <input id="mCash" type="number" inputmode="decimal" value="1.5" min="0" step="0.01">
+          </div>
+        </div>
+
+        <p class="stamp" id="stamp"></p>
+      </div>
+    </div>
+
+    <div class="out" id="out" aria-live="polite">
+      <div class="outrow"><span>Portfolio value</span><b id="oVal">&mdash;</b></div>
+      <div class="outrow"><span>Weighted expense ratio</span><b id="oWer">&mdash;</b></div>
+      <div class="outrow"><span>Fund fees, first year</span><b id="oFund">&mdash;</b></div>
+      <div class="outrow" id="rowBroker" hidden><span>Broker costs, first year</span><b id="oBrok">&mdash;</b></div>
+      <div class="outrow"><span>Total cost, first year</span><b id="oYr1">&mdash;</b></div>
+      <div class="outrow"><span>Balance after fees</span><b id="oEnd">&mdash;</b></div>
+      <div class="outrow"><span>Balance if fees were zero</span><b id="oFree">&mdash;</b></div>
+
+      <div class="headline">
+        <span id="dragLabel">What fees cost you over the period</span>
+        <b id="oDrag">&mdash;</b>
+      </div>
+      <p class="note" id="oPct"></p>
+    </div>
+  </div>
+
+  <p class="src">Broker figures are taken from each broker's own published schedule, not from
+  third-party summaries, and each carries the date it was checked. Rates change without notice.
+  The cash rate gap compares the rate an account is placed in by default against the best rate the
+  same broker offers on the same money. Full working shown below.</p>
+
+  <h2>Why the weighted number is the only one that means anything</h2>
+
+  <p>Hold four funds at 0.03, 0.04, 0.85 and 0.06 percent and the average of those numbers is 0.245
+  percent, which looks alarming. If the expensive one is two percent of the portfolio, the number
+  you actually pay is closer to 0.05 percent. The average of the ratios is a fact about your fund
+  list. The weighted ratio is a fact about your money.</p>
+
+  <p>This is the calculation people end up doing by hand in a spreadsheet, because the calculators
+  that rank for this subject all ask for exactly two funds and offer no way to enter a third.</p>
+
+  <h3>The working</h3>
+  <p>Nothing here is hidden, so you can check it:</p>
+  <ul>
+    <li>Weighted ratio = sum of (each fund's amount &times; its ratio) divided by the total.</li>
+    <li>Each year the balance grows at your return less the weighted ratio, then the year's
+    contribution is added, then broker costs are subtracted.</li>
+    <li>The zero-fee comparison runs the same loop at the full return with no deductions.</li>
+    <li>The gap between the two is the answer. It is larger than the sum of the yearly fees,
+    because every dollar paid out also stops compounding.</li>
+  </ul>
+
+  <h2>The half that fund calculators ignore</h2>
+
+  <p>A fund fee is charged inside the fund. A broker fee is charged on the account. They are
+  researched separately, written about separately, and almost never added together, which is how
+  people end up optimising one to three decimal places while paying more than the saving somewhere
+  else on the same statement.</p>
+
+  <h3>Commissions</h3>
+  <p>Largely settled. <cite>Fidelity and Schwab both charge nothing on online US stock and ETF
+  trades and 0.65 dollars per options contract</cite>. If you trade US stocks at a US broker this
+  line is usually zero and there is nothing to optimise.</p>
+
+  <h3>Currency conversion</h3>
+  <p>The line that decides the answer for anyone outside the United States. It never appears as a
+  charge because it is folded into the rate you receive. <cite>Interactive Brokers states it will
+  typically add or subtract, at its discretion, 0.03 percent to the exchange rate on automatic
+  conversion, with no separate commission</cite>. A typical retail bank or broker takes closer to
+  half a percent, which is more than ten times as much on the same transfer.</p>
+
+  <h3>The cash rate gap</h3>
+  <p>The one nobody looks at. Brokers place uninvested cash into a default option, and the default
+  is rarely the best option the same broker offers on the same money. The difference is paid daily,
+  by you, for as long as the cash sits there, and moving it is a settings change rather than an
+  account move. On the balances most people leave idle it is frequently larger than every other
+  cost on this page combined.</p>
+
+  <p><a href="/brokers/lowest-cost/">The full breakdown of where broker costs actually sit</a> goes
+  through each of these with the numbers and the sources.</p>
+
+  <h2>What this does not include</h2>
+
+  <p>Being clear about the edges is more useful than pretending there are none:</p>
+  <ul>
+    <li><b>Tax.</b> Nothing here is after tax, and tax treatment differs by account type and by
+    country. A high-turnover fund also generates taxable events a cheap index fund does not.</li>
+    <li><b>Bid-ask spread.</b> Real, paid on every ETF trade, and not published anywhere you can
+    look it up in advance.</li>
+    <li><b>Custody fees.</b> Close to extinct at large US brokers and completely normal outside
+    the United States, where they are often the largest single charge. Not modelled yet.</li>
+    <li><b>Your actual return.</b> The return field is an assumption, not a forecast. Change it and
+    watch how little the conclusion moves. That stability is the point: fee drag is one of the few
+    things about a portfolio you can predict.</li>
+  </ul>
+
+  <div class="cta">
+    <h3>The spreadsheet version</h3>
+    <p>The free Feequity tracker does this on your live holdings, with prices that update on their
+    own and a tab for what your broker charges you.</p>
+    <p><a href="/tools/portfolio-tracker/">See the portfolio tracker</a></p>
+  </div>
+
+  <h2>Common questions</h2>
+
+  <dl class="faq">
+    <dt>How do you calculate the expense ratio of a whole portfolio?</dt>
+    <dd>Weight each fund by the money you hold in it, not by the number of funds. Multiply each
+    fund's ratio by its share of the total, then add the results. A small holding in an expensive
+    fund matters far less than the headline figure suggests.</dd>
+
+    <dt>Is a 1 percent expense ratio a lot?</dt>
+    <dd>On 10,000 dollars it is 100 dollars in the first year, which sounds survivable. It is not,
+    because the fee is charged on the balance and so grows with it, and because money paid out
+    never compounds again. Over a long horizon the total is a multiple of the first year figure
+    rather than a sum of it.</dd>
+
+    <dt>Do I actually pay the expense ratio, or is it taken from the fund?</dt>
+    <dd>It is deducted inside the fund, so no charge appears on your statement. What you see is the
+    fund returning slightly less than the index it tracks. That invisibility is why expense ratios
+    go unexamined for years.</dd>
+
+    <dt>Which broker costs are included here?</dt>
+    <dd>Stock and options commissions, currency conversion on foreign trades, and the gap between
+    the cash rate your account defaults into and the best rate the same broker offers. Every
+    default comes from the broker's own published schedule and carries the date it was checked.</dd>
+
+    <dt>Why is my broker not in the list?</dt>
+    <dd>A broker is added only once its figures have been confirmed against its own published
+    schedule rather than a third-party summary. Three are listed today. Anything else can be
+    entered by hand with the manual option.</dd>
+  </dl>
+
+  <p class="src">Published 4 August 2026 by Jacob Shasha. Broker figures verified against
+  first-party sources on the dates shown in the calculator. Feequity publishes a
+  <a href="/corrections/">public correction log</a>. If a figure here is wrong, it will be
+  corrected on the record rather than quietly edited.</p>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Feequity publishes research about investing tools and brokers. It does not provide
+    investment advice and nothing here is a recommendation to buy or sell any security.</p>
+    <p>Rates and fees shown were accurate on the date stated and change without notice. Always
+    check the provider's own schedule before opening an account.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-test/">How we test</a>
+      <a href="/how-we-make-money/">How we make money</a>
+      <a href="/access-log/">Access log</a>
+      <a href="/corrections/">Corrections</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p style="margin-top:12px">&copy; 2026 Feequity</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------------------
+   BROKER DATA
+   One object. To add a broker, add an entry. To update a figure, edit it here
+   and change "checked". Nothing else in this file needs to change.
+
+   region  reserved for non-US brokers. UK brokers will need "custody", an
+           annual percentage of the portfolio, which US brokers do not charge.
+           Not modelled yet, deliberately, because no UK figure has been
+           verified first-party.
+   stock   cost of one online stock or ETF trade
+   option  cost per option contract
+   fxPct   percentage taken on currency conversion
+   cashGap percentage between the default cash rate and the best rate the same
+           broker offers on the same money
+--------------------------------------------------------------------------- */
+var BROKERS = {
+  fidelity:{
+    name:"Fidelity", region:"US", currency:"USD",
+    stock:0, option:0.65, fxPct:0, cashGap:1.50,
+    checked:"4 August 2026",
+    note:"Zero commission on online US stock and ETF trades, 0.65 dollars per option contract. " +
+         "The cash gap is the distance between the FDIC sweep an account is placed in by default " +
+         "and a money market fund on the same cash. Both rates move, so treat the gap as an " +
+         "order of magnitude rather than a precise figure."
+  },
+  schwab:{
+    name:"Charles Schwab", region:"US", currency:"USD",
+    stock:0, option:0.65, fxPct:0, cashGap:1.50,
+    checked:"4 August 2026",
+    note:"Zero commission on online US stock and ETF trades, 0.65 dollars per option contract. " +
+         "The bank sweep an account defaults into is tiered by balance, and Schwab's own " +
+         "disclosure states the rate could be zero in certain circumstances. The gap shown is " +
+         "indicative."
+  },
+  ibkr:{
+    name:"Interactive Brokers, Pro Fixed", region:"US", currency:"USD",
+    stock:1.00, option:0.65, fxPct:0.03, cashGap:0,
+    checked:"4 August 2026",
+    note:"Pro Fixed is 0.005 dollars per share with a one dollar minimum, so a small order costs " +
+         "the minimum. On automatic currency conversion IBKR states it will typically add or " +
+         "subtract, at its discretion, 0.03 percent to the exchange rate, with no separate " +
+         "commission. That wording is the broker's own and is not a guaranteed rate."
+  },
+  manual:{
+    name:"Entered by hand", region:"", currency:"USD",
+    stock:0, option:0.65, fxPct:0.5, cashGap:1.5,
+    checked:"", note:"", manual:true
+  }
+};
+
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var fundsBox=$('funds');
+
+  var SEED=[
+    ["Total US market index",40000,0.03],
+    ["International index",15000,0.06],
+    ["Actively managed fund",8000,0.75]
+  ];
+
+  function row(name,amt,er){
+    var d=document.createElement('div');
+    d.className='fund-row';
+    d.innerHTML =
+      '<input type="text" placeholder="Fund name or ticker" aria-label="Fund name">' +
+      '<input type="number" inputmode="decimal" min="0" step="100" placeholder="0" aria-label="Amount held">' +
+      '<input type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" aria-label="Expense ratio percent">' +
+      '<button type="button" class="xbtn" aria-label="Remove this fund">&times;</button>';
+    var i=d.querySelectorAll('input');
+    i[0].value=name; i[1].value=amt; i[2].value=er;
+    d.querySelector('.xbtn').addEventListener('click',function(){
+      if(fundsBox.children.length>1){ d.remove(); calc(); }
+      else { i[0].value=''; i[1].value=''; i[2].value=''; calc(); }
+    });
+    fundsBox.appendChild(d);
+  }
+  SEED.forEach(function(s){ row(s[0],s[1],s[2]); });
+
+  $('addFund').addEventListener('click',function(){ row('',0,0); calc(); });
+
+  var t=$('step2btn'), body=$('step2body');
+  t.addEventListener('click',function(){
+    var open=t.getAttribute('aria-expanded')==='true';
+    t.setAttribute('aria-expanded', String(!open));
+    body.hidden=open;
+    if(!open) gtag('event','broker_costs_open',{page_slug:location.pathname});
+    calc();
+  });
+
+  $('broker').addEventListener('change',function(){
+    $('manualBox').hidden = this.value!=='manual';
+    calc();
+  });
+
+  var money=function(n){
+    return (n<0?"-":"") + "$" + Math.abs(Math.round(n)).toLocaleString('en-US');
+  };
+
+  function calc(){
+    var total=0, weighted=0, any=false;
+    Array.prototype.forEach.call(fundsBox.children,function(r){
+      var i=r.querySelectorAll('input');
+      var a=parseFloat(i[1].value)||0, e=parseFloat(i[2].value)||0;
+      if(a>0){ total+=a; weighted+=a*e; any=true; }
+    });
+    var wer = total>0 ? weighted/total : 0;
+
+    var contrib=parseFloat($('contrib').value)||0;
+    var ret=(parseFloat($('ret').value)||0)/100;
+    var yrs=Math.max(1,Math.min(60,parseInt($('yrs').value,10)||1));
+
+    var useBroker = $('step2btn').getAttribute('aria-expanded')==='true';
+    var b=BROKERS[$('broker').value], bc=0;
+    if(useBroker && b){
+      var stock = b.manual ? (parseFloat($('mCom').value)||0) : b.stock;
+      var fxPct = b.manual ? (parseFloat($('mFx').value)||0) : b.fxPct;
+      var gap   = b.manual ? (parseFloat($('mCash').value)||0) : b.cashGap;
+      bc = (parseFloat($('trades').value)||0)*stock
+         + (parseFloat($('opts').value)||0)*b.option
+         + (parseFloat($('fx').value)||0)*(fxPct/100)
+         + (parseFloat($('cash').value)||0)*(gap/100);
+      $('stamp').innerHTML = b.manual ? '' :
+        '<b>' + b.name + '</b>, figures checked ' + b.checked + '. ' + b.note;
+    } else {
+      $('stamp').innerHTML='';
+    }
+
+    var bal=total, free=total, feesY1=0;
+    for(var y=0;y<yrs;y++){
+      var before=bal;
+      bal = bal*(1+ret-wer/100) - bc + contrib;
+      if(bal<0) bal=0;
+      free = free*(1+ret) + contrib;
+      if(y===0) feesY1 = before*(wer/100) + bc;
+    }
+
+    $('oVal').textContent  = money(total);
+    $('oWer').textContent  = total>0 ? wer.toFixed(3)+"%" : "\u2014";
+    $('oFund').textContent = money(total*(wer/100));
+    $('oBrok').textContent = money(bc);
+    $('rowBroker').hidden  = !useBroker;
+    $('oYr1').textContent  = money(feesY1);
+    $('oEnd').textContent  = money(bal);
+    $('oFree').textContent = money(free);
+
+    var drag = free-bal;
+    $('oDrag').textContent = money(drag);
+    $('dragLabel').textContent = "What fees cost you over " + yrs +
+      (yrs===1 ? " year" : " years");
+
+    var pct = free>0 ? (drag/free*100) : 0;
+    var paid = contrib*yrs;
+    var msg = !any
+      ? "Enter at least one fund to see a result."
+      : "That is " + pct.toFixed(1) + "% of the balance you would otherwise have ended with"
+        + (paid>0 && drag>paid
+            ? ", and more than the " + money(paid) + " you added over the whole period."
+            : ".");
+    $('oPct').textContent = msg;
+    $('oPct').className = (any && paid>0 && drag>paid) ? "note warn" : "note";
+  }
+
+  document.querySelector('.calc').addEventListener('input',calc);
+  calc();
+})();
+</script>
+
+</body>
+</html>
