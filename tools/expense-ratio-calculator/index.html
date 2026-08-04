@@ -159,10 +159,14 @@ tr:last-child td{border-bottom:0}
 .note{font-size:13px;color:#95A2AC;margin:12px 0 0;max-width:none;line-height:1.5}
 .warn{color:#E0B98B}
 
-.cta{border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin:28px 0;
-  background:var(--wash)}
+.cta{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);
+  padding:22px 24px;margin:26px 0 34px;background:var(--wash)}
 .cta h3{margin:0 0 .4em;font-size:1.05rem}
-.cta p{margin-bottom:.6em}
+.cta p{margin-bottom:.8em}
+.cta p:last-child{margin-bottom:0}
+.btn{display:inline-block;background:var(--slate);color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px}
+.btn:hover{background:#0F1B23}
 
 .faq dt{font-weight:600;margin-top:1.5em}
 .faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
@@ -349,6 +353,14 @@ body.showbar .sticky{display:flex}
   The cash rate gap compares the rate an account is placed in by default against the best rate the
   same broker offers on the same money. Full working shown below.</p>
 
+  <div class="cta">
+    <h3>Want this on your real holdings?</h3>
+    <p>You just typed your funds in by hand. The free Feequity tracker does the same arithmetic on
+    your actual portfolio, with prices that update on their own, and a tab for what your broker
+    charges you. It is a Google Sheet, so it stays in your own Drive.</p>
+    <p><a class="btn" href="/tools/portfolio-tracker/">Get the free tracker</a></p>
+  </div>
+
   <h2>Why the weighted number is the only one that means anything</h2>
 
   <p>Hold four funds at 0.03, 0.04, 0.85 and 0.06 percent and the average of those numbers is 0.245
@@ -413,13 +425,6 @@ body.showbar .sticky{display:flex}
     watch how little the conclusion moves. That stability is the point: fee drag is one of the few
     things about a portfolio you can predict.</li>
   </ul>
-
-  <div class="cta">
-    <h3>The spreadsheet version</h3>
-    <p>The free Feequity tracker does this on your live holdings, with prices that update on their
-    own and a tab for what your broker charges you.</p>
-    <p><a href="/tools/portfolio-tracker/">See the portfolio tracker</a></p>
-  </div>
 
   <h2>Common questions</h2>
 
