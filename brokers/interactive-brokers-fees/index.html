@@ -25,7 +25,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Is IBKR Lite actually free?","acceptedAnswer":{"@type":"Answer","text":"Commission on US stocks and ETFs is zero on Lite, but the plan carries trade-offs that Pro does not: less favourable order routing, lower interest paid on cash, and higher margin rates. Lite is also restricted to US residents. Everyone else is on Pro."}},
 {"@type":"Question","name":"What does IBKR charge per share on Pro?","acceptedAnswer":{"@type":"Answer","text":"On the Pro Fixed plan the published rate is 0.005 dollars per share with a 1 dollar minimum per order. The Tiered plan goes as low as 0.0035 dollars per share and adds exchange, regulatory and clearing fees separately, so it favours higher volume."}},
-{"@type":"Question","name":"How much does IBKR charge to convert currency?","acceptedAnswer":{"@type":"Answer","text":"Two methods with different pricing. Automatic conversion applies a 0.03 percent adjustment to the exchange rate with no separate commission. A manual spot FX order is priced at 0.20 basis points of trade value with a 2 dollar minimum, and the underlying quote is interbank with no markup."}},
+{"@type":"Question","name":"How much does IBKR charge to convert currency?","acceptedAnswer":{"@type":"Answer","text":"Two methods with different pricing. On automatic conversion IBKR states it will typically apply, at its discretion, a 0.03 percent adjustment to the exchange rate, with no separate commission. A manual spot FX order is priced at 0.20 basis points of trade value with a 2 dollar minimum, and the underlying quote is interbank with no markup."}},
 {"@type":"Question","name":"When is manual FX cheaper than automatic conversion at IBKR?","acceptedAnswer":{"@type":"Answer","text":"Around 6,667 dollars. Below that the 2 dollar minimum on a manual order costs more than the 0.03 percent adjustment on automatic conversion. Above it the percentage charge overtakes the fixed minimum. On a 10,000 dollar conversion the estimated cost is about 2 dollars manual against 3 dollars automatic."}},
 {"@type":"Question","name":"Does Interactive Brokers charge an inactivity fee?","acceptedAnswer":{"@type":"Answer","text":"No. IBKR publishes no inactivity fee, no account maintenance fee and no deposit fee, which is unusual among brokers offering direct market access."}},
 {"@type":"Question","name":"What options commission does IBKR charge?","acceptedAnswer":{"@type":"Answer","text":"On the fixed plan the rate is 0.65 dollars per contract, and tiered pricing ranges from 0.15 to 0.65 depending on volume. IBKR states that Lite accounts are charged a fixed rate on the first 1,000 US option contracts each month, and that volume above that moves onto the Pro tiered model."}},
@@ -183,7 +183,7 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
 
   <p class="byline">
     Written by <b>Jacob Shasha</b>, private investor ·
-    Updated 3 August 2026 ·
+    Updated 4 August 2026 ·
     <a href="/how-we-test/">How we test</a>
   </p>
 
@@ -197,8 +197,8 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
     <h2>Short answer</h2>
     <p>On commission, IBKR is among the cheapest available: <b>0.005 dollars per share</b> on the
     Pro Fixed plan with a one dollar minimum, or zero on Lite if you are a US resident. But the
-    number that decides your real cost is <b>currency conversion</b>. IBKR charges 0.03 percent to
-    convert automatically, against half a percent or more at a typical retail broker. On ten
+    number that decides your real cost is <b>currency conversion</b>. IBKR's stated adjustment for
+    automatic conversion is 0.03 percent, against half a percent or more at a typical retail broker. On ten
     thousand dollars that is roughly 3 dollars against 50.</p>
   </div>
 
@@ -232,7 +232,7 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
   </div>
 
   <p class="src">Commission and plan figures from Interactive Brokers' published schedules and
-  broker review sources, checked 3 August 2026. Pricing varies by IBKR entity and by country and
+  broker review sources. Automatic conversion terms re-verified first-party 4 August 2026. Checked 3 August 2026. Pricing varies by IBKR entity and by country and
   changes over time. Confirm in your own Client Portal.</p>
 
   <h2>Currency conversion, where the real money is</h2>
@@ -243,9 +243,17 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
   <p>IBKR offers two ways to convert, and they are priced completely differently.</p>
 
   <h3>Automatic conversion</h3>
-  <p>Triggered when you buy an asset in a currency you do not hold. <cite>The cost is a 0.03
-  percent adjustment applied to the exchange rate, with no separate commission</cite>. It happens
-  in the background and you will not see a line item for it.</p>
+  <p>Triggered when you buy an asset in a currency you do not hold. <cite>IBKR states that it
+  will typically add or subtract, at its discretion, 0.03 percent to the exchange rate that would
+  otherwise apply, and that it charges no separate commission on these trades</cite>. Read that
+  wording closely. It is a stated practice with two hedges in it rather than a guaranteed rate,
+  and it is the only figure the broker publishes for this route. It happens in the background and
+  you will not see a line item for it.</p>
+
+  <p class="src">Interactive Brokers spot currencies commissions page, checked 4 August 2026. The
+  same wording appears on the UK, Ireland and Japan entity pages, so this is global policy rather
+  than a regional arrangement. IBKR states it may change these rates at its sole discretion, and
+  that clients introduced through another broker or an advisor may pay more.</p>
 
   <h3>Manual spot FX</h3>
   <p>You place a currency order yourself. <cite>Priced at 0.20 basis points of trade value with a 2
@@ -314,7 +322,8 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
     regulatory and clearing fees separately, so it favours higher volume.</dd>
 
     <dt>How much does IBKR charge to convert currency?</dt>
-    <dd>Two methods with different pricing. Automatic conversion applies a 0.03 percent adjustment
+    <dd>Two methods with different pricing. On automatic conversion IBKR states it will typically apply,
+    at its discretion, a 0.03 percent adjustment
     to the exchange rate with no separate commission. A manual spot FX order is priced at 0.20
     basis points of trade value with a 2 dollar minimum, and the underlying quote is interbank with
     no markup.</dd>

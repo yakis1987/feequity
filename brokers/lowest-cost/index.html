@@ -164,6 +164,7 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
   #cmp thead{display:none}
   #cmp tr{padding:13px 0;border-bottom:1px solid var(--line)}
   #cmp td{border:0;padding:4px 0;display:flex;justify-content:space-between;font-size:14px}
+  #mgn td:first-child,
   #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px;font-weight:600}
   #cmp td[data-k]:before{content:attr(data-k);color:var(--soft);font-weight:400}
 }
@@ -191,7 +192,7 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
 
   <p class="byline">
     Written by <b>Jacob Shasha</b>, private investor ·
-    Updated 3 August 2026 ·
+    Updated 4 August 2026 ·
     <a href="/how-we-test/">How we test</a>
   </p>
 
@@ -267,11 +268,48 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
   the way out.</p>
 
   <h3>Margin interest</h3>
-  <p>Irrelevant if you never borrow, and dominant if you do.
-  <cite>Interactive Brokers prices margin as a benchmark rate plus a spread that varies by plan,
-  currency and loan size, with the Pro plan starting at a lower spread than Lite</cite>. Schwab
-  and Fidelity both publish base-rate schedules. All of them move without notice, so the only
-  rate worth quoting is the one showing in your own account today.</p>
+  <p>Irrelevant if you never borrow, and dominant if you do. Every broker prices margin as a
+  published base rate plus or minus a spread that depends on how much you have borrowed. The base
+  rate is the number brokers advertise, and it is the number least worth comparing.</p>
+
+  <p>Here is why. <cite>Fidelity's base margin rate is 10.575 percent and Schwab's is 10.00
+  percent</cite>, which makes Schwab look cheaper by more than half a point. It is not. Fidelity
+  discounts from its base at most tiers while Schwab adds to its base at every tier, and the
+  effective rates come out identical up to half a million dollars borrowed.</p>
+
+  <div id="mgn">
+  <table>
+    <thead>
+      <tr><th>Amount borrowed</th><th>Fidelity</th><th>Charles Schwab</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>$0 to $24,999</td><td data-k="Fidelity">11.825%</td><td data-k="Schwab">11.825%</td></tr>
+      <tr><td>$25,000 to $49,999</td><td data-k="Fidelity">11.325%</td><td data-k="Schwab">11.325%</td></tr>
+      <tr><td>$50,000 to $99,999</td><td data-k="Fidelity">10.375%</td><td data-k="Schwab">10.375%</td></tr>
+      <tr><td>$100,000 to $249,999</td><td data-k="Fidelity">10.325%</td><td data-k="Schwab">10.325%</td></tr>
+      <tr><td>$250,000 to $499,999</td><td data-k="Fidelity">10.075%</td><td data-k="Schwab">10.075%</td></tr>
+      <tr><td>$500,000 to $999,999</td><td data-k="Fidelity" class="good">7.75%</td><td data-k="Schwab">Not published</td></tr>
+      <tr><td>$1,000,000 and above</td><td data-k="Fidelity" class="good">7.50%</td><td data-k="Schwab">Not published</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="src">Schwab base rate 10.00 percent, last changed 12 December 2025, from Schwab's own
+  margin rates and requirements page. Fidelity base margin rate 10.575 percent, effective since 12
+  December 2025, from Fidelity's own commissions and margin rates page. Both checked 4 August
+  2026. Schwab does not publish rates at or above $500,000 and directs clients to call. Rates
+  change without notice.</p>
+
+  <p>Two things follow. The schedules are the same for almost every private investor, so margin
+  rate is not a reason to choose between these two unless you borrow several hundred thousand
+  dollars. Above that point the comparison stops being a comparison, because only one of them
+  publishes a number at all.</p>
+
+  <p><cite>Interactive Brokers prices margin differently again, as a benchmark rate plus a spread
+  that varies by plan, currency and loan size, with the Pro plan starting at a lower spread than
+  Lite</cite>. Both US rates above last changed on 12 December 2025, the same day, which is a
+  policy rate moving rather than two brokers competing. The figure showing in your own account
+  today is the only one that matters.</p>
 
   <h3>Account charges</h3>
   <p>Largely gone at the big US brokers. <cite>Fidelity and Schwab both publish zero annual fees,
@@ -322,7 +360,7 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
 
   <p class="src">Commission and account fee figures published by each broker. Cash rates as dated
   above and taken from each broker's own disclosures. Rates change without notice and are tiered,
-  so the figure applying to your account may differ. Verified 3 August 2026. Check your own
+  so the figure applying to your account may differ. Verified 3 August 2026. Margin schedules verified first-party 4 August 2026. Check your own
   account before acting.</p>
 
   <div class="calc">
