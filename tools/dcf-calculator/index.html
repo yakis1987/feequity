@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCF Calculator: Fair Value Per Share, With the Terminal Value Shown</title>
+<meta name="description" content="A free two-stage discounted cash flow calculator that runs in your browser, shows how much of the answer comes from the terminal value, and gives a sensitivity table.">
+<link rel="canonical" href="https://feequity.com/tools/dcf-calculator/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DCF Calculator: Fair Value Per Share, With the Terminal Value Shown">
+<meta property="og:description" content="A free two-stage discounted cash flow calculator that runs in your browser, shows how much of the answer comes from the terminal value, and gives a sensitivity table.">
+<meta property="og:url" content="https://feequity.com/tools/dcf-calculator/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"DCF calculator","url":"https://feequity.com/tools/dcf-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","description":"A free two-stage discounted cash flow calculator that runs in your browser, shows how much of the answer comes from the terminal value, and gives a sensitivity table.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Jacob Shasha"},"publisher":{"@type":"Organization","name":"Feequity"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://feequity.com/tools/"},{"@type":"ListItem","position":3,"name":"DCF calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What discount rate should I use for a DCF?","acceptedAnswer":{"@type":"Answer","text":"There is no correct figure, only a consistent one. Institutional models derive a weighted average cost of capital, typically somewhere between eight and twelve percent for a listed company. An individual investor can reasonably use their own required annual return instead. What matters is applying the same logic to every company you value, because a discount rate adjusted per company is a rate being fitted to a conclusion."}},{"@type":"Question","name":"Why do two DCF models give different answers for the same company?","acceptedAnswer":{"@type":"Answer","text":"Because the terminal value usually carries most of the result, and it rests on assumptions about a period nobody forecast explicitly. In a hands-on session on 10 August 2026 we recorded fourteen valuation models run by one platform on one company on one day, producing outputs from $204.85 to $293.22, a spread of forty three percent. No model was wrong. They weight different assumptions."}},{"@type":"Question","name":"What is a good terminal growth rate?","acceptedAnswer":{"@type":"Answer","text":"Usually between one and three percent. It cannot sensibly exceed long run economic growth, because a business growing faster than the economy for ever would eventually become the whole economy. Raising it from two to three percent can add twenty percent to the valuation, which is why it deserves more scepticism than its size suggests."}},{"@type":"Question","name":"Should I use free cash flow or net income?","acceptedAnswer":{"@type":"Answer","text":"Free cash flow, meaning cash from operations minus capital expenditure. Net income carries accounting choices such as depreciation schedules that do not correspond to cash leaving the business, and using it makes capital intensive companies look considerably cheaper than they are."}},{"@type":"Question","name":"Is a DCF worth doing at all if the answer is so sensitive?","acceptedAnswer":{"@type":"Answer","text":"Yes, but for a different reason than most people expect. Its value is not the number at the end, it is that it forces you to write down what you are assuming about growth, risk and duration. A DCF that produces a wide range is telling you something true about the company. A DCF that produces a precise number is usually hiding the same uncertainty behind fewer decimals."}},{"@type":"Question","name":"Does this calculator store or send my figures anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser, nothing is transmitted, nothing is saved, and there is no account. Closing the tab discards the inputs."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+</script>
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
+(window,document,"clarity","script","xwrly79k01");
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+});
+</script>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.7em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+ul,ol{margin:0 0 1em 1.15em}
+li{margin-bottom:.35em}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:20px}
+.byline b{color:var(--ink);font-weight:600}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.src{font-size:11.5px;color:var(--faint);margin-top:-.6em;max-width:var(--measure)}
+
+/* calculator */
+.calc{background:var(--slate);border-radius:var(--r);padding:24px 26px;margin:30px 0;color:#fff}
+.calc h3{margin:0 0 4px;color:#fff;font-size:1.1rem}
+.calc .sub{color:#95A2AC;font-size:13px;margin-bottom:18px;max-width:none}
+.calc label{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:#95A2AC;margin-bottom:5px}
+.calc input,.calc select{width:100%;background:#132029;border:1px solid #33454F;color:#fff;
+  border-radius:7px;padding:9px 11px;font-size:15px;font-family:inherit;
+  font-variant-numeric:tabular-nums}
+.calc input:focus,.calc select:focus{outline:2px solid var(--gold);outline-offset:1px;
+  border-color:var(--gold)}
+.calc input::placeholder{color:#5E707C}
+
+.fund-head,.fund-row{display:grid;grid-template-columns:1fr 130px 100px 34px;gap:10px;
+  align-items:end;margin-bottom:10px;position:relative}
+.fund-head{margin-bottom:6px}
+.fund-head span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#95A2AC}
+.fund-head span:nth-child(2),.fund-head span:nth-child(3){text-align:right}
+.fund-row .f-amt input,.fund-row .f-er input{text-align:right}
+.fund-row .mini{display:none;font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:#7E8D99;margin-bottom:3px}
+.xbtn{background:transparent;border:1px solid #33454F;color:#8A99A5;border-radius:7px;
+  height:38px;font-size:17px;cursor:pointer;line-height:1;padding:0}
+.xbtn:hover{border-color:var(--down);color:#E08B8B}
+.addbtn{background:transparent;border:1px dashed #44576380;color:#B9C2C9;border-radius:7px;
+  padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+.addbtn:hover{border-color:var(--gold);color:#fff}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;align-items:end}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px;align-items:end}
+.grid3 > div,.grid2 > div{display:flex;flex-direction:column;justify-content:flex-end}
+[hidden]{display:none!important}
+.calc label{min-height:1.4em}
+
+.step2{border-top:1px solid #33454F;margin-top:22px;padding-top:20px}
+.toggle{background:transparent;border:0;color:var(--gold);font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;padding:0;display:flex;align-items:center;gap:8px}
+.toggle .chev{transition:transform .18s ease;display:inline-block}
+.toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+#step2body[hidden]{display:none}
+.stamp{font-size:11.5px;color:#8A99A5;margin-top:9px;max-width:none}
+.stamp b{color:#C4CDD4;font-weight:600}
+
+.out{margin-top:20px;padding-top:16px;border-top:2px solid var(--gold)}
+.outrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:7px 0;border-bottom:1px solid #2A3A45;font-size:14px;color:#C4CDD4}
+.outrow:last-of-type{border-bottom:0}
+.outrow b{font-size:15px;color:#fff;font-variant-numeric:tabular-nums}
+.headline{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  margin-top:14px;padding-top:14px;border-top:1px solid #33454F}
+.headline span{font-size:13px;color:#95A2AC;max-width:none}
+.headline b{font-size:1.75rem;color:var(--gold);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;line-height:1.1}
+.note{font-size:13px;color:#95A2AC;margin:12px 0 0;max-width:none;line-height:1.5}
+.warn{color:#E0B98B}
+
+.cta{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);
+  padding:22px 24px;margin:26px 0 34px;background:var(--wash)}
+.cta h3{margin:0 0 .4em;font-size:1.05rem}
+.cta p{margin-bottom:.8em}
+.cta p:last-child{margin-bottom:0}
+.btn{display:inline-block;background:var(--slate);color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px}
+.btn:hover{background:#0F1B23}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{background:var(--wash);border-top:1px solid var(--line);padding:30px 0 40px;
+  font-size:13px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+
+@media(max-width:640px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .calc{padding:20px 18px}
+  .fund-head{display:none}
+  .fund-row{grid-template-columns:1fr 1fr;gap:8px 10px;padding:0 0 12px;margin-bottom:12px;
+    border-bottom:1px solid #2A3A45}
+  .fund-row .f-name{grid-column:1 / -1;padding-right:38px}
+  .fund-row .mini{display:block}
+  .fund-row .xbtn{position:absolute;top:0;right:0;width:30px;height:38px;border:0;
+    color:#6E7E8A;font-size:19px}
+  .fund-row .xbtn:hover{color:#E08B8B}
+  .grid3,.grid2{grid-template-columns:1fr 1fr;gap:10px}
+  .grid3 > div:first-child,.grid2 > div:first-child{grid-column:1 / -1}
+  .calc input,.calc select{padding:8px 10px;font-size:16px}
+  .headline{flex-direction:column;gap:4px}
+  .headline b{font-size:1.5rem}
+  #cmp thead{display:none}
+  #cmp tr{display:block;border-bottom:1px solid var(--line);padding:10px 0}
+  #cmp td{display:flex;justify-content:space-between;border:0;padding:3px 0;text-align:right}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px;font-weight:600}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--faint);font-size:12px;
+    font-weight:400;text-align:left}
+}
+/* sticky result on mobile so the number is always visible */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+  background:var(--slate);border-top:2px solid var(--gold);
+  padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+  align-items:baseline;justify-content:space-between;gap:12px;
+  box-shadow:0 -6px 18px rgba(0,0,0,.22)}
+.sticky span{font-size:12px;color:#95A2AC;max-width:none;line-height:1.3}
+.sticky b{font-size:1.15rem;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+body.showbar .sticky{display:flex}
+@media(min-width:641px){.sticky{display:none!important}}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.7em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+ul,ol{margin:0 0 1em 1.15em}
+li{margin-bottom:.35em}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:20px}
+.byline b{color:var(--ink);font-weight:600}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.src{font-size:11.5px;color:var(--faint);margin-top:-.6em;max-width:var(--measure)}
+
+/* calculator */
+.calc{background:var(--slate);border-radius:var(--r);padding:24px 26px;margin:30px 0;color:#fff}
+.calc h3{margin:0 0 4px;color:#fff;font-size:1.1rem}
+.calc .sub{color:#95A2AC;font-size:13px;margin-bottom:18px;max-width:none}
+.calc label{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:#95A2AC;margin-bottom:5px}
+.calc input,.calc select{width:100%;background:#132029;border:1px solid #33454F;color:#fff;
+  border-radius:7px;padding:9px 11px;font-size:15px;font-family:inherit;
+  font-variant-numeric:tabular-nums}
+.calc input:focus,.calc select:focus{outline:2px solid var(--gold);outline-offset:1px;
+  border-color:var(--gold)}
+.calc input::placeholder{color:#5E707C}
+
+.fund-head,.fund-row{display:grid;grid-template-columns:1fr 130px 100px 34px;gap:10px;
+  align-items:end;margin-bottom:10px;position:relative}
+.fund-head{margin-bottom:6px}
+.fund-head span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#95A2AC}
+.fund-head span:nth-child(2),.fund-head span:nth-child(3){text-align:right}
+.fund-row .f-amt input,.fund-row .f-er input{text-align:right}
+.fund-row .mini{display:none;font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:#7E8D99;margin-bottom:3px}
+.xbtn{background:transparent;border:1px solid #33454F;color:#8A99A5;border-radius:7px;
+  height:38px;font-size:17px;cursor:pointer;line-height:1;padding:0}
+.xbtn:hover{border-color:var(--down);color:#E08B8B}
+.addbtn{background:transparent;border:1px dashed #44576380;color:#B9C2C9;border-radius:7px;
+  padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+.addbtn:hover{border-color:var(--gold);color:#fff}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;align-items:end}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px;align-items:end}
+.grid3 > div,.grid2 > div{display:flex;flex-direction:column;justify-content:flex-end}
+[hidden]{display:none!important}
+.calc label{min-height:1.4em}
+
+.step2{border-top:1px solid #33454F;margin-top:22px;padding-top:20px}
+.toggle{background:transparent;border:0;color:var(--gold);font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;padding:0;display:flex;align-items:center;gap:8px}
+.toggle .chev{transition:transform .18s ease;display:inline-block}
+.toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+#step2body[hidden]{display:none}
+.stamp{font-size:11.5px;color:#8A99A5;margin-top:9px;max-width:none}
+.stamp b{color:#C4CDD4;font-weight:600}
+
+.out{margin-top:20px;padding-top:16px;border-top:2px solid var(--gold)}
+.outrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:7px 0;border-bottom:1px solid #2A3A45;font-size:14px;color:#C4CDD4}
+.outrow:last-of-type{border-bottom:0}
+.outrow b{font-size:15px;color:#fff;font-variant-numeric:tabular-nums}
+.headline{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  margin-top:14px;padding-top:14px;border-top:1px solid #33454F}
+.headline span{font-size:13px;color:#95A2AC;max-width:none}
+.headline b{font-size:1.75rem;color:var(--gold);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;line-height:1.1}
+.note{font-size:13px;color:#95A2AC;margin:12px 0 0;max-width:none;line-height:1.5}
+.warn{color:#E0B98B}
+
+.cta{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);
+  padding:22px 24px;margin:26px 0 34px;background:var(--wash)}
+.cta h3{margin:0 0 .4em;font-size:1.05rem}
+.cta p{margin-bottom:.8em}
+.cta p:last-child{margin-bottom:0}
+.btn{display:inline-block;background:var(--slate);color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px}
+.btn:hover{background:#0F1B23}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{background:var(--wash);border-top:1px solid var(--line);padding:30px 0 40px;
+  font-size:13px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+
+@media(max-width:640px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .calc{padding:20px 18px}
+  .fund-head{display:none}
+  .fund-row{grid-template-columns:1fr 1fr;gap:8px 10px;padding:0 0 12px;margin-bottom:12px;
+    border-bottom:1px solid #2A3A45}
+  .fund-row .f-name{grid-column:1 / -1;padding-right:38px}
+  .fund-row .mini{display:block}
+  .fund-row .xbtn{position:absolute;top:0;right:0;width:30px;height:38px;border:0;
+    color:#6E7E8A;font-size:19px}
+  .fund-row .xbtn:hover{color:#E08B8B}
+  .grid3,.grid2{grid-template-columns:1fr 1fr;gap:10px}
+  .grid3 > div:first-child,.grid2 > div:first-child{grid-column:1 / -1}
+  .calc input,.calc select{padding:8px 10px;font-size:16px}
+  .headline{flex-direction:column;gap:4px}
+  .headline b{font-size:1.5rem}
+  #cmp thead{display:none}
+  #cmp tr{display:block;border-bottom:1px solid var(--line);padding:10px 0}
+  #cmp td{display:flex;justify-content:space-between;border:0;padding:3px 0;text-align:right}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px;font-weight:600}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--faint);font-size:12px;
+    font-weight:400;text-align:left}
+}
+/* sticky result on mobile so the number is always visible */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+  background:var(--slate);border-top:2px solid var(--gold);
+  padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+  align-items:baseline;justify-content:space-between;gap:12px;
+  box-shadow:0 -6px 18px rgba(0,0,0,.22)}
+.sticky span{font-size:12px;color:#95A2AC;max-width:none;line-height:1.3}
+.sticky b{font-size:1.15rem;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+body.showbar .sticky{display:flex}
+@media(min-width:641px){.sticky{display:none!important}}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style><style>
+.warnlbl{color:#E0B98B;font-weight:600}
+#sens table.sens{width:100%;border-collapse:collapse;margin:10px 0 0;font-size:13.5px;
+  font-variant-numeric:tabular-nums}
+#sens table.sens th{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:#8A99A5;font-weight:700;text-align:right;padding:6px 8px;border-bottom:1px solid #33454F}
+#sens table.sens th:first-child{text-align:left}
+#sens table.sens td{padding:7px 8px;text-align:right;color:#C4CDD4;border-bottom:1px solid #2A3A45}
+#sens table.sens td:first-child{text-align:left;color:#8A99A5}
+#sens table.sens td.mid{color:var(--gold);font-weight:700}
+#sens table.sens td.na{color:#5E707C}
+#sens table.sens tr:last-child td{border-bottom:0}
+@media(max-width:640px){#sens table.sens{font-size:12px}
+  #sens table.sens th,#sens table.sens td{padding:6px 4px}}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Fee<span>quity</span></a>
+    <nav>
+      <a href="/trackers/">Trackers</a>
+      <a href="/brokers/">Brokers</a>
+      <a href="/tools/">Tools</a>
+      <a href="/research-tools/">Research tools</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <p class="crumb"><a href="/">Home</a> · <a href="/tools/">Tools</a> · DCF calculator</p>
+
+  <h1>DCF calculator, with the part everyone leaves out</h1>
+
+  <p class="byline">
+    Built by <b>Jacob Shasha</b>, private investor ·
+    Published 11 August 2026 ·
+    <a href="/how-we-test/">How we test</a>
+  </p>
+
+  <div class="answer">
+    <h2>Short answer</h2>
+    <p>A discounted cash flow model estimates what a business is worth by forecasting the cash it
+    produces and discounting that cash back to today. Fill in the six fields below and you get a
+    value per share. Then read the second number we show, the share of that value coming from the
+    terminal value, because on most companies it is over two thirds, and it means the answer is
+    mostly an assumption about the years after your forecast ends.</p>
+  </div>
+
+  <div class="calc">
+    <h3>Discounted cash flow</h3>
+    <p class="sub">Ten year forecast, two growth stages, then a terminal value. Nothing is sent
+    anywhere and nothing is stored.</p>
+
+    <div class="grid3">
+      <div>
+        <label for="fcf">Free cash flow, millions</label>
+        <input id="fcf" type="number" inputmode="decimal" value="1000" step="10">
+      </div>
+      <div>
+        <label for="g1">Growth, years 1-5 %</label>
+        <input id="g1" type="number" inputmode="decimal" value="8" step="0.5">
+      </div>
+      <div>
+        <label for="g2">Growth, years 6-10 %</label>
+        <input id="g2" type="number" inputmode="decimal" value="4" step="0.5">
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div>
+        <label for="wacc">Discount rate %</label>
+        <input id="wacc" type="number" inputmode="decimal" value="9" step="0.25">
+      </div>
+      <div>
+        <label for="tg">Terminal growth %</label>
+        <input id="tg" type="number" inputmode="decimal" value="2.5" step="0.25">
+      </div>
+      <div>
+        <label for="shares">Shares out, millions</label>
+        <input id="shares" type="number" inputmode="decimal" value="500" step="10">
+      </div>
+    </div>
+
+    <div class="step2">
+      <button type="button" class="toggle" id="optBtn" aria-expanded="false" aria-controls="optBody">
+        <span class="chev">&rsaquo;</span> Optional: net cash and current price
+      </button>
+      <div id="optBody" hidden>
+        <div class="grid2">
+          <div>
+            <label for="netcash">Net cash or debt, millions</label>
+            <input id="netcash" type="number" inputmode="decimal" value="0" step="100">
+          </div>
+          <div>
+            <label for="price">Current share price</label>
+            <input id="price" type="number" inputmode="decimal" value="40" step="0.01">
+          </div>
+        </div>
+        <p class="stamp">Enter debt as a negative number. Leave the price at zero to hide the
+        upside line.</p>
+      </div>
+    </div>
+
+    <div class="out">
+      <div class="outrow"><span>Present value of ten years of cash flow</span><b id="oPv">0</b></div>
+      <div class="outrow"><span>Present value of the terminal value</span><b id="oTv">0</b></div>
+      <div class="outrow"><span>Enterprise value</span><b id="oEv">0</b></div>
+      <div class="outrow"><span>Equity value</span><b id="oEq">0</b></div>
+      <div class="outrow"><span><b class="warnlbl">Share of value from the terminal value</b></span><b id="oShare">0</b></div>
+
+      <div class="headline">
+        <span>Value per share</span>
+        <b id="oPs">0</b>
+      </div>
+      <div class="headline" id="upRow">
+        <span>Against a price of <span id="oPrice">0</span></span>
+        <b id="oUp">0</b>
+      </div>
+
+      <p class="note" id="oNote"></p>
+    </div>
+
+    <div class="out" style="border-top-color:#33454F">
+      <p class="stamp" style="margin-top:0"><b>Sensitivity.</b> Value per share at one percentage
+      point either side of your discount rate, and half a point either side of your terminal
+      growth. Same company, same forecast.</p>
+      <div id="sens"></div>
+    </div>
+  </div>
+
+  <h2>Read the terminal value share before you read the answer</h2>
+
+  <p>The calculator forecasts ten years explicitly and then collapses everything after year ten
+  into a single terminal value. On a typical set of inputs, that terminal value is somewhere
+  between half and four fifths of the total. Move the sliders and watch it: the number you came
+  for is mostly a judgement about a period you did not forecast.</p>
+
+  <p>That is not a flaw in the method, it is the method. But it explains why two careful analysts
+  produce different answers for the same company without either making an arithmetic error, and it
+  is the reason a single DCF output should never be treated as a price target.</p>
+
+  <h2>One model is a view. Fourteen is a range</h2>
+
+  <p>We watched this happen in a controlled way. During a hands-on session on 10 August 2026 we
+  ran a commercial valuation platform on a single large company and recorded the output of every
+  model it applied on the same day, to the same company, using the same data.</p>
+
+  <table>
+    <thead><tr><th>Model</th><th>Output</th></tr></thead>
+    <tbody>
+      <tr><td>Lowest, a dividend discount model</td><td class="num">$204.85</td></tr>
+      <tr><td>10 year DCF on EBITDA</td><td class="num">$264.11</td></tr>
+      <tr><td>10 year DCF on revenue</td><td class="num">$266.24</td></tr>
+      <tr><td>10 year DCF on growth</td><td class="num">$267.86</td></tr>
+      <tr><td>5 year DCF on revenue</td><td class="num">$281.69</td></tr>
+      <tr><td>5 year DCF on EBITDA</td><td class="num">$288.26</td></tr>
+      <tr><td>Highest, 5 year DCF on growth</td><td class="num">$293.22</td></tr>
+    </tbody>
+  </table>
+
+  <p class="src">Seven of the fourteen models active for that company on that day. Full list and
+  the screenshots behind it in our <a href="/investingpro-review/">InvestingPro review</a>.</p>
+
+  <p>A spread of $204.85 to $293.22 is forty three percent between the low and the high, on one
+  company, on one day. Nobody was wrong. The models simply weight different assumptions, and a
+  dividend based model reaches a different place than a cash flow based one on a company that
+  retains most of its cash.</p>
+
+  <p>The practical conclusion is the one this page exists to make: <b>run the calculator, then
+  treat the result as one point in a range rather than as the answer.</b> If your DCF says a share
+  is worth thirty percent more than it trades for, the useful question is not whether to buy, it is
+  which assumption is carrying that conclusion and whether you believe it.</p>
+
+  <h2>What each input actually means</h2>
+
+  <h3>Free cash flow</h3>
+  <p>Cash from operations minus capital expenditure. Not net income, which carries accounting
+  choices that do not move cash. Use the most recent full year, and if that year was unusual for a
+  reason you can name, use something closer to normal and say so in your own notes.</p>
+
+  <h3>The two growth rates</h3>
+  <p>Splitting the forecast into years one to five and six to ten is a discipline rather than a
+  precision. It forces the second number to be lower, which is almost always right: high growth
+  attracts competition, and very few businesses compound at double digits for a decade. If your
+  second stage is not meaningfully below your first, you are assuming something unusual and should
+  know that you are.</p>
+
+  <h3>Discount rate</h3>
+  <p>What return you require for taking the risk, and the single input with the most leverage over
+  the answer. Higher rate, lower value. Institutional models derive it from a weighted average cost
+  of capital; an individual investor can reasonably use their own required return and be consistent
+  about it across every company they value. Consistency matters more than precision here, because a
+  rate you change per company is a rate you are fitting to a conclusion.</p>
+
+  <h3>Terminal growth</h3>
+  <p>The rate the business grows for ever after year ten. It should be modest, and it cannot
+  sensibly exceed long run economic growth, because a company growing faster than the economy for
+  ever eventually becomes the economy. Something between one and three percent is the usual range.
+  The calculator will refuse to compute if this figure reaches your discount rate, because the
+  arithmetic breaks and the value goes to infinity.</p>
+
+  <h2>Where to get the inputs without paying for anything</h2>
+
+  <p>Cash from operations, capital expenditure, share count and net debt all appear in a company's
+  annual report, and every free financial data site carries them. Our guide to
+  <a href="/trackers/google-finance-portfolio/">Google Finance portfolios</a> covers the free
+  option most people already have open, and the free tier of Stock Analysis, covered in our
+  <a href="/investingpro-alternatives/">alternatives comparison</a>, reaches a decade of financial
+  statements without an account.</p>
+
+  <p>If you find yourself doing this often enough that pulling the numbers by hand is the slow
+  part, that is the point at which a paid research platform starts to make sense, and our
+  <a href="/research-tools/">research tools section</a> covers what those cost and what they add.
+  Below that point it is a subscription solving a problem you do not have.</p>
+
+  <h2>Four ways this goes wrong</h2>
+
+  <ul>
+    <li><b>Fitting the inputs to a conclusion you already reached.</b> The most common failure and
+    the hardest to notice. If you adjusted the growth rate after seeing the output, you have built
+    a justification rather than a valuation.</li>
+    <li><b>Using net income instead of free cash flow.</b> Profitable companies with heavy capital
+    spending look far cheaper than they are.</li>
+    <li><b>A terminal growth rate that is too high.</b> Moving it from two to three percent can add
+    twenty percent to the answer, and it is the input people fiddle with precisely because it feels
+    small.</li>
+    <li><b>Forgetting net debt.</b> Enterprise value is not equity value. A company with
+    significant borrowing is worth less to shareholders than its operations are worth in total.</li>
+  </ul>
+
+  <div class="cta">
+    <h3>The other number nobody calculates</h3>
+    <p>A valuation tells you what a company might be worth. It does not tell you what holding it
+    costs you every year in commissions, spreads, currency conversion and cash sitting idle. That
+    figure is usually larger than people expect and it compounds against you.</p>
+    <p><a class="btn" href="/tools/expense-ratio-calculator/">Work out your annual cost</a></p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+
+  <dl class="faq">
+    <dt>What discount rate should I use for a DCF?</dt>
+    <dd>There is no correct figure, only a consistent one. Institutional models derive a weighted
+    average cost of capital, typically somewhere between eight and twelve percent for a listed
+    company. An individual investor can reasonably use their own required annual return instead.
+    What matters is applying the same logic to every company you value, because a discount rate
+    adjusted per company is a rate being fitted to a conclusion.</dd>
+
+    <dt>Why do two DCF models give different answers for the same company?</dt>
+    <dd>Because the terminal value usually carries most of the result, and it rests on assumptions
+    about a period nobody forecast explicitly. In a hands-on session on 10 August 2026 we recorded
+    fourteen valuation models run by one platform on one company on one day, producing outputs from
+    $204.85 to $293.22, a spread of forty three percent. No model was wrong. They weight different
+    assumptions.</dd>
+
+    <dt>What is a good terminal growth rate?</dt>
+    <dd>Usually between one and three percent. It cannot sensibly exceed long run economic growth,
+    because a business growing faster than the economy for ever would eventually become the whole
+    economy. Raising it from two to three percent can add twenty percent to the valuation, which is
+    why it deserves more scepticism than its size suggests.</dd>
+
+    <dt>Should I use free cash flow or net income?</dt>
+    <dd>Free cash flow, meaning cash from operations minus capital expenditure. Net income carries
+    accounting choices such as depreciation schedules that do not correspond to cash leaving the
+    business, and using it makes capital intensive companies look considerably cheaper than they
+    are.</dd>
+
+    <dt>Is a DCF worth doing at all if the answer is so sensitive?</dt>
+    <dd>Yes, but for a different reason than most people expect. Its value is not the number at the
+    end, it is that it forces you to write down what you are assuming about growth, risk and
+    duration. A DCF that produces a wide range is telling you something true about the company. A
+    DCF that produces a precise number is usually hiding the same uncertainty behind fewer
+    decimals.</dd>
+
+    <dt>Does this calculator store or send my figures anywhere?</dt>
+    <dd>No. Everything runs in your browser, nothing is transmitted, nothing is saved, and there is
+    no account. Closing the tab discards the inputs.</dd>
+  </dl>
+
+  <p class="src">Published 11 August 2026 by Jacob Shasha. The fourteen model figures were recorded
+  in a logged-in session on 10 August 2026 and are documented with screenshots in our
+  <a href="/investingpro-review/">InvestingPro review</a>. This page carries no commercial links.
+  Corrections are published at <a href="/corrections/">the correction log</a>.</p>
+
+</div>
+</main>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var F=['fcf','g1','g2','wacc','tg','shares','netcash','price'];
+
+  function money(n){
+    var a=Math.abs(n);
+    if(a>=1000) return (n<0?'-':'')+'$'+(a/1000).toFixed(2)+'B';
+    return (n<0?'-':'')+'$'+a.toFixed(0)+'M';
+  }
+  function ps(n){return '$'+n.toFixed(2);}
+
+  function model(fcf,g1,g2,r,tg){
+    var pv=0,cf=fcf;
+    for(var t=1;t<=10;t++){
+      cf=cf*(1+(t<=5?g1:g2));
+      pv+=cf/Math.pow(1+r,t);
+    }
+    var tv=cf*(1+tg)/(r-tg);
+    var pvtv=tv/Math.pow(1+r,10);
+    return {pv:pv,pvtv:pvtv,ev:pv+pvtv};
+  }
+
+  function calc(){
+    var v={};
+    F.forEach(function(k){var el=$(k);v[k]=el?parseFloat(el.value):0;if(isNaN(v[k]))v[k]=0;});
+    var r=v.wacc/100, tg=v.tg/100, g1=v.g1/100, g2=v.g2/100;
+    var note=$('oNote');
+
+    if(v.shares<=0){
+      note.className='note warn';
+      note.textContent='Enter a share count above zero to get a value per share.';
+      return;
+    }
+    if(r<=tg){
+      note.className='note warn';
+      note.textContent='The discount rate must be higher than the terminal growth rate. Below that, the arithmetic produces an infinite value rather than a wrong one.';
+      ['oPv','oTv','oEv','oEq','oShare','oPs','oUp'].forEach(function(id){$(id).textContent='0';});
+      $('sens').innerHTML='';
+      return;
+    }
+
+    var m=model(v.fcf,g1,g2,r,tg);
+    var eq=m.ev+v.netcash;
+    var perShare=eq/v.shares;
+    var share=m.pvtv/m.ev*100;
+
+    $('oPv').textContent=money(m.pv);
+    $('oTv').textContent=money(m.pvtv);
+    $('oEv').textContent=money(m.ev);
+    $('oEq').textContent=money(eq);
+    $('oShare').textContent=share.toFixed(0)+'%';
+    $('oPs').textContent=ps(perShare);
+
+    if(v.price>0){
+      $('upRow').hidden=false;
+      $('oPrice').textContent=ps(v.price);
+      var up=(perShare/v.price-1)*100;
+      $('oUp').textContent=(up>=0?'+':'')+up.toFixed(1)+'%';
+      $('oUp').style.color=up>=0?'#8FD4B4':'#E08B8B';
+    } else {
+      $('upRow').hidden=true;
+    }
+
+    note.className='note';
+    var msg='The terminal value carries '+share.toFixed(0)+' percent of this valuation. ';
+    if(share>75) msg+='That is high. Almost the whole answer rests on what happens after year ten, so treat the figure as a range rather than a number.';
+    else if(share>55) msg+='That is typical. Most of the answer still comes from a period you did not forecast explicitly.';
+    else msg+='That is unusually low, which normally means a short forecast horizon or a high discount rate is doing the work.';
+    note.textContent=msg;
+
+    var rows=[r-0.01,r,r+0.01], cols=[tg-0.005,tg,tg+0.005];
+    var h='<table class="sens"><thead><tr><th>Discount</th>';
+    cols.forEach(function(c){h+='<th>'+(c*100).toFixed(2)+'% growth</th>';});
+    h+='</tr></thead><tbody>';
+    rows.forEach(function(rr){
+      h+='<tr><td>'+(rr*100).toFixed(2)+'%</td>';
+      cols.forEach(function(cc){
+        if(rr<=cc||rr<=0){h+='<td class="na">n/a</td>';return;}
+        var mm=model(v.fcf,g1,g2,rr,cc);
+        var p=(mm.ev+v.netcash)/v.shares;
+        var mid=(Math.abs(rr-r)<1e-9&&Math.abs(cc-tg)<1e-9);
+        h+='<td'+(mid?' class="mid"':'')+'>'+ps(p)+'</td>';
+      });
+      h+='</tr>';
+    });
+    h+='</tbody></table>';
+    $('sens').innerHTML=h;
+  }
+
+  F.forEach(function(k){var el=$(k);if(el){el.addEventListener('input',calc);}});
+
+  var b=$('optBtn');
+  b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    b.setAttribute('aria-expanded',String(!open));
+    $('optBody').hidden=open;
+  });
+
+  calc();
+})();
+</script>
+
+<footer>
+  <div class="wrap">
+    <p>Feequity publishes research about investing tools and brokers. It does not provide
+    investment advice and nothing here is a recommendation to buy or sell any security.</p>
+    <p>Rates and fees shown were accurate on the date stated and change without notice. Always
+    check the provider's own schedule before opening an account.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-test/">How we test</a>
+      <a href="/how-we-make-money/">How we make money</a>
+      <a href="/access-log/">Access log</a>
+      <a href="/corrections/">Corrections</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p style="margin-top:12px">&copy; 2026 Feequity</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------------------
+   BROKER DATA
+   One object. To add a broker, add an entry. To update a figure, edit it here
+   and change "checked". Nothing else in this file needs to change.
+
+   region  reserved for non-US brokers. UK brokers will need "custody", an
+           annual percentage of the portfolio, which US brokers do not charge.
+           Not modelled yet, deliberately, because no UK figure has been
+           verified first-party.
+   stock   cost of one online stock or ETF trade
+   option  cost per option contract
+   fxPct   percentage taken on currency conversion
+   cashGap percentage between the default cash rate and the best rate the same
+           broker offers on the same money
+--------------------------------------------------------------------------- */
+var BROKERS = {
+  fidelity:{
+    name:"Fidelity", region:"US", currency:"USD",
+    stock:0, option:0.65, fxPct:0, cashGap:1.50,
+    checked:"4 August 2026",
+    note:"Zero commission on online US stock and ETF trades, 0.65 dollars per option contract. " +
+         "The cash gap is the distance between the FDIC sweep an account is placed in by default " +
+         "and a money market fund on the same cash. Both rates move, so treat the gap as an " +
+         "order of magnitude rather than a precise figure."
+  },
+  schwab:{
+    name:"Charles Schwab", region:"US", currency:"USD",
+    stock:0, option:0.65, fxPct:0, cashGap:1.50,
+    checked:"4 August 2026",
+    note:"Zero commission on online US stock and ETF trades, 0.65 dollars per option contract. " +
+         "The bank sweep an account defaults into is tiered by balance, and Schwab's own " +
+         "disclosure states the rate could be zero in certain circumstances. The gap shown is " +
+         "indicative."
+  },
+  ibkr:{
+    name:"Interactive Brokers, Pro Fixed", region:"US", currency:"USD",
+    stock:1.00, option:0.65, fxPct:0.03, cashGap:0,
+    checked:"4 August 2026",
+    note:"Pro Fixed is 0.005 dollars per share with a one dollar minimum, so a small order costs " +
+         "the minimum. On automatic currency conversion IBKR states it will typically add or " +
+         "subtract, at its discretion, 0.03 percent to the exchange rate, with no separate " +
+         "commission. That wording is the broker's own and is not a guaranteed rate."
+  },
+  manual:{
+    name:"Entered by hand", region:"", currency:"USD",
+    stock:0, option:0.65, fxPct:0.5, cashGap:1.5,
+    checked:"", note:"", manual:true
+  }
+};
+
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var fundsBox=$('funds');
+
+  var SEED=[
+    ["Total US market index",40000,0.03],
+    ["Actively managed fund",8000,0.75]
+  ];
+
+  function row(name,amt,er){
+    var d=document.createElement('div');
+    d.className='fund-row';
+    d.innerHTML =
+      '<div class="f-name"><input type="text" placeholder="Fund name or ticker" aria-label="Fund name"></div>' +
+      '<div class="f-amt"><span class="mini">Amount held</span>' +
+        '<input type="number" inputmode="decimal" min="0" step="100" placeholder="0" aria-label="Amount held"></div>' +
+      '<div class="f-er"><span class="mini">Ratio %</span>' +
+        '<input type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" aria-label="Expense ratio percent"></div>' +
+      '<button type="button" class="xbtn" aria-label="Remove this fund">&times;</button>';
+    var i=d.querySelectorAll('input');
+    i[0].value=name; i[1].value=amt; i[2].value=er;
+    d.querySelector('.xbtn').addEventListener('click',function(){
+      if(fundsBox.children.length>1){ d.remove(); calc(); }
+      else { i[0].value=''; i[1].value=''; i[2].value=''; calc(); }
+    });
+    fundsBox.appendChild(d);
+  }
+  SEED.forEach(function(s){ row(s[0],s[1],s[2]); });
+
+  $('addFund').addEventListener('click',function(){ row('',0,0); calc(); });
+
+  var t=$('step2btn'), body=$('step2body');
+  t.addEventListener('click',function(){
+    var open=t.getAttribute('aria-expanded')==='true';
+    t.setAttribute('aria-expanded', String(!open));
+    body.hidden=open;
+    if(!open) gtag('event','broker_costs_open',{page_slug:location.pathname});
+    calc();
+  });
+
+  $('broker').addEventListener('change',function(){
+    $('manualBox').hidden = this.value!=='manual';
+    calc();
+  });
+
+  var money=function(n){
+    return (n<0?"-":"") + "$" + Math.abs(Math.round(n)).toLocaleString('en-US');
+  };
+
+  function calc(){
+    var total=0, weighted=0, any=false;
+    Array.prototype.forEach.call(fundsBox.children,function(r){
+      var i=r.querySelectorAll('input');
+      var a=parseFloat(i[1].value)||0, e=parseFloat(i[2].value)||0;
+      if(a>0){ total+=a; weighted+=a*e; any=true; }
+    });
+    var wer = total>0 ? weighted/total : 0;
+
+    var contrib=parseFloat($('contrib').value)||0;
+    var ret=(parseFloat($('ret').value)||0)/100;
+    var yrs=Math.max(1,Math.min(60,parseInt($('yrs').value,10)||1));
+
+    var useBroker = $('step2btn').getAttribute('aria-expanded')==='true';
+    var b=BROKERS[$('broker').value], bc=0;
+    if(useBroker && b){
+      var stock = b.manual ? (parseFloat($('mCom').value)||0) : b.stock;
+      var fxPct = b.manual ? (parseFloat($('mFx').value)||0) : b.fxPct;
+      var gap   = b.manual ? (parseFloat($('mCash').value)||0) : b.cashGap;
+      bc = (parseFloat($('trades').value)||0)*stock
+         + (parseFloat($('opts').value)||0)*b.option
+         + (parseFloat($('fx').value)||0)*(fxPct/100)
+         + (parseFloat($('cash').value)||0)*(gap/100);
+      $('stamp').innerHTML = b.manual ? '' :
+        '<b>' + b.name + '</b>, figures checked ' + b.checked + '. ' + b.note;
+    } else {
+      $('stamp').innerHTML='';
+    }
+
+    var bal=total, free=total, feesY1=0;
+    for(var y=0;y<yrs;y++){
+      var before=bal;
+      bal = bal*(1+ret-wer/100) - bc + contrib;
+      if(bal<0) bal=0;
+      free = free*(1+ret) + contrib;
+      if(y===0) feesY1 = before*(wer/100) + bc;
+    }
+
+    $('oVal').textContent  = money(total);
+    $('oWer').textContent  = total>0 ? wer.toFixed(3)+"%" : "\u2014";
+    $('oFund').textContent = money(total*(wer/100));
+    $('oBrok').textContent = money(bc);
+    $('rowBroker').hidden  = !useBroker;
+    $('oYr1').textContent  = money(feesY1);
+    $('oEnd').textContent  = money(bal);
+    $('oFree').textContent = money(free);
+
+    var drag = free-bal;
+    $('oDrag').textContent = money(drag);
+    $('dragLabel').textContent = "What fees cost you over " + yrs +
+      (yrs===1 ? " year" : " years");
+
+    var pct = free>0 ? (drag/free*100) : 0;
+    var paid = contrib*yrs;
+    var msg = !any
+      ? "Enter at least one fund to see a result."
+      : "That is " + pct.toFixed(1) + "% of the balance you would otherwise have ended with"
+        + (paid>0 && drag>paid
+            ? ", and more than the " + money(paid) + " you added over the whole period."
+            : ".");
+    $('oPct').textContent = msg;
+    $('oPct').className = (any && paid>0 && drag>paid) ? "note warn" : "note";
+
+    $('sVal').textContent   = money(drag);
+    $('sLabel').textContent = "Fees over " + yrs + (yrs===1 ? " year" : " years");
+  }
+
+  /* On phones the result sits far below the inputs, so mirror it in a bar
+     pinned to the bottom. Hide the bar whenever the real result is on screen. */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(e){
+      document.body.classList.toggle('showbar', !e[0].isIntersecting);
+    },{threshold:0.25});
+    io.observe($('out'));
+  } else {
+    document.body.classList.add('showbar');
+  }
+
+  document.querySelector('.calc').addEventListener('input',calc);
+  calc();
+})();
+</script>
+
+</body>
+</html>
