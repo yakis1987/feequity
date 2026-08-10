@@ -717,9 +717,9 @@ body.showbar .sticky{display:flex}
 
     note.className='note';
     var msg='The terminal value carries '+share.toFixed(0)+' percent of this valuation. ';
-    if(share>75) msg+='That is high. Almost the whole answer rests on what happens after year ten, so treat the figure as a range rather than a number.';
-    else if(share>55) msg+='That is typical. Most of the answer still comes from a period you did not forecast explicitly.';
-    else msg+='That is unusually low, which normally means a short forecast horizon or a high discount rate is doing the work.';
+    if(share>70) msg+='That is high. Almost the whole answer rests on what happens after year ten, so treat the figure as a range rather than a number.';
+    else if(share>50) msg+='That is typical. Most of the answer still comes from a period you did not forecast explicitly.';
+    else msg+='That is at the lower end of the usual range, which normally means a high discount rate is doing the work. Even here, roughly half the answer sits beyond your forecast.';
     note.textContent=msg;
 
     var rows=[r-0.01,r,r+0.01], cols=[tg-0.005,tg,tg+0.005];
