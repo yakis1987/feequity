@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Cost Calculator: What It Costs You to Hold</title>
+<meta name="description" content="Add up commissions, spreads, currency conversion, cash drag, fund fees and platform charges into one annual figure, in basis points, and over ten years.">
+<link rel="canonical" href="https://feequity.com/tools/portfolio-cost-calculator/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Portfolio Cost Calculator: What It Costs You to Hold">
+<meta property="og:description" content="Add up commissions, spreads, currency conversion, cash drag, fund fees and platform charges into one annual figure, in basis points, and over ten years.">
+<meta property="og:url" content="https://feequity.com/tools/portfolio-cost-calculator/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Portfolio cost calculator","url":"https://feequity.com/tools/portfolio-cost-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","description":"Add up commissions, spreads, currency conversion, cash drag, fund fees and platform charges into one annual figure, in basis points, and over ten years.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Jacob Shasha"},"publisher":{"@type":"Organization","name":"Feequity"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://feequity.com/tools/"},{"@type":"ListItem","position":3,"name":"Portfolio cost calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good total annual cost for a portfolio?","acceptedAnswer":{"@type":"Answer","text":"Under thirty basis points is efficient and usually means broad funds with low turnover. Thirty to seventy five is normal for an active private investor with international holdings. Above one hundred and fifty basis points the costs become a material share of your expected return, and the usual culprits are cash drag, currency conversion and platform charges rather than commissions."}},{"@type":"Question","name":"Why does the calculator ask what interest my broker pays on cash?","acceptedAnswer":{"@type":"Answer","text":"Because the difference between the prevailing rate and what your broker passes on is a real cost that appears on no statement. It is not a charge, it is an absence, which is exactly why it is so easy to miss. On a few thousand dollars of idle cash it frequently exceeds everything the same investor pays in commissions across a year."}},{"@type":"Question","name":"Is the bid-ask spread really a cost if I never see it?","acceptedAnswer":{"@type":"Answer","text":"Yes. You buy at the ask and sell at the bid, so you cross roughly half the quoted spread on each execution. It never appears as a line item, which is why a zero commission broker can advertise truthfully and still be expensive. On liquid large companies it is negligible. On small companies and thin ETFs it is often larger than any commission."}},{"@type":"Question","name":"Does this include tax?","acceptedAnswer":{"@type":"Answer","text":"No. Tax depends on your jurisdiction, your account type and your holding period, and any figure we produced would be wrong for most readers. Everything measured here is a cost charged or withheld by a broker, a fund or a platform, before tax enters the picture."}},{"@type":"Question","name":"Why show a ten year figure?","acceptedAnswer":{"@type":"Answer","text":"Because an annual cost understates the damage. Money paid in fees is not only gone, it also does not compound, so the ten year gap is the fees plus everything those fees would have earned. The calculation assumes a constant portfolio, a constant cost rate and a seven percent gross return, and it is an illustration of scale rather than a forecast."}},{"@type":"Question","name":"Does this calculator store or send my figures anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser, nothing is transmitted, nothing is saved and there is no account. Closing the tab discards the inputs."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+</script>
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
+(window,document,"clarity","script","xwrly79k01");
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+});
+</script>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.7em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+ul,ol{margin:0 0 1em 1.15em}
+li{margin-bottom:.35em}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:20px}
+.byline b{color:var(--ink);font-weight:600}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.src{font-size:11.5px;color:var(--faint);margin-top:-.6em;max-width:var(--measure)}
+
+/* calculator */
+.calc{background:var(--slate);border-radius:var(--r);padding:24px 26px;margin:30px 0;color:#fff}
+.calc h3{margin:0 0 4px;color:#fff;font-size:1.1rem}
+.calc .sub{color:#95A2AC;font-size:13px;margin-bottom:18px;max-width:none}
+.calc label{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:#95A2AC;margin-bottom:5px}
+.calc input,.calc select{width:100%;background:#132029;border:1px solid #33454F;color:#fff;
+  border-radius:7px;padding:9px 11px;font-size:15px;font-family:inherit;
+  font-variant-numeric:tabular-nums}
+.calc input:focus,.calc select:focus{outline:2px solid var(--gold);outline-offset:1px;
+  border-color:var(--gold)}
+.calc input::placeholder{color:#5E707C}
+
+.fund-head,.fund-row{display:grid;grid-template-columns:1fr 130px 100px 34px;gap:10px;
+  align-items:end;margin-bottom:10px;position:relative}
+.fund-head{margin-bottom:6px}
+.fund-head span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#95A2AC}
+.fund-head span:nth-child(2),.fund-head span:nth-child(3){text-align:right}
+.fund-row .f-amt input,.fund-row .f-er input{text-align:right}
+.fund-row .mini{display:none;font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:#7E8D99;margin-bottom:3px}
+.xbtn{background:transparent;border:1px solid #33454F;color:#8A99A5;border-radius:7px;
+  height:38px;font-size:17px;cursor:pointer;line-height:1;padding:0}
+.xbtn:hover{border-color:var(--down);color:#E08B8B}
+.addbtn{background:transparent;border:1px dashed #44576380;color:#B9C2C9;border-radius:7px;
+  padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+.addbtn:hover{border-color:var(--gold);color:#fff}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;align-items:end}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px;align-items:end}
+.grid3 > div,.grid2 > div{display:flex;flex-direction:column;justify-content:flex-end}
+[hidden]{display:none!important}
+.calc label{min-height:1.4em}
+
+.step2{border-top:1px solid #33454F;margin-top:22px;padding-top:20px}
+.toggle{background:transparent;border:0;color:var(--gold);font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;padding:0;display:flex;align-items:center;gap:8px}
+.toggle .chev{transition:transform .18s ease;display:inline-block}
+.toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+#step2body[hidden]{display:none}
+.stamp{font-size:11.5px;color:#8A99A5;margin-top:9px;max-width:none}
+.stamp b{color:#C4CDD4;font-weight:600}
+
+.out{margin-top:20px;padding-top:16px;border-top:2px solid var(--gold)}
+.outrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:7px 0;border-bottom:1px solid #2A3A45;font-size:14px;color:#C4CDD4}
+.outrow:last-of-type{border-bottom:0}
+.outrow b{font-size:15px;color:#fff;font-variant-numeric:tabular-nums}
+.headline{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  margin-top:14px;padding-top:14px;border-top:1px solid #33454F}
+.headline span{font-size:13px;color:#95A2AC;max-width:none}
+.headline b{font-size:1.75rem;color:var(--gold);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;line-height:1.1}
+.note{font-size:13px;color:#95A2AC;margin:12px 0 0;max-width:none;line-height:1.5}
+.warn{color:#E0B98B}
+
+.cta{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);
+  padding:22px 24px;margin:26px 0 34px;background:var(--wash)}
+.cta h3{margin:0 0 .4em;font-size:1.05rem}
+.cta p{margin-bottom:.8em}
+.cta p:last-child{margin-bottom:0}
+.btn{display:inline-block;background:var(--slate);color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px}
+.btn:hover{background:#0F1B23}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{background:var(--wash);border-top:1px solid var(--line);padding:30px 0 40px;
+  font-size:13px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+
+@media(max-width:640px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .calc{padding:20px 18px}
+  .fund-head{display:none}
+  .fund-row{grid-template-columns:1fr 1fr;gap:8px 10px;padding:0 0 12px;margin-bottom:12px;
+    border-bottom:1px solid #2A3A45}
+  .fund-row .f-name{grid-column:1 / -1;padding-right:38px}
+  .fund-row .mini{display:block}
+  .fund-row .xbtn{position:absolute;top:0;right:0;width:30px;height:38px;border:0;
+    color:#6E7E8A;font-size:19px}
+  .fund-row .xbtn:hover{color:#E08B8B}
+  .grid3,.grid2{grid-template-columns:1fr 1fr;gap:10px}
+  .grid3 > div:first-child,.grid2 > div:first-child{grid-column:1 / -1}
+  .calc input,.calc select{padding:8px 10px;font-size:16px}
+  .headline{flex-direction:column;gap:4px}
+  .headline b{font-size:1.5rem}
+  #cmp thead{display:none}
+  #cmp tr{display:block;border-bottom:1px solid var(--line);padding:10px 0}
+  #cmp td{display:flex;justify-content:space-between;border:0;padding:3px 0;text-align:right}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px;font-weight:600}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--faint);font-size:12px;
+    font-weight:400;text-align:left}
+}
+/* sticky result on mobile so the number is always visible */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+  background:var(--slate);border-top:2px solid var(--gold);
+  padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+  align-items:baseline;justify-content:space-between;gap:12px;
+  box-shadow:0 -6px 18px rgba(0,0,0,.22)}
+.sticky span{font-size:12px;color:#95A2AC;max-width:none;line-height:1.3}
+.sticky b{font-size:1.15rem;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+body.showbar .sticky{display:flex}
+@media(min-width:641px){.sticky{display:none!important}}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<style>
+:root{
+  --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
+  --paper:#FFFFFF; --wash:#F7F9FA; --gold:#C9A84C; --slate:#1C2B36;
+  --up:#0F6E56; --down:#A32D2D; --r:10px; --measure:68ch;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+
+main{padding:34px 0 60px}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+h1{font-size:clamp(1.7rem,4.2vw,2.3rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.2em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.7em 0 .4em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+ul,ol{margin:0 0 1em 1.15em}
+li{margin-bottom:.35em}
+
+.byline{font-size:12px;color:var(--soft);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:.7em 0;margin-bottom:20px}
+.byline b{color:var(--ink);font-weight:600}
+
+.answer{background:var(--wash);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:18px 22px;margin:0 0 30px}
+.answer h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);
+  margin:0 0 .5em;padding:0;border:0}
+.answer p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.src{font-size:11.5px;color:var(--faint);margin-top:-.6em;max-width:var(--measure)}
+
+/* calculator */
+.calc{background:var(--slate);border-radius:var(--r);padding:24px 26px;margin:30px 0;color:#fff}
+.calc h3{margin:0 0 4px;color:#fff;font-size:1.1rem}
+.calc .sub{color:#95A2AC;font-size:13px;margin-bottom:18px;max-width:none}
+.calc label{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:#95A2AC;margin-bottom:5px}
+.calc input,.calc select{width:100%;background:#132029;border:1px solid #33454F;color:#fff;
+  border-radius:7px;padding:9px 11px;font-size:15px;font-family:inherit;
+  font-variant-numeric:tabular-nums}
+.calc input:focus,.calc select:focus{outline:2px solid var(--gold);outline-offset:1px;
+  border-color:var(--gold)}
+.calc input::placeholder{color:#5E707C}
+
+.fund-head,.fund-row{display:grid;grid-template-columns:1fr 130px 100px 34px;gap:10px;
+  align-items:end;margin-bottom:10px;position:relative}
+.fund-head{margin-bottom:6px}
+.fund-head span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#95A2AC}
+.fund-head span:nth-child(2),.fund-head span:nth-child(3){text-align:right}
+.fund-row .f-amt input,.fund-row .f-er input{text-align:right}
+.fund-row .mini{display:none;font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:#7E8D99;margin-bottom:3px}
+.xbtn{background:transparent;border:1px solid #33454F;color:#8A99A5;border-radius:7px;
+  height:38px;font-size:17px;cursor:pointer;line-height:1;padding:0}
+.xbtn:hover{border-color:var(--down);color:#E08B8B}
+.addbtn{background:transparent;border:1px dashed #44576380;color:#B9C2C9;border-radius:7px;
+  padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+.addbtn:hover{border-color:var(--gold);color:#fff}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;align-items:end}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px;align-items:end}
+.grid3 > div,.grid2 > div{display:flex;flex-direction:column;justify-content:flex-end}
+[hidden]{display:none!important}
+.calc label{min-height:1.4em}
+
+.step2{border-top:1px solid #33454F;margin-top:22px;padding-top:20px}
+.toggle{background:transparent;border:0;color:var(--gold);font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;padding:0;display:flex;align-items:center;gap:8px}
+.toggle .chev{transition:transform .18s ease;display:inline-block}
+.toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+#step2body[hidden]{display:none}
+.stamp{font-size:11.5px;color:#8A99A5;margin-top:9px;max-width:none}
+.stamp b{color:#C4CDD4;font-weight:600}
+
+.out{margin-top:20px;padding-top:16px;border-top:2px solid var(--gold)}
+.outrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:7px 0;border-bottom:1px solid #2A3A45;font-size:14px;color:#C4CDD4}
+.outrow:last-of-type{border-bottom:0}
+.outrow b{font-size:15px;color:#fff;font-variant-numeric:tabular-nums}
+.headline{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  margin-top:14px;padding-top:14px;border-top:1px solid #33454F}
+.headline span{font-size:13px;color:#95A2AC;max-width:none}
+.headline b{font-size:1.75rem;color:var(--gold);font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;line-height:1.1}
+.note{font-size:13px;color:#95A2AC;margin:12px 0 0;max-width:none;line-height:1.5}
+.warn{color:#E0B98B}
+
+.cta{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);
+  padding:22px 24px;margin:26px 0 34px;background:var(--wash)}
+.cta h3{margin:0 0 .4em;font-size:1.05rem}
+.cta p{margin-bottom:.8em}
+.cta p:last-child{margin-bottom:0}
+.btn{display:inline-block;background:var(--slate);color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px}
+.btn:hover{background:#0F1B23}
+
+.faq dt{font-weight:600;margin-top:1.5em}
+.faq dd{margin:.35em 0 0;max-width:var(--measure);color:var(--soft)}
+
+footer{background:var(--wash);border-top:1px solid var(--line);padding:30px 0 40px;
+  font-size:13px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+
+@media(max-width:640px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .calc{padding:20px 18px}
+  .fund-head{display:none}
+  .fund-row{grid-template-columns:1fr 1fr;gap:8px 10px;padding:0 0 12px;margin-bottom:12px;
+    border-bottom:1px solid #2A3A45}
+  .fund-row .f-name{grid-column:1 / -1;padding-right:38px}
+  .fund-row .mini{display:block}
+  .fund-row .xbtn{position:absolute;top:0;right:0;width:30px;height:38px;border:0;
+    color:#6E7E8A;font-size:19px}
+  .fund-row .xbtn:hover{color:#E08B8B}
+  .grid3,.grid2{grid-template-columns:1fr 1fr;gap:10px}
+  .grid3 > div:first-child,.grid2 > div:first-child{grid-column:1 / -1}
+  .calc input,.calc select{padding:8px 10px;font-size:16px}
+  .headline{flex-direction:column;gap:4px}
+  .headline b{font-size:1.5rem}
+  #cmp thead{display:none}
+  #cmp tr{display:block;border-bottom:1px solid var(--line);padding:10px 0}
+  #cmp td{display:flex;justify-content:space-between;border:0;padding:3px 0;text-align:right}
+  #cmp td:first-child{margin-bottom:6px;display:block;font-size:15px;font-weight:600}
+  #cmp td[data-k]:before{content:attr(data-k);color:var(--faint);font-size:12px;
+    font-weight:400;text-align:left}
+}
+/* sticky result on mobile so the number is always visible */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+  background:var(--slate);border-top:2px solid var(--gold);
+  padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+  align-items:baseline;justify-content:space-between;gap:12px;
+  box-shadow:0 -6px 18px rgba(0,0,0,.22)}
+.sticky span{font-size:12px;color:#95A2AC;max-width:none;line-height:1.3}
+.sticky b{font-size:1.15rem;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+body.showbar .sticky{display:flex}
+@media(min-width:641px){.sticky{display:none!important}}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head>
+<body>
+<div class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Fee<span>quity</span></a>
+    <nav>
+      <a href="/trackers/">Trackers</a>
+      <a href="/brokers/">Brokers</a>
+      <a href="/tools/">Tools</a>
+      <a href="/research-tools/">Research tools</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <p class="crumb"><a href="/">Home</a> · <a href="/tools/">Tools</a> · Portfolio cost calculator</p>
+
+  <h1>Portfolio cost calculator: what it actually costs you to hold</h1>
+
+  <p class="byline">
+    Built by <b>Jacob Shasha</b>, private investor ·
+    Published 11 August 2026 ·
+    <a href="/how-we-test/">How we test</a>
+  </p>
+
+  <div class="answer">
+    <h2>Short answer</h2>
+    <p>Six things quietly take money out of a portfolio every year: commissions, the bid-ask
+    spread, currency conversion, interest your broker keeps on your cash, fund fees, and platform
+    charges. Every one of them is disclosed somewhere and almost nobody adds them up. This
+    calculator adds them up, converts the total into basis points, and shows what that total costs
+    you over a decade.</p>
+  </div>
+
+  <div class="calc">
+    <h3>Annual cost of holding</h3>
+    <p class="sub">Nothing is sent anywhere, nothing is stored, no account. Leave a field at zero
+    if it does not apply to you.</p>
+
+    <div class="grid3">
+      <div>
+        <label for="pv">Portfolio value</label>
+        <input id="pv" type="number" inputmode="decimal" value="50000" step="1000">
+      </div>
+      <div>
+        <label for="trades">Trades per year</label>
+        <input id="trades" type="number" inputmode="decimal" value="24" step="1">
+      </div>
+      <div>
+        <label for="tsize">Average trade size</label>
+        <input id="tsize" type="number" inputmode="decimal" value="2000" step="100">
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div>
+        <label for="comm">Commission per trade</label>
+        <input id="comm" type="number" inputmode="decimal" value="1" step="0.5">
+      </div>
+      <div>
+        <label for="spread">Bid-ask spread %</label>
+        <input id="spread" type="number" inputmode="decimal" value="0.05" step="0.01">
+      </div>
+      <div>
+        <label for="er">Fund expense ratio %</label>
+        <input id="er" type="number" inputmode="decimal" value="0.15" step="0.01">
+      </div>
+    </div>
+
+    <div class="step2">
+      <button type="button" class="toggle" id="fxBtn" aria-expanded="true" aria-controls="fxBody">
+        <span class="chev">&rsaquo;</span> Currency, cash and platform charges
+      </button>
+      <div id="fxBody">
+        <div class="grid3">
+          <div>
+            <label for="fxamt">Converted per year</label>
+            <input id="fxamt" type="number" inputmode="decimal" value="10000" step="1000">
+          </div>
+          <div>
+            <label for="fxfee">Conversion fee %</label>
+            <input id="fxfee" type="number" inputmode="decimal" value="0.5" step="0.05">
+          </div>
+          <div>
+            <label for="plat">Platform fee % a year</label>
+            <input id="plat" type="number" inputmode="decimal" value="0" step="0.05">
+          </div>
+        </div>
+        <div class="grid3">
+          <div>
+            <label for="cash">Average cash held</label>
+            <input id="cash" type="number" inputmode="decimal" value="3000" step="500">
+          </div>
+          <div>
+            <label for="paid">Interest broker pays %</label>
+            <input id="paid" type="number" inputmode="decimal" value="0.5" step="0.25">
+          </div>
+          <div>
+            <label for="mkt">Rate you could get %</label>
+            <input id="mkt" type="number" inputmode="decimal" value="4" step="0.25">
+          </div>
+        </div>
+        <p class="stamp">The last two fields measure cash drag: interest your broker earns on your
+        idle balance and does not pass to you. It is the least visible cost on this page and often
+        the largest.</p>
+      </div>
+    </div>
+
+    <div class="out">
+      <div class="outrow"><span>Commissions</span><b id="rComm">0</b></div>
+      <div class="outrow"><span>Bid-ask spread</span><b id="rSpread">0</b></div>
+      <div class="outrow"><span>Currency conversion</span><b id="rFx">0</b></div>
+      <div class="outrow"><span>Cash drag</span><b id="rCash">0</b></div>
+      <div class="outrow"><span>Fund fees</span><b id="rEr">0</b></div>
+      <div class="outrow"><span>Platform fee</span><b id="rPlat">0</b></div>
+
+      <div class="headline">
+        <span>Total, every year</span>
+        <b id="rTotal">0</b>
+      </div>
+      <div class="headline">
+        <span>As a share of your portfolio</span>
+        <b id="rBps">0</b>
+      </div>
+
+      <p class="note" id="rNote"></p>
+    </div>
+
+    <div class="out" style="border-top-color:#33454F">
+      <p class="stamp" style="margin-top:0"><b>What it costs over ten years.</b> Same portfolio,
+      same seven percent gross return, with and without the annual cost above. The gap is not the
+      fees you paid, it is the fees plus everything they would have earned.</p>
+      <div class="outrow"><span>Value after ten years, no costs</span><b id="rNoCost">0</b></div>
+      <div class="outrow"><span>Value after ten years, your costs</span><b id="rWithCost">0</b></div>
+      <div class="headline">
+        <span>What the costs took</span>
+        <b id="rDrag">0</b>
+      </div>
+      <p class="stamp">Assumes the portfolio is held for ten years with no contributions and a
+      constant cost rate. It is an illustration of scale, not a forecast.</p>
+    </div>
+
+    <p class="src">The spread cost assumes you cross half the quoted spread on each execution,
+    which is the standard convention. Change any figure and everything recalculates.</p>
+  </div>
+
+  <h2>Why almost nobody builds this</h2>
+
+  <p>Not because it is technically difficult. Every input is a number you already have. The reason
+  is that the sites best placed to build it are paid by brokers, and a tool whose main output is
+  <em>your broker is expensive</em> is not a tool a broker affiliate wants ranking on its own
+  domain.</p>
+
+  <p>We are paid by a research platform, not by brokers, which removes that particular conflict
+  from this particular page. It does not remove every conflict, and how we are paid is set out in
+  full at <a href="/how-we-make-money/">how we make money</a>. This page carries no commercial
+  links of any kind.</p>
+
+  <h2>The six costs, and where each one hides</h2>
+
+  <h3>Commissions</h3>
+  <p>The only cost most people can name, and usually the smallest. A flat charge per execution,
+  sometimes a percentage with a minimum. It matters at small trade sizes and stops mattering
+  quickly as they grow: a one dollar charge on a two hundred dollar trade is fifty basis points,
+  and on a five thousand dollar trade it is two.</p>
+
+  <h3>The bid-ask spread</h3>
+  <p>The gap between what buyers offer and sellers ask. You cross roughly half of it on every
+  execution, and unlike a commission it never appears on a statement, which is why zero commission
+  brokers can advertise honestly while still being expensive. On liquid large companies it is
+  fractions of a basis point. On small companies, thin ETFs, or anything traded outside its home
+  market hours, it can be far larger than any commission you were worried about.</p>
+
+  <h3>Currency conversion</h3>
+  <p>The one that catches people who invest internationally. A half percent conversion fee on ten
+  thousand dollars is fifty dollars, and it is charged on the way in and again on the way out.
+  Brokers vary enormously here, from a few basis points on a genuine spot rate to well over one
+  percent on a marked-up rate presented as free. Our page on
+  <a href="/brokers/lowest-cost/">where broker costs actually hide</a> covers the marked-up rate
+  problem in detail, and the
+  <a href="/brokers/interactive-brokers-fees/">Interactive Brokers fee breakdown</a> works through
+  one specific example.</p>
+
+  <h3>Cash drag</h3>
+  <p>The least visible line on this page and frequently the largest. Your broker earns the
+  prevailing rate on your idle cash and passes on some fraction of it, or none. On three thousand
+  dollars sitting uninvested, the difference between four percent and half a percent is a hundred
+  and five dollars a year, which is more than most people pay in commissions. It appears on no
+  statement because it is not a charge, it is an absence.</p>
+
+  <h3>Fund fees</h3>
+  <p>Deducted daily inside the fund, so the price you see is already net of them and no line ever
+  appears. Use the weighted average across your holdings rather than the ratio of your largest
+  position. If you are not sure what yours comes to, our
+  <a href="/tools/expense-ratio-calculator/">expense ratio calculator</a> works it out across a
+  full portfolio.</p>
+
+  <h3>Platform and custody charges</h3>
+  <p>Common outside the United States and often the largest single item where they exist. Some
+  brokers charge a percentage of assets, some a flat annual fee, some waive it above a threshold or
+  if you trade a minimum number of times a quarter. Read the schedule rather than the summary
+  page.</p>
+
+  <h2>What a reasonable total looks like</h2>
+
+  <p>There is no single right answer, because a portfolio of individual stocks held for years and
+  a portfolio traded weekly are different problems. As rough orientation:</p>
+
+  <table>
+    <thead><tr><th>Total annual cost</th><th>Reading</th></tr></thead>
+    <tbody>
+      <tr><td class="num">Under 30 bps</td><td>Efficient. Usually broad funds, low turnover, little or no currency conversion.</td></tr>
+      <tr><td class="num">30 to 75 bps</td><td>Normal for an active private investor with some international exposure.</td></tr>
+      <tr><td class="num">75 to 150 bps</td><td>Worth examining. Usually cash drag, conversion fees, or a platform charge doing the damage.</td></tr>
+      <tr><td class="num">Over 150 bps</td><td>The costs are now a material part of your expected return, whatever the return turns out to be.</td></tr>
+    </tbody>
+  </table>
+
+  <p>For context, a mainstream index fund charges between three and twenty basis points a year, and
+  that figure gets quoted constantly while everything else on this page gets quoted almost never.
+  The point is not that costs are avoidable. It is that they are the only part of a portfolio's
+  outcome you control completely.</p>
+
+  <div class="cta">
+    <h3>Then there is the cost you choose</h3>
+    <p>A research subscription is a fixed annual charge on top of everything above, which means it
+    behaves like an expense ratio and gets cheaper in basis points as the portfolio grows. We test
+    those platforms hands-on and publish what they cost against what they add.</p>
+    <p><a class="btn" href="/research-tools/">See what research tools cost</a></p>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+
+  <dl class="faq">
+    <dt>What is a good total annual cost for a portfolio?</dt>
+    <dd>Under thirty basis points is efficient and usually means broad funds with low turnover.
+    Thirty to seventy five is normal for an active private investor with international holdings.
+    Above one hundred and fifty basis points the costs become a material share of your expected
+    return, and the usual culprits are cash drag, currency conversion and platform charges rather
+    than commissions.</dd>
+
+    <dt>Why does the calculator ask what interest my broker pays on cash?</dt>
+    <dd>Because the difference between the prevailing rate and what your broker passes on is a real
+    cost that appears on no statement. It is not a charge, it is an absence, which is exactly why
+    it is so easy to miss. On a few thousand dollars of idle cash it frequently exceeds everything
+    the same investor pays in commissions across a year.</dd>
+
+    <dt>Is the bid-ask spread really a cost if I never see it?</dt>
+    <dd>Yes. You buy at the ask and sell at the bid, so you cross roughly half the quoted spread on
+    each execution. It never appears as a line item, which is why a zero commission broker can
+    advertise truthfully and still be expensive. On liquid large companies it is negligible. On
+    small companies and thin ETFs it is often larger than any commission.</dd>
+
+    <dt>Does this include tax?</dt>
+    <dd>No. Tax depends on your jurisdiction, your account type and your holding period, and any
+    figure we produced would be wrong for most readers. Everything measured here is a cost charged
+    or withheld by a broker, a fund or a platform, before tax enters the picture.</dd>
+
+    <dt>Why show a ten year figure?</dt>
+    <dd>Because an annual cost understates the damage. Money paid in fees is not only gone, it also
+    does not compound, so the ten year gap is the fees plus everything those fees would have
+    earned. The calculation assumes a constant portfolio, a constant cost rate and a seven percent
+    gross return, and it is an illustration of scale rather than a forecast.</dd>
+
+    <dt>Does this calculator store or send my figures anywhere?</dt>
+    <dd>No. Everything runs in your browser, nothing is transmitted, nothing is saved and there is
+    no account. Closing the tab discards the inputs.</dd>
+  </dl>
+
+  <p class="src">Published 11 August 2026 by Jacob Shasha. This page carries no commercial links.
+  Corrections are published at <a href="/corrections/">the correction log</a>, and how this site is
+  funded is set out at <a href="/how-we-make-money/">how we make money</a>.</p>
+
+</div>
+</main>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var F=['pv','trades','tsize','comm','spread','er','fxamt','fxfee','plat','cash','paid','mkt'];
+
+  function usd(n){
+    return '$'+Math.round(n).toLocaleString('en-US');
+  }
+  function big(n){
+    if(Math.abs(n)>=1000000) return '$'+(n/1000000).toFixed(2)+'M';
+    return usd(n);
+  }
+
+  function calc(){
+    var v={};
+    F.forEach(function(k){var el=$(k);var x=el?parseFloat(el.value):0;v[k]=isNaN(x)?0:x;});
+
+    var traded   = v.trades*v.tsize;
+    var cComm    = v.trades*v.comm;
+    var cSpread  = traded*(v.spread/100)*0.5;
+    var cFx      = v.fxamt*(v.fxfee/100);
+    var cCash    = Math.max(0, v.cash*((v.mkt-v.paid)/100));
+    var cEr      = v.pv*(v.er/100);
+    var cPlat    = v.pv*(v.plat/100);
+    var total    = cComm+cSpread+cFx+cCash+cEr+cPlat;
+
+    $('rComm').textContent   = usd(cComm);
+    $('rSpread').textContent = usd(cSpread);
+    $('rFx').textContent     = usd(cFx);
+    $('rCash').textContent   = usd(cCash);
+    $('rEr').textContent     = usd(cEr);
+    $('rPlat').textContent   = usd(cPlat);
+    $('rTotal').textContent  = usd(total);
+
+    var note=$('rNote');
+    if(v.pv<=0){
+      $('rBps').textContent='0';
+      note.className='note warn';
+      note.textContent='Enter a portfolio value above zero to see the cost as a share of your holdings.';
+      ['rNoCost','rWithCost','rDrag'].forEach(function(id){$(id).textContent='0';});
+      return;
+    }
+
+    var rate = total/v.pv;
+    var bps  = rate*10000;
+    $('rBps').textContent = bps.toFixed(0)+' bps  ('+(rate*100).toFixed(2)+'%)';
+
+    var items=[['commissions',cComm],['the bid-ask spread',cSpread],['currency conversion',cFx],
+               ['cash drag',cCash],['fund fees',cEr],['the platform fee',cPlat]];
+    items.sort(function(a,b){return b[1]-a[1];});
+    var lead=items[0];
+
+    note.className='note';
+    var msg='';
+    if(bps<30) msg='That is an efficient portfolio. ';
+    else if(bps<75) msg='That is normal for an active private investor. ';
+    else if(bps<150) msg='That is worth examining. ';
+    else msg='At this level the costs are a material part of your expected return. ';
+    if(total>0 && lead[1]>0){
+      msg+='Your largest single cost is '+lead[0]+', at '+usd(lead[1])+
+           ' a year, which is '+(lead[1]/total*100).toFixed(0)+' percent of the total.';
+    }
+    note.textContent=msg;
+
+    var g=0.07, yrs=10;
+    var noCost   = v.pv*Math.pow(1+g,yrs);
+    var withCost = v.pv*Math.pow(1+g-rate,yrs);
+    if(!isFinite(withCost)||g-rate<=-1) withCost=0;
+    $('rNoCost').textContent   = big(noCost);
+    $('rWithCost').textContent = big(withCost);
+    var drag=noCost-withCost;
+    $('rDrag').textContent = big(drag)+'  ('+(drag/noCost*100).toFixed(1)+'%)';
+  }
+
+  F.forEach(function(k){var el=$(k);if(el){el.addEventListener('input',calc);}});
+
+  var b=$('fxBtn');
+  b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    b.setAttribute('aria-expanded',String(!open));
+    $('fxBody').hidden=open;
+  });
+
+  calc();
+})();
+</script>
+
+<footer>
+  <div class="wrap">
+    <p>Feequity publishes research about investing tools and brokers. It does not provide
+    investment advice and nothing here is a recommendation to buy or sell any security.</p>
+    <p>Rates and fees shown were accurate on the date stated and change without notice. Always
+    check the provider's own schedule before opening an account.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-test/">How we test</a>
+      <a href="/how-we-make-money/">How we make money</a>
+      <a href="/access-log/">Access log</a>
+      <a href="/corrections/">Corrections</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p style="margin-top:12px">&copy; 2026 Feequity</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------------------
+   BROKER DATA
+   One object. To add a broker, add an entry. To update a figure, edit it here
+   and change "checked". Nothing else in this file needs to change.
+
+   region  reserved for non-US brokers. UK brokers will need "custody", an
+           annual percentage of the portfolio, which US brokers do not charge.
+           Not modelled yet, deliberately, because no UK figure has been
+           verified first-party.
+   stock   cost of one online stock or ETF trade
+   option  cost per option contract
+   fxPct   percentage taken on currency conversion
+   cashGap percentage between the default cash rate and the best rate the same
+           broker offers on the same money
+--------------------------------------------------------------------------- */
+var BROKERS = {
+  fidelity:{
+    name:"Fidelity", region:"US", currency:"USD",
+    stock:0, option:0.65, fxPct:0, cashGap:1.50,
+    checked:"4 August 2026",
+    note:"Zero commission on online US stock and ETF trades, 0.65 dollars per option contract. " +
+         "The cash gap is the distance between the FDIC sweep an account is placed in by default " +
+         "and a money market fund on the same cash. Both rates move, so treat the gap as an " +
+         "order of magnitude rather than a precise figure."
+  },
+  schwab:{
+    name:"Charles Schwab", region:"US", currency:"USD",
+    stock:0, option:0.65, fxPct:0, cashGap:1.50,
+    checked:"4 August 2026",
+    note:"Zero commission on online US stock and ETF trades, 0.65 dollars per option contract. " +
+         "The bank sweep an account defaults into is tiered by balance, and Schwab's own " +
+         "disclosure states the rate could be zero in certain circumstances. The gap shown is " +
+         "indicative."
+  },
+  ibkr:{
+    name:"Interactive Brokers, Pro Fixed", region:"US", currency:"USD",
+    stock:1.00, option:0.65, fxPct:0.03, cashGap:0,
+    checked:"4 August 2026",
+    note:"Pro Fixed is 0.005 dollars per share with a one dollar minimum, so a small order costs " +
+         "the minimum. On automatic currency conversion IBKR states it will typically add or " +
+         "subtract, at its discretion, 0.03 percent to the exchange rate, with no separate " +
+         "commission. That wording is the broker's own and is not a guaranteed rate."
+  },
+  manual:{
+    name:"Entered by hand", region:"", currency:"USD",
+    stock:0, option:0.65, fxPct:0.5, cashGap:1.5,
+    checked:"", note:"", manual:true
+  }
+};
+
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var fundsBox=$('funds');
+
+  var SEED=[
+    ["Total US market index",40000,0.03],
+    ["Actively managed fund",8000,0.75]
+  ];
+
+  function row(name,amt,er){
+    var d=document.createElement('div');
+    d.className='fund-row';
+    d.innerHTML =
+      '<div class="f-name"><input type="text" placeholder="Fund name or ticker" aria-label="Fund name"></div>' +
+      '<div class="f-amt"><span class="mini">Amount held</span>' +
+        '<input type="number" inputmode="decimal" min="0" step="100" placeholder="0" aria-label="Amount held"></div>' +
+      '<div class="f-er"><span class="mini">Ratio %</span>' +
+        '<input type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" aria-label="Expense ratio percent"></div>' +
+      '<button type="button" class="xbtn" aria-label="Remove this fund">&times;</button>';
+    var i=d.querySelectorAll('input');
+    i[0].value=name; i[1].value=amt; i[2].value=er;
+    d.querySelector('.xbtn').addEventListener('click',function(){
+      if(fundsBox.children.length>1){ d.remove(); calc(); }
+      else { i[0].value=''; i[1].value=''; i[2].value=''; calc(); }
+    });
+    fundsBox.appendChild(d);
+  }
+  SEED.forEach(function(s){ row(s[0],s[1],s[2]); });
+
+  $('addFund').addEventListener('click',function(){ row('',0,0); calc(); });
+
+  var t=$('step2btn'), body=$('step2body');
+  t.addEventListener('click',function(){
+    var open=t.getAttribute('aria-expanded')==='true';
+    t.setAttribute('aria-expanded', String(!open));
+    body.hidden=open;
+    if(!open) gtag('event','broker_costs_open',{page_slug:location.pathname});
+    calc();
+  });
+
+  $('broker').addEventListener('change',function(){
+    $('manualBox').hidden = this.value!=='manual';
+    calc();
+  });
+
+  var money=function(n){
+    return (n<0?"-":"") + "$" + Math.abs(Math.round(n)).toLocaleString('en-US');
+  };
+
+  function calc(){
+    var total=0, weighted=0, any=false;
+    Array.prototype.forEach.call(fundsBox.children,function(r){
+      var i=r.querySelectorAll('input');
+      var a=parseFloat(i[1].value)||0, e=parseFloat(i[2].value)||0;
+      if(a>0){ total+=a; weighted+=a*e; any=true; }
+    });
+    var wer = total>0 ? weighted/total : 0;
+
+    var contrib=parseFloat($('contrib').value)||0;
+    var ret=(parseFloat($('ret').value)||0)/100;
+    var yrs=Math.max(1,Math.min(60,parseInt($('yrs').value,10)||1));
+
+    var useBroker = $('step2btn').getAttribute('aria-expanded')==='true';
+    var b=BROKERS[$('broker').value], bc=0;
+    if(useBroker && b){
+      var stock = b.manual ? (parseFloat($('mCom').value)||0) : b.stock;
+      var fxPct = b.manual ? (parseFloat($('mFx').value)||0) : b.fxPct;
+      var gap   = b.manual ? (parseFloat($('mCash').value)||0) : b.cashGap;
+      bc = (parseFloat($('trades').value)||0)*stock
+         + (parseFloat($('opts').value)||0)*b.option
+         + (parseFloat($('fx').value)||0)*(fxPct/100)
+         + (parseFloat($('cash').value)||0)*(gap/100);
+      $('stamp').innerHTML = b.manual ? '' :
+        '<b>' + b.name + '</b>, figures checked ' + b.checked + '. ' + b.note;
+    } else {
+      $('stamp').innerHTML='';
+    }
+
+    var bal=total, free=total, feesY1=0;
+    for(var y=0;y<yrs;y++){
+      var before=bal;
+      bal = bal*(1+ret-wer/100) - bc + contrib;
+      if(bal<0) bal=0;
+      free = free*(1+ret) + contrib;
+      if(y===0) feesY1 = before*(wer/100) + bc;
+    }
+
+    $('oVal').textContent  = money(total);
+    $('oWer').textContent  = total>0 ? wer.toFixed(3)+"%" : "\u2014";
+    $('oFund').textContent = money(total*(wer/100));
+    $('oBrok').textContent = money(bc);
+    $('rowBroker').hidden  = !useBroker;
+    $('oYr1').textContent  = money(feesY1);
+    $('oEnd').textContent  = money(bal);
+    $('oFree').textContent = money(free);
+
+    var drag = free-bal;
+    $('oDrag').textContent = money(drag);
+    $('dragLabel').textContent = "What fees cost you over " + yrs +
+      (yrs===1 ? " year" : " years");
+
+    var pct = free>0 ? (drag/free*100) : 0;
+    var paid = contrib*yrs;
+    var msg = !any
+      ? "Enter at least one fund to see a result."
+      : "That is " + pct.toFixed(1) + "% of the balance you would otherwise have ended with"
+        + (paid>0 && drag>paid
+            ? ", and more than the " + money(paid) + " you added over the whole period."
+            : ".");
+    $('oPct').textContent = msg;
+    $('oPct').className = (any && paid>0 && drag>paid) ? "note warn" : "note";
+
+    $('sVal').textContent   = money(drag);
+    $('sLabel').textContent = "Fees over " + yrs + (yrs===1 ? " year" : " years");
+  }
+
+  /* On phones the result sits far below the inputs, so mirror it in a bar
+     pinned to the bottom. Hide the bar whenever the real result is on screen. */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(e){
+      document.body.classList.toggle('showbar', !e[0].isIntersecting);
+    },{threshold:0.25});
+    io.observe($('out'));
+  } else {
+    document.body.classList.add('showbar');
+  }
+
+  document.querySelector('.calc').addEventListener('input',calc);
+  calc();
+})();
+</script>
+
+</body>
+</html>
