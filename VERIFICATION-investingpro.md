@@ -91,10 +91,46 @@ FY2026 · EBITDA margin 34.8% · WACC 10.0% · P/E LTM 38.1x · forward P/E 35.1
 EV/EBITDA 26.4x · 1-year return 37.2% · FY2025 revenue $416.16B · Q3 EPS $2.02 against
 $1.89 expected.
 
-**Error found, reproducible.** The comparison table listed the analyst mean of $322.82
-as -4.6% against the current price, while the commentary in the same row described mild
-upside for analysts. At a price near $306, a $322.82 target is roughly +5%. The sign is
-inverted and the table contradicts itself.
+**Error found and confirmed on a second date.**
+
+*10 August 2026.* The comparison table listed the analyst mean of $322.82 against -4.6%,
+while the commentary in the same row described mild upside. Base for the percentage was
+not visible in the capture, so this was published as an unexplained inconsistency rather
+than as an error.
+
+*11 August 2026, second session.* Question asked: is Apple overvalued right now, and what
+do analysts think. The answer contradicted itself internally.
+
+| Where | What it said |
+|---|---|
+| Summary paragraph, top of answer | analysts see just a -4.6% downside to their average target |
+| Analyst targets bullet, same answer | the average price target is $322.53, just 4.6% upside |
+| Price stated in the same answer | $308.26 |
+| Investing.com sidebar, same moment | Price Target 322.28 · Upside +4.55% |
+
+Arithmetic: 322.53 against 308.26 is +4.63%. The body and the sidebar are correct. The
+summary paragraph has the sign inverted. Magnitude matches in all three places.
+
+Conclusion recorded: the failure is in the summarising layer, not in the underlying data,
+which was right in two displays out of three. Recheck at the 90 day pass on 8 November
+2026 and publish the outcome either way.
+
+**Sidebar, same session, 11 August 2026.** Company Health: Good. Fair Value: Fair, Fair
+Price 267.89, Upside -13.10%. Technical Analysis: Strong Sell. Analysts Sentiment: Buy,
+Price Target 322.28, Upside +4.55%. Three signals pointing in three directions on one
+sidebar, which is worth noting as presentation rather than as error.
+
+**Chart quality, 11 August 2026.** The answer rendered three charts. One carried no title.
+One showed a flat line from 2024 to 2025 that reads as a missing data point rather than as
+a trend. The price chart used a y axis starting at zero, which flattened a roughly fifteen
+percent quarterly move into a near straight line. Not errors, but poor presentation in a
+paid research product.
+
+**Credits, 11 August 2026.** Counter read 10 of 500 before the question, same as the
+10 August session, indicating a monthly reset or no consumption in between.
+
+**Tier ceiling reconfirmed.** Response footer stated that historical data is limited to
+10 years on the Pro+ plan.
 
 ---
 
