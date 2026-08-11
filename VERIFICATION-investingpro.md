@@ -7,7 +7,7 @@ dated first-party source listed at the bottom.
 - Product: InvestingPro, the premium subscription of Investing.com
 - Session date: 10 August 2026
 - Method: single logged-in session, one company followed through every tool in sequence
-- Access: arranged through Datawave · no editorial review by Investing.com
+- Access: arranged through an affiliate partnership · no editorial review by Investing.com
 - Anchor company: AAPL, used across the whole cluster for continuity
 - Next scheduled re-check: 8 November 2026, or immediately on any interface change
 
