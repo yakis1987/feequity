@@ -202,7 +202,7 @@ body.showbar .sticky{display:flex}
 @media(min-width:641px){.sticky{display:none!important}}
 
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+.toc{border:1px solid var(--line,rgba(255,255,255,.12));border-radius:10px;padding:16px 18px;margin:1.6em 0;background:rgba(255,255,255,.02)}.toc p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;font-weight:600}.toc ol{margin:0;padding-left:1.1em;columns:2;column-gap:28px}.toc li{margin:0 0 6px;break-inside:avoid;font-size:15px}.toc a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.35)}.toc a:hover{border-bottom-color:var(--gold)}@media(max-width:640px){.toc ol{columns:1}}</style>
 <style>
 :root{
   --ink:#0F1720; --soft:#5A6672; --faint:#8A939C; --line:#E4E8EB;
@@ -408,13 +408,16 @@ body.showbar .sticky{display:flex}
   </p>
 
   <div class="answer">
-    <h2>Short answer</h2>
+    <h2 id="short-answer">Short answer</h2>
     <p>A discounted cash flow model estimates what a business is worth by forecasting the cash it
     produces and discounting that cash back to today. Fill in the six fields below and you get a
     value per share. Then read the second number we show, the share of that value coming from the
     terminal value, because on most companies it is over two thirds, and it means the answer is
     mostly an assumption about the years after your forecast ends.</p>
   </div>
+
+
+<div class="toc"><p>On this page</p><ol><li><a href="#read-the-terminal-value-share-before-you-read-the-answer">Read the terminal value share before you read the answer</a></li><li><a href="#one-model-is-a-view-fourteen-is-a-range">One model is a view. Fourteen is a range</a></li><li><a href="#what-each-input-actually-means">What each input actually means</a></li><li><a href="#where-to-get-the-inputs-without-paying-for-anything">Where to get the inputs without paying for anything</a></li><li><a href="#four-ways-this-goes-wrong">Four ways this goes wrong</a></li></ol></div>
 
   <div class="calc">
     <h3>Discounted cash flow</h3>
@@ -498,7 +501,7 @@ body.showbar .sticky{display:flex}
     </div>
   </div>
 
-  <h2>Read the terminal value share before you read the answer</h2>
+  <h2 id="read-the-terminal-value-share-before-you-read-the-answer">Read the terminal value share before you read the answer</h2>
 
   <p>The calculator forecasts ten years explicitly and then collapses everything after year ten
   into a single terminal value. On a typical set of inputs, that terminal value is somewhere
@@ -509,7 +512,7 @@ body.showbar .sticky{display:flex}
   produce different answers for the same company without either making an arithmetic error, and it
   is the reason a single DCF output should never be treated as a price target.</p>
 
-  <h2>One model is a view. Fourteen is a range</h2>
+  <h2 id="one-model-is-a-view-fourteen-is-a-range">One model is a view. Fourteen is a range</h2>
 
   <p>We watched this happen in a controlled way. During a hands-on session on 10 August 2026 we
   ran a commercial valuation platform on a single large company and recorded the output of every
@@ -541,7 +544,7 @@ body.showbar .sticky{display:flex}
   is worth thirty percent more than it trades for, the useful question is not whether to buy, it is
   which assumption is carrying that conclusion and whether you believe it.</p>
 
-  <h2>What each input actually means</h2>
+  <h2 id="what-each-input-actually-means">What each input actually means</h2>
 
   <h3>Free cash flow</h3>
   <p>Cash from operations minus capital expenditure. Not net income, which carries accounting
@@ -569,7 +572,7 @@ body.showbar .sticky{display:flex}
   The calculator will refuse to compute if this figure reaches your discount rate, because the
   arithmetic breaks and the value goes to infinity.</p>
 
-  <h2>Where to get the inputs without paying for anything</h2>
+  <h2 id="where-to-get-the-inputs-without-paying-for-anything">Where to get the inputs without paying for anything</h2>
 
   <p>Cash from operations, capital expenditure, share count and net debt all appear in a company's
   annual report, and every free financial data site carries them. Our guide to
@@ -583,7 +586,7 @@ body.showbar .sticky{display:flex}
   <a href="/research-tools/">research tools section</a> covers what those cost and what they add.
   Below that point it is a subscription solving a problem you do not have.</p>
 
-  <h2>Four ways this goes wrong</h2>
+  <h2 id="four-ways-this-goes-wrong">Four ways this goes wrong</h2>
 
   <ul>
     <li><b>Fitting the inputs to a conclusion you already reached.</b> The most common failure and
@@ -606,7 +609,7 @@ body.showbar .sticky{display:flex}
     <p><a class="btn" href="/tools/expense-ratio-calculator/">Work out your annual cost</a></p>
   </div>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="frequently-asked-questions">Frequently asked questions</h2>
 
   <dl class="faq">
     <dt>What discount rate should I use for a DCF?</dt>

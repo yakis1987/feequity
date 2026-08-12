@@ -188,7 +188,7 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
 @media (max-width:640px){.scta.on{display:flex}body{padding-bottom:64px}}
 @media (max-width:640px){body{font-size:16px}.top nav a{margin-left:12px;font-size:12px}
   .hero{padding:32px 0 30px}.bars div{grid-template-columns:13ch 1fr 3ch}}
-</style>
+.toc{border:1px solid var(--line,rgba(255,255,255,.12));border-radius:10px;padding:16px 18px;margin:1.6em 0;background:rgba(255,255,255,.02)}.toc p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;font-weight:600}.toc ol{margin:0;padding-left:1.1em;columns:2;column-gap:28px}.toc li{margin:0 0 6px;break-inside:avoid;font-size:15px}.toc a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.35)}.toc a:hover{border-bottom-color:var(--gold)}@media(max-width:640px){.toc ol{columns:1}}</style>
 </head>
 <body>
 <div class="top"><div class="wrap">
@@ -206,13 +206,16 @@ calculated correctly elsewhere on the same screen.</b></p>
 <main><div class="wrap">
 <p class="crumb"><a href="/">Home</a> · <a href="/research-tools/">Research tools</a> · <a href="/investingpro-review/">InvestingPro review</a> · WarrenAI</p>
 
+
+<div class="toc"><p>On this page</p><ol><li><a href="#what-we-found">What we found</a></li><li><a href="#case-one-apple-and-the-contradiction-inside-a-single-answer">Case one: Apple, and the contradiction inside a single answer</a></li><li><a href="#case-two-intel-where-the-reversal-flips-the-thesis">Case two: Intel, where the reversal flips the thesis</a></li><li><a href="#case-three-asml-with-a-caveat-we-should-state">Case three: ASML, with a caveat we should state</a></li><li><a href="#the-control-nvidia-where-nothing-went-wrong">The control: Nvidia, where nothing went wrong</a></li><li><a href="#what-we-think-is-happening">What we think is happening</a></li><li><a href="#what-it-is-like-to-use-beyond-the-error">What it is like to use, beyond the error</a></li><li><a href="#verdict">Verdict</a></li><li><a href="#how-we-tested-this">How we tested this</a></li></ol></div>
+
 <div class="disamb">
 <p><b>What this covers.</b> WarrenAI is the research assistant inside InvestingPro, the premium
 subscription of Investing.com. An unrelated portfolio management product also uses the InvestingPro
 name on software directories. It is not the subject here.</p>
 </div>
 
-<h2>What we found</h2>
+<h2 id="what-we-found">What we found</h2>
 
 <p>WarrenAI answers research questions in a fixed structure: a bold summary paragraph at the top,
 then sections of bullets, charts, and a closing take. We tested it across four companies on
@@ -234,7 +237,7 @@ readers look first.</p>
 </tbody>
 </table>
 
-<h2>Case one: Apple, and the contradiction inside a single answer</h2>
+<h2 id="case-one-apple-and-the-contradiction-inside-a-single-answer">Case one: Apple, and the contradiction inside a single answer</h2>
 
 <p>We asked whether Apple was overvalued and what analysts thought. The summary paragraph at the
 top of the answer read that analysts see just a -4.6% downside to their average target.</p>
@@ -260,7 +263,7 @@ Investing.com's own sidebar on the Apple page agreed at the same moment, showing
 <p>Two of the three displays were correct. The one that was wrong was the summary, which is the
 part most readers read and the only part many will read.</p>
 
-<h2>Case two: Intel, where the reversal flips the thesis</h2>
+<h2 id="case-two-intel-where-the-reversal-flips-the-thesis">Case two: Intel, where the reversal flips the thesis</h2>
 
 <p>We asked whether Intel was a good investment and what the risks were. The analysis that
 followed was the strongest thing we saw from the product: it named the dilution, the debt, the
@@ -288,7 +291,7 @@ labelled Intel <b>Overvalued</b>.</p>
 flips the conclusion. A reader who reads only the summary comes away believing Intel trades at a
 31 percent discount, when the product they are paying for classifies it as expensive.</p>
 
-<h2>Case three: ASML, with a caveat we should state</h2>
+<h2 id="case-three-asml-with-a-caveat-we-should-state">Case three: ASML, with a caveat we should state</h2>
 
 <p>We asked the same question we asked about Apple, word for word, to see whether depth held
 outside the United States. It did. The answer named the price, the multiple, the fair value range,
@@ -314,7 +317,7 @@ right. It said models see -12% to -13% risk, and the sidebar showed -12.71%. The
 concentrated in the analyst target field, not spread across everything.</p>
 </div>
 
-<h2>The control: Nvidia, where nothing went wrong</h2>
+<h2 id="the-control-nvidia-where-nothing-went-wrong">The control: Nvidia, where nothing went wrong</h2>
 
 <p>We asked for Nvidia's most recent quarterly revenue and EPS against expectations. The answer
 gave revenue of $81.61B against a forecast of $79.19B and EPS of $1.87 against $1.77, named the
@@ -327,7 +330,7 @@ summarising layer is unreliable in general. It is not. It handled a straightforw
 question cleanly. The failures cluster around one specific operation: describing a signed
 percentage in words.</p>
 
-<h2>What we think is happening</h2>
+<h2 id="what-we-think-is-happening">What we think is happening</h2>
 
 <p>We are describing a pattern, not diagnosing a codebase, and the distinction matters.</p>
 
@@ -340,7 +343,7 @@ news. The two fields use the same visual convention for opposite kinds of inform
 signature of a translation step that reads the number and loses what the sign refers to, rather
 than of a calculation error. The calculations were right everywhere we could check them.</p>
 
-<h2>What it is like to use, beyond the error</h2>
+<h2 id="what-it-is-like-to-use-beyond-the-error">What it is like to use, beyond the error</h2>
 
 <ul>
 <li><b>Credits.</b> 500 a month on the tier tested. The counter read 10 of 500 at the start of
@@ -362,7 +365,7 @@ register does not help anyone make a decision, and it sits oddly beside the care
 analysis.</li>
 </ul>
 
-<h2>Verdict</h2>
+<h2 id="verdict">Verdict</h2>
 
 <p>WarrenAI is a capable research assistant with accurate underlying data and a specific,
 reproducible flaw in the layer readers see first. Three point five out of five.</p>
@@ -388,7 +391,7 @@ say so here with the same prominence, and log the change at
 <p class="disc">Partner link · we earn a commission if you subscribe · disclosed 11 Aug 2026 · the finding above is published unchanged because of it, not despite it</p>
 </div>
 
-<h2>Common questions</h2>
+<h2 id="common-questions">Common questions</h2>
 
 <h3>Is WarrenAI accurate?</h3>
 <p>The underlying data was accurate in every check we made. Quarterly revenue and EPS matched
@@ -428,7 +431,7 @@ our <a href="/propicks-ai-review/">ProPicks AI review</a>. They are different pr
 same subscription and the performance figures published for ProPicks require their own careful
 reading.</p>
 
-<h2>How we tested this</h2>
+<h2 id="how-we-tested-this">How we tested this</h2>
 
 <div class="note">
 <p><b>Method.</b> Two logged-in sessions, 10 and 11 August 2026, on one account. Four companies:
