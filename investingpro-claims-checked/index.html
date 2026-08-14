@@ -29,6 +29,17 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
 </script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+  /* sticky bar appears only after 40% scroll, never on load */
+  var bar=document.querySelector('.scta');
+  if(bar){
+    var shown=false;
+    window.addEventListener('scroll',function(){
+      if(shown)return;
+      var d=document.documentElement;
+      if((window.scrollY+window.innerHeight)/d.scrollHeight>=.4){shown=true;bar.classList.add('on');}
+    },{passive:true});
+  }
+
   var slug=location.pathname;
   document.querySelectorAll('a[href^="http"]').forEach(function(a){
     if(a.hostname===location.hostname)return;
@@ -103,7 +114,8 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
   font-size:13px;padding:9px 14px;border-radius:6px;white-space:nowrap}
 .scta button{background:none;border:0;color:#8A939C;font-size:20px;line-height:1;
   padding:4px 2px;cursor:pointer;font-family:inherit}
-@media (max-width:640px){.scta{display:flex}body{padding-bottom:64px}}
+.scta.on{display:flex}
+@media (max-width:640px){body{padding-bottom:64px}}
 @media (max-width:640px){body{font-size:16px}.top nav a{margin-left:12px;font-size:12px}
   .hero{padding:32px 0 30px}.big{padding:20px}
   table{font-size:13px}
@@ -349,8 +361,8 @@ count against the free tier of <a href="/stockanalysis-free-tier/">Stock Analysi
 advertised figure and the counted one agreed.</p>
 
 <div class="cta-block">
-<a class="cta" data-cta="cta_cc_r1" href="https://trkio.co/t/vZFkwZVpSB5t53h6qTMGkJ?sub1=investingpro-claims-checked&amp;sub2=r1" rel="sponsored nofollow noopener" target="_blank">Check the model count for your own companies</a>
-<p class="disc">Partner link · we earn a commission if you subscribe · disclosed 14 Aug 2026 · this does not affect our assessment, and the counted figures above are what we saw rather than what we were told</p>
+<a class="cta" data-cta="cta_cc_r1" href="https://trkio.co/t/vZFkwZVpSB5t53h6qTMGkJ?sub1=investingpro-claims-checked&amp;sub2=r1" rel="sponsored nofollow noopener" target="_blank">Subscribe to InvestingPro</a>
+<p class="disc">Paid link. We counted 14 models where the marketing says 17, and left it there · <a href="/how-we-make-money/">14 Aug 2026</a></p>
 </div>
 
 <div class="big">
@@ -362,8 +374,8 @@ usually the larger number, and no research platform is incentivised to show it t
 
 </div></main>
 <div class="scta">
-<p>Free spreadsheet: <b>what your broker costs you a year</b></p>
-<a href="/tools/portfolio-tracker/">Get it</a>
+<p>Fair Value, health scores and <b>10 years of financials</b></p>
+<a data-cta="cta_cc_sticky" href="https://trkio.co/t/vZFkwZVpSB5t53h6qTMGkJ?sub1=investingpro-claims-checked&amp;sub2=sticky" rel="sponsored nofollow noopener" target="_blank">Subscribe</a>
 <button type="button" aria-label="Dismiss" onclick="this.parentNode.remove()">&times;</button>
 </div>
 <footer><div class="wrap">
