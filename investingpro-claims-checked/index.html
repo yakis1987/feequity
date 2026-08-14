@@ -105,12 +105,23 @@ footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
   padding:4px 2px;cursor:pointer;font-family:inherit}
 @media (max-width:640px){.scta{display:flex}body{padding-bottom:64px}}
 @media (max-width:640px){body{font-size:16px}.top nav a{margin-left:12px;font-size:12px}
-  .hero{padding:32px 0 30px}.big{padding:20px}}
-table{border-collapse:collapse;width:100%;font-size:14.5px;margin:1.4em 0}
-th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .hero{padding:32px 0 30px}.big{padding:20px}
+  table{font-size:13px}
+  th,td{padding:8px 6px}
+  .tag{font-size:10px;letter-spacing:0;text-transform:none;padding:3px 6px}
+  .claims th:nth-child(1),.claims td:nth-child(1){width:32%}
+  .claims th:nth-child(2),.claims td:nth-child(2){width:42%}
+  .claims th:nth-child(3),.claims td:nth-child(3){width:26%}}
+table{border-collapse:collapse;width:100%;max-width:100%;font-size:14.5px;margin:1.4em 0;
+  table-layout:fixed}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;
+  overflow-wrap:anywhere;word-break:normal;hyphens:auto}
 th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:700}
+.claims th:nth-child(1),.claims td:nth-child(1){width:34%}
+.claims th:nth-child(2),.claims td:nth-child(2){width:44%}
+.claims th:nth-child(3),.claims td:nth-child(3){width:22%}
 .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;
-  text-transform:uppercase;padding:3px 7px;border-radius:4px;white-space:nowrap}
+  text-transform:uppercase;padding:3px 7px;border-radius:4px;line-height:1.4}
 .tag.m{background:rgba(15,110,86,.10);color:var(--up)}
 .tag.n{background:rgba(163,45,45,.10);color:var(--down)}
 .tag.u{background:rgba(138,147,156,.14);color:var(--soft)}
@@ -159,23 +170,23 @@ counted one is visible rather than assumed.</p>
 
 <h2>The five claims</h2>
 
-<table>
+<table class="claims">
 <thead><tr><th>Claim, as published</th><th>What we counted</th><th>Verdict</th></tr></thead>
 <tbody>
 <tr>
 <td><b>Averages 17 valuation models</b><br>Investing.com pricing page</td>
 <td>14 models active for AAPL, from a library of 19 available. Earnings Power Value sat unchecked by default and was excluded from the average.</td>
-<td><span class="tag n">Below, for this company</span></td>
+<td><span class="tag n">Below for AAPL</span></td>
 </tr>
 <tr>
 <td><b>1,200+ metrics</b><br>widely repeated as a screener figure</td>
 <td>Investing.com's own pricing page separates 1,200+ stock data metrics from a screener that filters through 167. No metric count is displayed anywhere in the screener interface.</td>
-<td><span class="tag n">Two figures conflated</span></td>
+<td><span class="tag n">Conflated</span></td>
 </tr>
 <tr>
 <td><b>180,000+ instruments</b><br>Investing.com pricing page, on WarrenAI</td>
 <td>The screener reported a universe of 152,080 instruments. Different figures may count different things, and the interface does not say which.</td>
-<td><span class="tag n">Below, as counted</span></td>
+<td><span class="tag n">Below as counted</span></td>
 </tr>
 <tr>
 <td><b>10 years of historical data</b><br>Investing.com pricing page</td>
@@ -185,7 +196,7 @@ counted one is visible rather than assumed.</p>
 <tr>
 <td><b>7 day money-back guarantee</b><br>appears on affiliate pages, not on Investing.com</td>
 <td>Absent from both the official terms and the support article updated 9 August 2026. Both state the service is non-refundable.</td>
-<td><span class="tag n">Not corroborated</span></td>
+<td><span class="tag n">Not in the terms</span></td>
 </tr>
 </tbody>
 </table>
