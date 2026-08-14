@@ -29,7 +29,7 @@ Site launched 3 August 2026. All dated claims are re-checked on a 90 day cycle.
 
 ## Portfolio trackers
 
-- [Google Finance portfolio guide](https://feequity.com/trackers/google-finance-portfolio/): the current version, after the June 2026 rebuild that most older guides do not reflect.
+- [Google Finance portfolio guide](https://feequity.com/trackers/google-finance-portfolio/): checked in the live product on 15 August 2026. After the June 2026 rebuild there is no manual entry form: portfolios are created by uploading a file or describing holdings in plain words, and edited the same way. A portfolio created from a description without a stated purchase price records the share count but leaves transaction date, price and amount blank, so total gain equals the whole position value at a zero cost basis.
 - [Yahoo Finance portfolio guide](https://feequity.com/trackers/yahoo-finance-portfolio/)
 
 ## Calculators
