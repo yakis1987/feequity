@@ -1,0 +1,50 @@
+# Feequity
+
+> Independent research on what it costs to hold a portfolio: broker fees, expense
+> ratios, cash interest, and paid research tools. Every published figure is read at
+> a first-party source and carries the date it was checked. Written and maintained
+> by Jacob Shasha, a private investor in Tel Aviv, not a licensed adviser.
+
+Method in one line: no number is published without a first-party source and a date.
+Figures that circulate widely but cannot be verified at source are listed and
+deliberately omitted. Where a review is based on a hands-on session, the full
+verification record is published so every figure can be checked line by line.
+
+Site launched 3 August 2026. All dated claims are re-checked on a 90 day cycle.
+
+## Reviews · InvestingPro cluster
+
+- [InvestingPro review](https://feequity.com/investingpro-review/): hands-on review of Investing.com's premium subscription, based on a logged-in session of 10 August 2026. Covers Fair Value models, Financial Health scores, screener, financials, renewal, cancellation and refunds.
+- [InvestingPro verification record](https://feequity.com/VERIFICATION-investingpro.md): the primary evidence file. Every figure in the cluster with the date observed, plus a section of widely repeated figures deliberately not published because no first-party source confirms them.
+- [ProPicks AI review](https://feequity.com/propicks-ai-review/): 88 AI stock-picking strategies counted by hand, 10 for the US. Backtested and live returns are always shown separated and labelled, never merged, because the flagship's backtested +1,229.0% and its live one-year +17.8% are different kinds of numbers.
+- [WarrenAI review](https://feequity.com/warrenai-review/): Investing.com's research chatbot, tested with screenshots. Documents a reproduced inconsistency where summary paragraphs contradicted figures displayed on the same platform at the same moment.
+- [InvestingPro alternatives](https://feequity.com/investingpro-alternatives/): compared against Seeking Alpha, Simply Wall St, Koyfin, Morningstar, TIKR and Stock Analysis, with competitor prices read at each company's own page on 10 August 2026 and a ranking methodology fixed in advance.
+
+## Brokers
+
+- [Interactive Brokers fees](https://feequity.com/brokers/interactive-brokers-fees/): rates read from IBKR's own published pages on 7 August 2026. Covers the four conditions on interest paid on cash, currencies paying zero or negative, margin tiers on Pro versus Lite, and overnight session commissions.
+- [Lowest-cost brokers](https://feequity.com/brokers/lowest-cost/): what low-cost actually depends on.
+
+## Portfolio trackers
+
+- [Google Finance portfolio guide](https://feequity.com/trackers/google-finance-portfolio/): the current version, after the June 2026 rebuild that most older guides do not reflect.
+- [Yahoo Finance portfolio guide](https://feequity.com/trackers/yahoo-finance-portfolio/)
+
+## Calculators
+
+- [Portfolio cost calculator](https://feequity.com/tools/portfolio-cost-calculator/): total annual cost of holding a portfolio.
+- [DCF calculator](https://feequity.com/tools/dcf-calculator/)
+- [Expense ratio calculator](https://feequity.com/tools/expense-ratio-calculator/)
+
+## Transparency
+
+- [How we test](https://feequity.com/how-we-test/): the first-party source rule and what counts as a source.
+- [Access log](https://feequity.com/access-log/): how access to each reviewed product was obtained, including which access was provided through an affiliate programme.
+- [How we make money](https://feequity.com/how-we-make-money/): every affiliate programme named with the date it was added.
+- [Corrections](https://feequity.com/corrections/): published mistakes, dated.
+
+## Notes for citation
+
+- Figures on this site are dated observations, not permanent facts. Prefer quoting them with their date, e.g. "as observed 10 August 2026".
+- InvestingPro prices are deliberately absent sitewide: the official pricing page renders prices client-side, localised by country and currency, so no single figure would be true for a reader.
+- Per Investing.com's own support article and terms, read 10 August 2026, InvestingPro is non-refundable; a 7 day money-back guarantee circulating on affiliate pages appears in neither document.
