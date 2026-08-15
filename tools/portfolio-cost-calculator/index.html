@@ -17,16 +17,28 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Portfolio cost calculator","url":"https://feequity.com/tools/portfolio-cost-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","description":"Add up commissions, spreads, currency conversion, cash drag, fund fees and platform charges into one annual figure, in basis points, and over ten years.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Jacob Shasha"},"publisher":{"@type":"Organization","name":"Feequity"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://feequity.com/tools/"},{"@type":"ListItem","position":3,"name":"Portfolio cost calculator"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good total annual cost for a portfolio?","acceptedAnswer":{"@type":"Answer","text":"Under thirty basis points is efficient and usually means broad funds with low turnover. Thirty to seventy five is normal for an active private investor with international holdings. Above one hundred and fifty basis points the costs become a material share of your expected return, and the usual culprits are cash drag, currency conversion and platform charges rather than commissions."}},{"@type":"Question","name":"Why does the calculator ask what interest my broker pays on cash?","acceptedAnswer":{"@type":"Answer","text":"Because the difference between the prevailing rate and what your broker passes on is a real cost that appears on no statement. It is not a charge, it is an absence, which is exactly why it is so easy to miss. On a few thousand dollars of idle cash it frequently exceeds everything the same investor pays in commissions across a year."}},{"@type":"Question","name":"Is the bid-ask spread really a cost if I never see it?","acceptedAnswer":{"@type":"Answer","text":"Yes. You buy at the ask and sell at the bid, so you cross roughly half the quoted spread on each execution. It never appears as a line item, which is why a zero commission broker can advertise truthfully and still be expensive. On liquid large companies it is negligible. On small companies and thin ETFs it is often larger than any commission."}},{"@type":"Question","name":"Does this include tax?","acceptedAnswer":{"@type":"Answer","text":"No. Tax depends on your jurisdiction, your account type and your holding period, and any figure we produced would be wrong for most readers. Everything measured here is a cost charged or withheld by a broker, a fund or a platform, before tax enters the picture."}},{"@type":"Question","name":"Why show a ten year figure?","acceptedAnswer":{"@type":"Answer","text":"Because an annual cost understates the damage. Money paid in fees is not only gone, it also does not compound, so the ten year gap is the fees plus everything those fees would have earned. The calculation assumes a constant portfolio, a constant cost rate and a seven percent gross return, and it is an illustration of scale rather than a forecast."}},{"@type":"Question","name":"Does this calculator store or send my figures anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser, nothing is transmitted, nothing is saved and there is no account. Closing the tab discards the inputs."}}]}</script>
+<script>
+/* opt out this browser for good: visit any page with ?notrack=1 · undo with ?notrack=0 */
+(function(){try{
+  var q=location.search;
+  if(q.indexOf('notrack=1')>-1){localStorage.setItem('fq_no_track','1');}
+  if(q.indexOf('notrack=0')>-1){localStorage.removeItem('fq_no_track');}
+  window.FQ_NO_TRACK = localStorage.getItem('fq_no_track')==='1';
+  if(window.FQ_NO_TRACK){window['ga-disable-G-CSBWWMNBNY']=true;}
+}catch(e){window.FQ_NO_TRACK=false;}})();
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
 </script>
 <script type="text/javascript">
+if(!window.FQ_NO_TRACK){
 (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
 (window,document,"clarity","script","xwrly79k01");
+}
 </script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
