@@ -156,7 +156,20 @@ figcaption{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.5;ma
 .cta:hover{filter:brightness(1.04)}
 .disc{font-size:11.5px;color:var(--faint);margin:8px 0 0;max-width:var(--measure);line-height:1.5}
 .cta-block{margin:1.8em 0}
-.card{transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(201,168,76,.55);box-shadow:0 2px 14px rgba(15,23,32,.07)}</style>
+.card{transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(201,168,76,.55);box-shadow:0 2px 14px rgba(15,23,32,.07)}
+@media(max-width:640px){
+  .claims,.claims tbody,.claims tr,.claims td{display:block;width:100%!important}
+  .claims thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .claims{table-layout:auto;border-top:1px solid var(--line)}
+  .claims tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .claims td{border:0;padding:0 0 9px;font-size:15px;line-height:1.5}
+  .claims td:last-child{padding-bottom:0}
+  .claims td::before{content:attr(data-label);display:block;font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:3px}
+  .claims td:first-child{font-size:17px;font-weight:600;margin-bottom:4px;padding-bottom:6px}
+  .claims td:first-child::before{display:none}
+}
+</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Stock Analysis free?","acceptedAnswer":{"@type":"Answer","text":"Yes, and substantially so. A free account gives you the full stock screener with 299 of its 313 metrics filtering normally, complete company pages for US and international listings, analyst ratings and price targets, operating metrics by segment and geography, and five years of financial statements. The free tier is ad supported and does not require a paid plan to be useful. What it does not give you is depth of history, which is where the paid tier starts."}},{"@type":"Question","name":"How many years of financial history does the free version show?","acceptedAnswer":{"@type":"Answer","text":"Five. On a company page the history control offers 5Y, 10Y and Max, and only 5Y returns data. Selecting either of the other two sends you to the pricing page. Checked on 14 August 2026 on Apple, ASML and adidas, with identical behaviour on all three, so this is a property of the free tier rather than of any one company. The paid tier is advertised at 10 to 40 years."}},{"@type":"Question","name":"Which screener metrics are locked on the free plan?","acceptedAnswer":{"@type":"Answer","text":"Fourteen, counted individually on 14 August 2026. The whole Fair Value category, meaning Lynch Fair Value, Graham Number, Lynch Upside, Graham Upside and WACC. The four Top Analyst metrics, covering rating, count, price target and upside. The ten year windows of Average PE Ratio, Dividend Growth and OCF Growth, while the one, three and five year versions of each stay free. And the Sharpe and Sortino ratios. Everything else filters on a free account, including Altman Z-Score and Piotroski F-Score."}},{"@type":"Question","name":"Does Stock Analysis cover stocks outside the United States?","acceptedAnswer":{"@type":"Answer","text":"Yes, and not only through American depositary receipts. adidas on Deutsche Boerse Xetra, a German company with no US listing involved, returns a full page priced in euros with German regulatory filings in the news feed and 30 analysts covering it. The same search returned adidas on Warsaw and Zurich as well. Two things are thinner on the German listing than on a US one: there is no operating metrics tab, and trading volume shows as unavailable."}},{"@type":"Question","name":"How much does Stock Analysis Pro cost?","acceptedAnswer":{"@type":"Answer","text":"Pro is $79 a year, displayed as $6.58 a month, or $9.99 billed monthly. The activation screen states the monthly plan as $119.88 a year and prints the annual saving as $40.88, which is more candid than most subscription pages manage. Unlimited is $16.58 a month billed annually. Read from the pricing and activation screens on 14 August 2026."}},{"@type":"Question","name":"Is there a free trial, and can you get a refund?","acceptedAnswer":{"@type":"Answer","text":"There is no free trial in the usual sense, because the free tier is permanent rather than time limited. Instead the pricing page carries a 60 day money-back guarantee, shown once under each plan. We have not tested whether it is honoured and will not say that it works until we have requested a refund ourselves and recorded what happened."}}]}</script>
 </head>
 <body>
@@ -203,24 +216,24 @@ to match it.</p>
 <thead><tr><th>Group</th><th>What is locked</th><th>Reading</th></tr></thead>
 <tbody>
 <tr>
-<td><b>Fair Value</b></td>
-<td>Lynch Fair Value · Graham Number · Lynch Upside · Graham Upside · WACC</td>
-<td><span class="tag n">Whole category</span></td>
+<td data-label="Group"><b>Fair Value</b></td>
+<td data-label="What is locked">Lynch Fair Value · Graham Number · Lynch Upside · Graham Upside · WACC</td>
+<td data-label="Reading"><span class="tag n">Whole category</span></td>
 </tr>
 <tr>
-<td><b>Top Analyst</b></td>
-<td>Top Analyst Rating · Top Analyst Count · Top Analyst Price Target · Top Analyst Price Target Upside</td>
-<td><span class="tag n">Whole layer</span></td>
+<td data-label="Group"><b>Top Analyst</b></td>
+<td data-label="What is locked">Top Analyst Rating · Top Analyst Count · Top Analyst Price Target · Top Analyst Price Target Upside</td>
+<td data-label="Reading"><span class="tag n">Whole layer</span></td>
 </tr>
 <tr>
-<td><b>Ten year windows</b></td>
-<td>Average PE Ratio (10Y) · Dividend Growth (10Y) · OCF Growth (10Y)</td>
-<td><span class="tag n">Longest window only</span></td>
+<td data-label="Group"><b>Ten year windows</b></td>
+<td data-label="What is locked">Average PE Ratio (10Y) · Dividend Growth (10Y) · OCF Growth (10Y)</td>
+<td data-label="Reading"><span class="tag n">Longest window only</span></td>
 </tr>
 <tr>
-<td><b>Risk ratios</b></td>
-<td>Sharpe Ratio · Sortino Ratio</td>
-<td><span class="tag n">Both</span></td>
+<td data-label="Group"><b>Risk ratios</b></td>
+<td data-label="What is locked">Sharpe Ratio · Sortino Ratio</td>
+<td data-label="Reading"><span class="tag n">Both</span></td>
 </tr>
 </tbody>
 </table>
@@ -320,10 +333,10 @@ On Apple, checked the same day:</p>
 <table class="claims">
 <thead><tr><th>Table</th><th>Free history reaches back to</th></tr></thead>
 <tbody>
-<tr><td>Global Active Devices</td><td>January 2017</td></tr>
-<tr><td>Revenue by Geography</td><td>September 2024</td></tr>
-<tr><td>Gross Profit by Type</td><td>June 2024</td></tr>
-<tr><td>Gross Margin by Type</td><td>March 2025</td></tr>
+<tr><td data-label="Table">Global Active Devices</td><td data-label="Free history reaches back to">January 2017</td></tr>
+<tr><td data-label="Table">Revenue by Geography</td><td data-label="Free history reaches back to">September 2024</td></tr>
+<tr><td data-label="Table">Gross Profit by Type</td><td data-label="Free history reaches back to">June 2024</td></tr>
+<tr><td data-label="Table">Gross Margin by Type</td><td data-label="Free history reaches back to">March 2025</td></tr>
 </tbody>
 </table>
 
@@ -348,10 +361,10 @@ across the whole research tools section, so the numbers are comparable page to p
 <table class="claims">
 <thead><tr><th>Figure</th><th>As displayed</th><th>Note</th></tr></thead>
 <tbody>
-<tr><td>FY2025 revenue</td><td>$416.16B, up 6.43%</td><td>Matches the figure we verified against the filing during our InvestingPro session</td></tr>
-<tr><td>Trailing twelve month revenue</td><td>$466.82B</td><td>Different measure, same screen. Worth not confusing with the fiscal year figure</td></tr>
-<tr><td>Analyst coverage</td><td>46 analysts, target $322.28, upside 5.48%</td><td>InvestingPro showed 41 analysts and $322.82 on 10 August. Four days apart, so not necessarily a conflict</td></tr>
-<tr><td>Five year revenue</td><td>365.8 · 394.3 · 383.3 · 391.0 · 416.2</td><td>FY2021 to FY2025, USD billions. This is the entire history the free tier will show</td></tr>
+<tr><td data-label="Figure">FY2025 revenue</td><td data-label="As displayed">$416.16B, up 6.43%</td><td data-label="Note">Matches the figure we verified against the filing during our InvestingPro session</td></tr>
+<tr><td data-label="Figure">Trailing twelve month revenue</td><td data-label="As displayed">$466.82B</td><td data-label="Note">Different measure, same screen. Worth not confusing with the fiscal year figure</td></tr>
+<tr><td data-label="Figure">Analyst coverage</td><td data-label="As displayed">46 analysts, target $322.28, upside 5.48%</td><td data-label="Note">InvestingPro showed 41 analysts and $322.82 on 10 August. Four days apart, so not necessarily a conflict</td></tr>
+<tr><td data-label="Figure">Five year revenue</td><td data-label="As displayed">365.8 · 394.3 · 383.3 · 391.0 · 416.2</td><td data-label="Note">FY2021 to FY2025, USD billions. This is the entire history the free tier will show</td></tr>
 </tbody>
 </table>
 

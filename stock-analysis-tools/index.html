@@ -156,7 +156,20 @@ figcaption{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.5;ma
 .cta:hover{filter:brightness(1.04)}
 .disc{font-size:11.5px;color:var(--faint);margin:8px 0 0;max-width:var(--measure);line-height:1.5}
 .cta-block{margin:1.8em 0}
-.card{transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(201,168,76,.55);box-shadow:0 2px 14px rgba(15,23,32,.07)}</style>
+.card{transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(201,168,76,.55);box-shadow:0 2px 14px rgba(15,23,32,.07)}
+@media(max-width:640px){
+  .claims,.claims tbody,.claims tr,.claims td{display:block;width:100%!important}
+  .claims thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .claims{table-layout:auto;border-top:1px solid var(--line)}
+  .claims tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .claims td{border:0;padding:0 0 9px;font-size:15px;line-height:1.5}
+  .claims td:last-child{padding-bottom:0}
+  .claims td::before{content:attr(data-label);display:block;font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:3px}
+  .claims td:first-child{font-size:17px;font-weight:600;margin-bottom:4px;padding-bottom:6px}
+  .claims td:first-child::before{display:none}
+}
+</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the best free stock analysis tool?","acceptedAnswer":{"@type":"Answer","text":"There is no single answer, because the three we counted stop in three different places. Finviz is the best if you read in the browser: 73 screener filters with only 2 locked, all 11,566 results visible with no row cap, and a one minute quote delay. Stock Analysis is the best for screening depth, with 313 metrics of which 14 are locked, but its free financial history stops at five years. Simply Wall St is the best for coverage outside the United States and the only one of the three that returns a full report for a Frankfurt listing with no US line. Counted 14 to 16 August 2026."}},{"@type":"Question","name":"Is Finviz free version good enough?","acceptedAnswer":{"@type":"Answer","text":"For reading and screening, yes, and more so than most reviews suggest. Of 73 screener filters only 2 are locked, all 128 display columns are open, a company page shows 84 metrics with a single padlock, and every one of the 11,566 results is reachable across 579 pages without an account. The footer now states a one minute quote delay rather than the 15 or 20 minutes that older reviews describe. What is locked is export and the API, so if your workflow ends in a spreadsheet you will pay on day one. Checked 15 August 2026."}},{"@type":"Question","name":"Which stock analysis tool covers non-US stocks?","acceptedAnswer":{"@type":"Answer","text":"Simply Wall St and Stock Analysis both do. Finviz does not: it publishes that it covers NYSE, NASDAQ and AMEX, and searching for adidas returns ten unrelated US listings. On adidas, listed on Deutsche Boerse Xetra with no US line, Simply Wall St returned a full report in euros with 63 analysts and European peers, structurally identical to its Apple report. Stock Analysis returned a full page in euros with German regulatory filings and 30 analysts, but without an operating metrics tab, without volume data, and from a different data supplier. Checked 15 and 16 August 2026."}},{"@type":"Question","name":"Does Simply Wall St have a free trial?","acceptedAnswer":{"@type":"Answer","text":"Yes, seven days of Premium, and it does not ask for a credit card. Signing in with a Google account was enough. That is unusual in this category: Finviz also offers a seven day Elite trial but requires a card and starts billing automatically when the trial ends. Stock Analysis offers no trial at all and instead publishes a 60 day money-back guarantee. We have not tested any refund or cancellation process on any of the three. Checked 16 August 2026."}},{"@type":"Question","name":"How many years of financial history do these tools show for free?","acceptedAnswer":{"@type":"Answer","text":"Finviz showed six years of financial statements on Apple and seven on ASML, so the depth varies by company rather than sitting at a fixed ceiling. Stock Analysis stops at five years, with both the ten year and maximum views redirecting to its pricing page, and its segment tables cut off sooner still. Simply Wall St publishes a data sources table stating ten years of company financials and thirty years of market prices, though market prices and financial statements are different things and the report interrupts you with a sign-up modal before you get far. Checked 14 to 16 August 2026."}}]}</script>
 </head>
 <body>
@@ -238,19 +251,19 @@ will ever pay.</p>
 <thead><tr><th>Tool</th><th>What the free tier stops you doing</th><th>What it does not restrict</th></tr></thead>
 <tbody>
 <tr>
-<td><b>Finviz</b></td>
-<td>Taking data out. Export and API are behind Elite entirely.</td>
-<td>Reading. All 11,566 results across 579 pages, no account needed.</td>
+<td data-label="Tool"><b>Finviz</b></td>
+<td data-label="What the free tier stops you doing">Taking data out. Export and API are behind Elite entirely.</td>
+<td data-label="What it does not restrict">Reading. All 11,566 results across 579 pages, no account needed.</td>
 </tr>
 <tr>
-<td><b>Stock Analysis</b></td>
-<td>Looking backwards. Financial history stops at five years.</td>
-<td>Screening. 313 metrics, of which only 14 are locked.</td>
+<td data-label="Tool"><b>Stock Analysis</b></td>
+<td data-label="What the free tier stops you doing">Looking backwards. Financial history stops at five years.</td>
+<td data-label="What it does not restrict">Screening. 313 metrics, of which only 14 are locked.</td>
 </tr>
 <tr>
-<td><b>Simply Wall St</b></td>
-<td>Reading on. A sign-up modal interrupts the report partway down.</td>
-<td>Coverage. The full report exists for listings the other two do not carry.</td>
+<td data-label="Tool"><b>Simply Wall St</b></td>
+<td data-label="What the free tier stops you doing">Reading on. A sign-up modal interrupts the report partway down.</td>
+<td data-label="What it does not restrict">Coverage. The full report exists for listings the other two do not carry.</td>
 </tr>
 </tbody>
 </table>
@@ -267,15 +280,15 @@ will hit the Stock Analysis wall immediately and find Finviz perfectly adequate.
 <table class="claims">
 <thead><tr><th>Measure</th><th>Free tier</th></tr></thead>
 <tbody>
-<tr><td>Screener filters</td><td>73, of which <b>2 are locked</b> (Trades, News Keywords)</td></tr>
-<tr><td>Display columns</td><td>128 across 12 categories, <b>none locked</b></td></tr>
-<tr><td>Metrics on a company page</td><td>84, of which <b>1 is locked</b></td></tr>
-<tr><td>Screener universe</td><td>11,566 instruments</td></tr>
-<tr><td>Results shown</td><td>All 579 pages. No row cap found.</td></tr>
-<tr><td>Financial statements</td><td>6 years on Apple, 7 on ASML</td></tr>
-<tr><td>Quote delay</td><td><b>1 minute</b> for NASDAQ, NYSE and AMEX</td></tr>
-<tr><td>Export and API</td><td><b>Locked</b></td></tr>
-<tr><td>Advertising</td><td>Yes</td></tr>
+<tr><td data-label="Measure">Screener filters</td><td data-label="Free tier">73, of which <b>2 are locked</b> (Trades, News Keywords)</td></tr>
+<tr><td data-label="Measure">Display columns</td><td data-label="Free tier">128 across 12 categories, <b>none locked</b></td></tr>
+<tr><td data-label="Measure">Metrics on a company page</td><td data-label="Free tier">84, of which <b>1 is locked</b></td></tr>
+<tr><td data-label="Measure">Screener universe</td><td data-label="Free tier">11,566 instruments</td></tr>
+<tr><td data-label="Measure">Results shown</td><td data-label="Free tier">All 579 pages. No row cap found.</td></tr>
+<tr><td data-label="Measure">Financial statements</td><td data-label="Free tier">6 years on Apple, 7 on ASML</td></tr>
+<tr><td data-label="Measure">Quote delay</td><td data-label="Free tier"><b>1 minute</b> for NASDAQ, NYSE and AMEX</td></tr>
+<tr><td data-label="Measure">Export and API</td><td data-label="Free tier"><b>Locked</b></td></tr>
+<tr><td data-label="Measure">Advertising</td><td data-label="Free tier">Yes</td></tr>
 </tbody>
 </table>
 
@@ -306,12 +319,12 @@ taking. If your workflow ends in the browser, the free tier is close to complete
 <table class="claims">
 <thead><tr><th>Measure</th><th>Free tier</th></tr></thead>
 <tbody>
-<tr><td>Screener metrics</td><td><b>313</b> across 29 categories, of which 14 are locked</td></tr>
-<tr><td>What is locked</td><td>The whole Fair Value category, the four Top Analyst metrics, three ten-year windows, Sharpe and Sortino</td></tr>
-<tr><td>Financial history</td><td><b>5 years.</b> 10Y and Max both redirect to pricing</td></tr>
-<tr><td>Second limit</td><td>Segment tables gate older columns. Gross Margin by Type was readable back only to March 2025</td></tr>
-<tr><td>Coverage</td><td>Global, including Xetra, Warsaw and Zurich</td></tr>
-<tr><td>Export</td><td>Locked. Pro allows one download a day</td></tr>
+<tr><td data-label="Measure">Screener metrics</td><td data-label="Free tier"><b>313</b> across 29 categories, of which 14 are locked</td></tr>
+<tr><td data-label="Measure">What is locked</td><td data-label="Free tier">The whole Fair Value category, the four Top Analyst metrics, three ten-year windows, Sharpe and Sortino</td></tr>
+<tr><td data-label="Measure">Financial history</td><td data-label="Free tier"><b>5 years.</b> 10Y and Max both redirect to pricing</td></tr>
+<tr><td data-label="Measure">Second limit</td><td data-label="Free tier">Segment tables gate older columns. Gross Margin by Type was readable back only to March 2025</td></tr>
+<tr><td data-label="Measure">Coverage</td><td data-label="Free tier">Global, including Xetra, Warsaw and Zurich</td></tr>
+<tr><td data-label="Measure">Export</td><td data-label="Free tier">Locked. Pro allows one download a day</td></tr>
 </tbody>
 </table>
 
@@ -332,13 +345,13 @@ show you 2020 or what the business looked like before any of it started.</p>
 <table class="claims">
 <thead><tr><th>Measure</th><th>Free tier</th></tr></thead>
 <tbody>
-<tr><td>Report access</td><td>Full eight-section report loads with no account</td></tr>
-<tr><td>The actual wall</td><td>A sign-up modal appears partway down the page, around the community narratives</td></tr>
-<tr><td>Stated free limit</td><td>5 company reports a month, 1 portfolio with 10 holdings, 5 watchlists</td></tr>
-<tr><td>Screener</td><td>Filters run, but results only activate when the set is <b>under 350 companies</b></td></tr>
-<tr><td>Data timeframes</td><td>Company financials 10 years, market prices 30 years, ownership 10 years</td></tr>
-<tr><td>Trial</td><td>7 days of Premium, <b>no card required</b></td></tr>
-<tr><td>Export</td><td>Locked on Free and on Premium. Only Unlimited unlocks it</td></tr>
+<tr><td data-label="Measure">Report access</td><td data-label="Free tier">Full eight-section report loads with no account</td></tr>
+<tr><td data-label="Measure">The actual wall</td><td data-label="Free tier">A sign-up modal appears partway down the page, around the community narratives</td></tr>
+<tr><td data-label="Measure">Stated free limit</td><td data-label="Free tier">5 company reports a month, 1 portfolio with 10 holdings, 5 watchlists</td></tr>
+<tr><td data-label="Measure">Screener</td><td data-label="Free tier">Filters run, but results only activate when the set is <b>under 350 companies</b></td></tr>
+<tr><td data-label="Measure">Data timeframes</td><td data-label="Free tier">Company financials 10 years, market prices 30 years, ownership 10 years</td></tr>
+<tr><td data-label="Measure">Trial</td><td data-label="Free tier">7 days of Premium, <b>no card required</b></td></tr>
+<tr><td data-label="Measure">Export</td><td data-label="Free tier">Locked on Free and on Premium. Only Unlimited unlocks it</td></tr>
 </tbody>
 </table>
 
@@ -369,9 +382,9 @@ picture.</p>
 <table class="claims">
 <thead><tr><th>Tool</th><th>adidas on Xetra</th><th>Any thinning?</th></tr></thead>
 <tbody>
-<tr><td><b>Simply Wall St</b></td><td>Full report in euros, 63 analysts, European peers</td><td><b>None.</b> Identical structure and sources to the Apple report</td></tr>
-<tr><td><b>Stock Analysis</b></td><td>Full page in euros with German regulatory filings, 30 analysts</td><td>Yes. No operating metrics tab, volume unavailable, different data supplier</td></tr>
-<tr><td><b>Finviz</b></td><td><b>Not present.</b> Searching ADS returns ten US listings, none of them adidas</td><td>n/a</td></tr>
+<tr><td data-label="Tool"><b>Simply Wall St</b></td><td data-label="adidas on Xetra">Full report in euros, 63 analysts, European peers</td><td data-label="Any thinning?"><b>None.</b> Identical structure and sources to the Apple report</td></tr>
+<tr><td data-label="Tool"><b>Stock Analysis</b></td><td data-label="adidas on Xetra">Full page in euros with German regulatory filings, 30 analysts</td><td data-label="Any thinning?">Yes. No operating metrics tab, volume unavailable, different data supplier</td></tr>
+<tr><td data-label="Tool"><b>Finviz</b></td><td data-label="adidas on Xetra"><b>Not present.</b> Searching ADS returns ten US listings, none of them adidas</td><td data-label="Any thinning?">n/a</td></tr>
 </tbody>
 </table>
 
@@ -388,9 +401,9 @@ This is the part of the comparison that a feature table cannot express.</p>
 <table class="claims">
 <thead><tr><th>Tool</th><th>Fair value for Apple</th><th>What kind of number that is</th></tr></thead>
 <tbody>
-<tr><td><b>Simply Wall St</b></td><td>US$253.43, marked 20.7% overvalued, with an Edit Fair Value control</td><td>One community member's estimate, shown by name, which you are invited to override</td></tr>
-<tr><td><a href="/investingpro-review/">InvestingPro</a></td><td>$267.86</td><td>The average of 14 models the platform ran, from $204.85 to $293.22</td></tr>
-<tr><td><b>Stock Analysis</b></td><td>Not shown</td><td>The entire Fair Value category is locked on the free tier</td></tr>
+<tr><td data-label="Tool"><b>Simply Wall St</b></td><td data-label="Fair value for Apple">US$253.43, marked 20.7% overvalued, with an Edit Fair Value control</td><td data-label="What kind of number that is">One community member's estimate, shown by name, which you are invited to override</td></tr>
+<tr><td data-label="Tool"><a href="/investingpro-review/">InvestingPro</a></td><td data-label="Fair value for Apple">$267.86</td><td data-label="What kind of number that is">The average of 14 models the platform ran, from $204.85 to $293.22</td></tr>
+<tr><td data-label="Tool"><b>Stock Analysis</b></td><td data-label="Fair value for Apple">Not shown</td><td data-label="What kind of number that is">The entire Fair Value category is locked on the free tier</td></tr>
 </tbody>
 </table>
 
@@ -412,9 +425,9 @@ you are looking at, and the interface does not always make that obvious.</p>
 <table class="claims">
 <thead><tr><th>Tool</th><th>Paid tier</th><th>Trial</th></tr></thead>
 <tbody>
-<tr><td><b>Finviz Elite</b></td><td>$39.50 a month</td><td>7 days, <b>card required</b>, bills automatically at the end</td></tr>
-<tr><td><b>Stock Analysis Pro</b></td><td>$79 a year, or $9.99 a month stated as $119.88 a year</td><td>None. 60 day money-back guarantee instead</td></tr>
-<tr><td><b>Simply Wall St</b></td><td>Premium $10.95 a month, $131.40 yearly. Unlimited $21.50 a month, $258 yearly</td><td>7 days of Premium, <b>no card</b></td></tr>
+<tr><td data-label="Tool"><b>Finviz Elite</b></td><td data-label="Paid tier">$39.50 a month</td><td data-label="Trial">7 days, <b>card required</b>, bills automatically at the end</td></tr>
+<tr><td data-label="Tool"><b>Stock Analysis Pro</b></td><td data-label="Paid tier">$79 a year, or $9.99 a month stated as $119.88 a year</td><td data-label="Trial">None. 60 day money-back guarantee instead</td></tr>
+<tr><td data-label="Tool"><b>Simply Wall St</b></td><td data-label="Paid tier">Premium $10.95 a month, $131.40 yearly. Unlimited $21.50 a month, $258 yearly</td><td data-label="Trial">7 days of Premium, <b>no card</b></td></tr>
 </tbody>
 </table>
 

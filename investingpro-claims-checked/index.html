@@ -158,7 +158,20 @@ th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fain
 .cta:hover{filter:brightness(1.04)}
 .disc{font-size:11.5px;color:var(--faint);margin:8px 0 0;max-width:var(--measure);line-height:1.5}
 .cta-block{margin:1.8em 0}
-.card{transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(201,168,76,.55);box-shadow:0 2px 14px rgba(15,23,32,.07)}</style>
+.card{transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(201,168,76,.55);box-shadow:0 2px 14px rgba(15,23,32,.07)}
+@media(max-width:640px){
+  .claims,.claims tbody,.claims tr,.claims td{display:block;width:100%!important}
+  .claims thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .claims{table-layout:auto;border-top:1px solid var(--line)}
+  .claims tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .claims td{border:0;padding:0 0 9px;font-size:15px;line-height:1.5}
+  .claims td:last-child{padding-bottom:0}
+  .claims td::before{content:attr(data-label);display:block;font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:3px}
+  .claims td:first-child{font-size:17px;font-weight:600;margin-bottom:4px;padding-bottom:6px}
+  .claims td:first-child::before{display:none}
+}
+</style>
 </head>
 <body>
 <div class="top"><div class="wrap">
@@ -198,29 +211,29 @@ counted one is visible rather than assumed.</p>
 <thead><tr><th>Claim, as published</th><th>What we counted</th><th>Verdict</th></tr></thead>
 <tbody>
 <tr>
-<td><b>Averages 17 valuation models</b><br>Investing.com pricing page</td>
-<td>14 models active for AAPL, from a library of 19 available. Earnings Power Value sat unchecked by default and was excluded from the average.</td>
-<td><span class="tag n">Below for AAPL</span></td>
+<td data-label="Claim, as published"><b>Averages 17 valuation models</b><br>Investing.com pricing page</td>
+<td data-label="What we counted">14 models active for AAPL, from a library of 19 available. Earnings Power Value sat unchecked by default and was excluded from the average.</td>
+<td data-label="Verdict"><span class="tag n">Below for AAPL</span></td>
 </tr>
 <tr>
-<td><b>1,200+ metrics</b><br>widely repeated as a screener figure</td>
-<td>Investing.com's own pricing page separates 1,200+ stock data metrics from a screener that filters through 167. No metric count is displayed anywhere in the screener interface.</td>
-<td><span class="tag n">Conflated</span></td>
+<td data-label="Claim, as published"><b>1,200+ metrics</b><br>widely repeated as a screener figure</td>
+<td data-label="What we counted">Investing.com's own pricing page separates 1,200+ stock data metrics from a screener that filters through 167. No metric count is displayed anywhere in the screener interface.</td>
+<td data-label="Verdict"><span class="tag n">Conflated</span></td>
 </tr>
 <tr>
-<td><b>180,000+ instruments</b><br>Investing.com pricing page, on WarrenAI</td>
-<td>The screener reported a universe of 152,080 instruments. Different figures may count different things, and the interface does not say which.</td>
-<td><span class="tag n">Below as counted</span></td>
+<td data-label="Claim, as published"><b>180,000+ instruments</b><br>Investing.com pricing page, on WarrenAI</td>
+<td data-label="What we counted">The screener reported a universe of 152,080 instruments. Different figures may count different things, and the interface does not say which.</td>
+<td data-label="Verdict"><span class="tag n">Below as counted</span></td>
 </tr>
 <tr>
-<td><b>10 years of historical data</b><br>Investing.com pricing page</td>
-<td>Ten years exactly, on the Pro+ tier we tested. The assistant stated the same ceiling unprompted in its own response footer.</td>
-<td><span class="tag m">Matched</span></td>
+<td data-label="Claim, as published"><b>10 years of historical data</b><br>Investing.com pricing page</td>
+<td data-label="What we counted">Ten years exactly, on the Pro+ tier we tested. The assistant stated the same ceiling unprompted in its own response footer.</td>
+<td data-label="Verdict"><span class="tag m">Matched</span></td>
 </tr>
 <tr>
-<td><b>7 day money-back guarantee</b><br>appears on affiliate pages, not on Investing.com</td>
-<td>Absent from both the official terms and the support article updated 9 August 2026. Both state the service is non-refundable.</td>
-<td><span class="tag n">Not in the terms</span></td>
+<td data-label="Claim, as published"><b>7 day money-back guarantee</b><br>appears on affiliate pages, not on Investing.com</td>
+<td data-label="What we counted">Absent from both the official terms and the support article updated 9 August 2026. Both state the service is non-refundable.</td>
+<td data-label="Verdict"><span class="tag n">Not in the terms</span></td>
 </tr>
 </tbody>
 </table>
