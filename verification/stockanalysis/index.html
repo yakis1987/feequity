@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22#1C2B36%22/><g fill=%22none%22 stroke=%22#C9A84C%22 stroke-width=%225%22 stroke-linecap=%22round%22><circle cx=%2221%22 cy=%2221%22 r=%2210%22/><circle cx=%2243%22 cy=%2243%22 r=%2210%22/><path d=%22M46 15 L18 49%22 stroke-width=%226%22/></g></svg>">
+<link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Stock Analysis Verification Record: Every Figure, Dated</title>
+<meta name="description" content="The working record behind every Stock Analysis figure on this site: what was counted, on what date, and what remains unverified.">
+<link rel="canonical" href="https://feequity.com/verification/stockanalysis/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stock Analysis Verification Record: Every Figure, Dated">
+<meta property="og:description" content="The working record behind every Stock Analysis figure on this site: what was counted, on what date, and what remains unverified.">
+<meta property="og:url" content="https://feequity.com/verification/stockanalysis/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Stock Analysis verification record","url":"https://feequity.com/verification/stockanalysis/","description":"The dated working record behind every Stock Analysis figure published on Feequity.","dateModified":"2026-08-16"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"How we test","item":"https://feequity.com/how-we-test/"},{"@type":"ListItem","position":3,"name":"Stock Analysis verification"}]}</script>
+<script>
+/* opt out this browser for good: visit any page with ?notrack=1 · undo with ?notrack=0 */
+(function(){try{
+  var q=location.search;
+  if(q.indexOf('notrack=1')>-1){localStorage.setItem('fq_no_track','1');}
+  if(q.indexOf('notrack=0')>-1){localStorage.removeItem('fq_no_track');}
+  window.FQ_NO_TRACK = localStorage.getItem('fq_no_track')==='1';
+  if(window.FQ_NO_TRACK){window['ga-disable-G-CSBWWMNBNY']=true;}
+}catch(e){window.FQ_NO_TRACK=false;}})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+</script>
+<script type="text/javascript">
+if(!window.FQ_NO_TRACK){
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
+(window,document,"clarity","script","xwrly79k01");
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+});
+</script>
+<style>
+:root{--ink:#0F1720;--soft:#5A6672;--faint:#8A939C;--line:#E4E8EB;
+  --paper:#FFFFFF;--wash:#F7F9FA;--gold:#C9A84C;--slate:#1C2B36;
+  --up:#0F6E56;--down:#A32D2D;--r:10px;--measure:66ch}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+.hero{background:var(--wash);border-bottom:1px solid var(--line);padding:46px 0 42px}
+.hero h1{font-size:clamp(1.8rem,4.6vw,2.6rem);line-height:1.16;letter-spacing:-.025em;
+  margin-bottom:15px;max-width:20ch}
+.hero .lede{font-size:18px;color:var(--soft);max-width:58ch}
+.hero .lede b{color:var(--ink)}
+main{padding:38px 0 60px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.1em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h2:first-child{margin-top:0}
+h3{font-size:15px;margin:1.7em 0 .5em}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+ul,ol{margin:0 0 1em 1.15em}
+li{margin-bottom:.4em}
+a{color:var(--up)}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:1.4em 0}
+th{text-align:right;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:0 10px 9px 0;border-bottom:2px solid var(--slate)}
+th:first-child{text-align:left}
+td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:0}
+.good{color:var(--up);font-weight:600}
+.bad{color:var(--down);font-weight:600}
+.meta{border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;
+  margin:0 0 1.6em;background:var(--wash);font-size:14px}
+.meta dl{display:grid;grid-template-columns:auto 1fr;gap:7px 16px;margin:0}
+.meta dt{color:var(--faint);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:700;padding-top:3px;white-space:nowrap}
+.meta dd{margin:0}
+.note{border-left:3px solid var(--gold);background:var(--wash);padding:14px 16px;
+  margin:1.4em 0;font-size:15px}
+.note p{margin:0;max-width:none}
+.note p+p{margin-top:.7em}
+.toc{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:1.6em 0;
+  background:var(--wash)}
+.toc p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+  margin:0 0 10px;font-weight:600}
+.toc ol{margin:0;padding-left:1.1em;columns:2;column-gap:28px}
+.toc li{margin:0 0 6px;break-inside:avoid;font-size:15px;max-width:none}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.35)}
+.toc a:hover{border-bottom-color:var(--gold)}
+footer{border-top:1px solid var(--line);background:var(--wash);padding:26px 0;
+  font-size:12.5px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:660px){
+  body{font-size:16px}
+  .top nav a{margin-left:11px;font-size:12px}
+  .hero{padding:32px 0 30px}
+  .toc ol{columns:1}
+  .meta dl{grid-template-columns:1fr;gap:2px}
+  .meta dt{padding-top:9px}
+  .vt table,.vt tbody,.vt tr,.vt td{display:block;width:100%}
+  .vt thead{display:none}
+  .vt tr{padding:13px 0;border-bottom:1px solid var(--line)}
+  .vt tr:last-child{border-bottom:0}
+  .vt td{border:0;padding:4px 0;display:flex;justify-content:space-between;
+    gap:14px;font-size:14px;text-align:right}
+  .vt td:first-child{margin-bottom:6px;display:block;font-size:15px;text-align:left}
+  .vt td[data-k]:before{content:attr(data-k);color:var(--soft);font-weight:400;
+    text-align:left;flex:0 0 auto}
+}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+<a class="brand" href="/">Fee<span>quity</span></a>
+<nav><a href="/trackers/">Trackers</a><a href="/brokers/">Brokers</a><a href="/tools/">Tools</a><a href="/research-tools/">Research tools</a></nav>
+</div></div>
+<div class="hero"><div class="wrap"><h1>Stock Analysis verification record</h1><p class="lede">Every number published here about stockanalysis.com traces to this record. Counted by hand on a free account, with dates.</p></div></div>
+<main><div class="wrap">
+<p class="crumb"><a href="/">Home</a> · <a href="/how-we-test/">How we test</a> · Stock Analysis verification</p>
+
+<div class="meta"><dl>
+<dt>Product</dt><dd>Stock Analysis (stockanalysis.com), free tier and its published paid plans</dd>
+<dt>Session</dt><dd>14 and 15 August 2026</dd>
+<dt>Method</dt><dd>Single logged-in free account, one company followed through the same tools used across the InvestingPro cluster, then a non-US listing for coverage</dd>
+<dt>Access</dt><dd>Free account, opened by us. No affiliate relationship exists with this product and none has been applied for. See <a href="/how-we-make-money/">how we make money</a></dd>
+<dt>Anchor</dt><dd>AAPL, the same anchor used across the whole site</dd>
+<dt>Re-check</dt><dd>12 November 2026, or immediately on any interface change</dd>
+</dl></div>
+
+<p>Every figure published on feequity about stockanalysis.com traces to this record. Nothing on any
+page may state a number that does not appear here or in a dated first-party source listed at the
+bottom. The <a href="/VERIFICATION-stockanalysis.md">raw markdown record</a> is also published
+unchanged.</p>
+
+<div class="note"><p><b>Scope limit.</b> Everything below was observed on a free account.
+Statements about what a paid plan contains are taken from the product's own pricing page, not from
+inside a paid account. That distinction is held throughout.</p></div>
+
+<div class="toc"><p>On this page</p><ol><li><a href="#conditions">Session conditions</a></li><li><a href="#screener">Screener, counted by hand</a></li><li><a href="#history">Financial history and the second lock</a></li><li><a href="#pricing">Pricing and refunds</a></li><li><a href="#company">Company data, AAPL</a></li><li><a href="#coverage">Coverage outside the US</a></li><li><a href="#sources">Named data sources and one bug</a></li><li><a href="#cross">Cross-product comparison</a></li><li><a href="#open">Open, not yet verified</a></li><li><a href="#not-published">Figures not published</a></li></ol></div>
+
+<h2 id="conditions">1 · Session conditions</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Item</th>
+<th>Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Anchor price, AAPL</td>
+<td data-k="Value">$305.53</td>
+</tr>
+<tr>
+<td>Observed at</td>
+<td data-k="Value">15:24 EDT, 14 August 2026</td>
+</tr>
+<tr>
+<td>Account state</td>
+<td data-k="Value">Logged in, free tier, no trial active</td>
+</tr>
+</tbody></table></div>
+
+<p>The anchor price is load-bearing. Two percentages recorded below are computed by the product
+against the live price, so they only reconcile against this figure.</p>
+
+<h2 id="screener">2 · Screener, counted by hand</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Item</th>
+<th>Verified value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Total metrics</td>
+<td data-k="Verified value"><b>313</b> across 29 categories</td>
+</tr>
+<tr>
+<td>Locked on the free tier</td>
+<td data-k="Verified value"><b>14</b>, which is 4.47% of 313</td>
+</tr>
+<tr>
+<td>Marketing claim on the same product</td>
+<td data-k="Verified value">300+ indicators</td>
+</tr>
+</tbody></table></div>
+
+<div class="note"><p><b>The claim holds.</b> 313 counted against 300+ advertised. This is recorded
+because the method is to count first and report the result either way, not only when a claim
+fails.</p></div>
+
+<h3>What the 14 locked metrics are, by group</h3>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Group</th>
+<th>State on free</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Fair Value</td>
+<td data-k="State on free">Locked in full · Lynch, Graham, both Upside figures, WACC</td>
+</tr>
+<tr>
+<td>Top Analyst layer</td>
+<td data-k="State on free">All four locked</td>
+</tr>
+<tr>
+<td>Ten year windows</td>
+<td data-k="State on free">Average PE, Dividend Growth and OCF Growth locked. 1Y, 3Y and 5Y free</td>
+</tr>
+<tr>
+<td>Risk ratios</td>
+<td data-k="State on free">Sharpe and Sortino locked</td>
+</tr>
+</tbody></table></div>
+
+<p>The pattern is worth stating plainly. The free tier is generous on breadth and gates on
+valuation output and long windows. That is a different shape of limit from a row cap or a results
+cap, and it affects a different kind of user.</p>
+
+<p><b>Unresolved.</b> Clicking any locked metric leads to the generic pricing page, and neither
+published plan states which one unlocks Fair Value. This could not be resolved from outside a paid
+account and is carried to section 9.</p>
+
+<h2 id="history">3 · Financial history and the second lock layer</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Item</th>
+<th>Verified value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Financial statement history, free</td>
+<td data-k="Verified value"><b>Five years</b></td>
+</tr>
+<tr>
+<td>10Y and Max tabs</td>
+<td data-k="Verified value">Both redirect to the pricing page</td>
+</tr>
+<tr>
+<td>Second, less visible layer</td>
+<td data-k="Verified value">Operating metrics tables gate older columns independently</td>
+</tr>
+<tr>
+<td>Worked example</td>
+<td data-k="Verified value">Gross Margin by Type readable back to March 2025 only</td>
+</tr>
+</tbody></table></div>
+
+<p>The second layer matters more than the first. A reader who sees five years of income statement
+reasonably assumes five years applies everywhere. It does not. The operating metrics tables cut off
+far more recently, and nothing in the interface announces it.</p>
+
+<h2 id="pricing">4 · Pricing, as published · read at source 14 August 2026</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Plan</th>
+<th>As displayed</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Pro, annual</td>
+<td data-k="As displayed">$79 a year, presented as $6.58 a month</td>
+</tr>
+<tr>
+<td>Pro, monthly</td>
+<td data-k="As displayed">$9.99 a month, stated on the same page as $119.88 a year</td>
+</tr>
+<tr>
+<td>Saving, as printed by the product</td>
+<td data-k="As displayed">$40.88</td>
+</tr>
+<tr>
+<td>Unlimited</td>
+<td data-k="As displayed">$16.58 a month, billed annually</td>
+</tr>
+</tbody></table></div>
+
+<div class="note"><p><b>The arithmetic checks out.</b> 79 divided by 12 is 6.583. 9.99 multiplied
+by 12 is 119.88. 119.88 minus 79 is 40.88. All three figures the product prints are internally
+consistent, which is not the norm in this category and is worth saying.</p></div>
+
+<p><b>Computed, not observed.</b> 16.58 multiplied by 12 is $198.96 a year for Unlimited. The
+annual total was not displayed. It is marked as derived and is not published as an observed
+price.</p>
+
+<p><b>Prices were read logged out and in a single country.</b> No currency localisation test was
+run, so these are not stated as the price a given reader will see.</p>
+
+<h3>Refunds</h3>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Item</th>
+<th>Verified value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Stated policy</td>
+<td data-k="Verified value">60 day money back</td>
+</tr>
+<tr>
+<td>Placement</td>
+<td data-k="Verified value">Shown <b>twice</b> on the pricing page</td>
+</tr>
+<tr>
+<td>Path</td>
+<td data-k="Verified value">Cancel button in the account area, plus email to support</td>
+</tr>
+<tr>
+<td>Merchant of record</td>
+<td data-k="Verified value">Paddle</td>
+</tr>
+</tbody></table></div>
+
+<div class="note"><p><b>This is published policy, not tested behaviour.</b> Nobody has requested a
+refund and observed what happens. Until that exists, this site describes what the product publishes
+and does not describe how it performs. The same gap applies to every product covered here, none of
+which has been cancelled first-hand.</p></div>
+
+<h2 id="company">5 · Company data, AAPL</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Item</th>
+<th>Verified value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>FY2025 revenue</td>
+<td data-k="Verified value">$416.16B</td>
+</tr>
+<tr>
+<td>Agreement</td>
+<td data-k="Verified value">Matches WarrenAI and matches the filing</td>
+</tr>
+<tr>
+<td>TTM revenue</td>
+<td data-k="Verified value">$466.82B</td>
+</tr>
+<tr>
+<td>Analyst coverage</td>
+<td data-k="Verified value">46 analysts</td>
+</tr>
+<tr>
+<td>Mean price target</td>
+<td data-k="Verified value">$322.28</td>
+</tr>
+<tr>
+<td>Upside displayed</td>
+<td data-k="Verified value">+5.48%</td>
+</tr>
+</tbody></table></div>
+
+<p><b>The upside reconciles exactly.</b> $322.28 against the anchor price of $305.53 is +5.482%.
+The percentage is computed off the live price, which also confirms the anchor timestamp in section
+1.</p>
+
+<h2 id="coverage">6 · Coverage outside the US</h2>
+
+<p>Tested on adidas, Xetra listing, 15 August 2026.</p>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Item</th>
+<th>Verified value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Page state</td>
+<td data-k="Verified value">Full page returned, denominated in euros</td>
+</tr>
+<tr>
+<td>Filings</td>
+<td data-k="Verified value">German filings present</td>
+</tr>
+<tr>
+<td>Analyst coverage</td>
+<td data-k="Verified value">30 analysts</td>
+</tr>
+<tr>
+<td>Gap</td>
+<td data-k="Verified value"><b>No operating metrics tab</b></td>
+</tr>
+<tr>
+<td>Gap</td>
+<td data-k="Verified value"><b>Volume unavailable</b></td>
+</tr>
+</tbody></table></div>
+
+<p>Non-US coverage exists and is real, but it is thinner than the US page in two specific ways.
+Both are named above rather than summarised, because thinner without the specifics is not a
+checkable statement.</p>
+
+<h2 id="sources">7 · Named data sources and one bug</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Surface</th>
+<th>Sources named by the product</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>US company pages</td>
+<td data-k="Sources named by the product">S&amp;P Global and CBOE</td>
+</tr>
+<tr>
+<td>German company page</td>
+<td data-k="Sources named by the product">S&amp;P Global and Financial Modeling Prep</td>
+</tr>
+<tr>
+<td>Operating metrics</td>
+<td data-k="Sources named by the product">TipRanks</td>
+</tr>
+</tbody></table></div>
+
+<p>The source set changes by geography and by module. A reader comparing a US figure to a German
+one is not comparing like with like, and the product does say so if you look for it.</p>
+
+<p><b>Bug observed, 15 August 2026.</b> In the ASML metrics, Value of Booked Systems appears
+duplicated. It is not present on AAPL. This is recorded as observed on one company on one date,
+with no claim about how widespread it is.</p>
+
+<h2 id="cross">8 · Cross-product comparison, and its limits</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Figure</th>
+<th>Stock Analysis</th>
+<th>InvestingPro</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AAPL mean price target</td>
+<td data-k="Stock Analysis">$322.28 · 14 Aug 2026</td>
+<td data-k="InvestingPro">$322.82 · 10 Aug 2026, and $322.28 on the sidebar · 11 Aug 2026</td>
+</tr>
+<tr>
+<td>Analyst count</td>
+<td data-k="Stock Analysis">46</td>
+<td data-k="InvestingPro">41 · 10 Aug 2026</td>
+</tr>
+<tr>
+<td>AAPL FY2025 revenue</td>
+<td data-k="Stock Analysis">$416.16B</td>
+<td data-k="InvestingPro">$416.16B</td>
+</tr>
+</tbody></table></div>
+
+<div class="note"><p><b>Read this carefully before relying on it.</b> The targets were captured on
+<b>different dates</b>, so this is not a same-day comparison and is not presented as one. Analyst
+targets move.</p></div>
+
+<p>What is notable is narrower. The target figure InvestingPro showed on its sidebar on 11 August,
+$322.28, is identical to the figure Stock Analysis showed on 14 August, while the analyst counts
+differ, 41 against 46. Identical means to two decimal places on the same company.</p>
+
+<p><b>Two readings are open and neither is established.</b> Either the two products draw on an
+overlapping estimate set and count contributors differently, or it is coincidence across dates.
+Nothing is published on this until both are read on the same day, on the same company, with both
+timestamps recorded. That task is in section 9.</p>
+
+<p>A separate and firmer point, already recorded in the
+<a href="/verification/investingpro/#warrenai">InvestingPro record</a>: InvestingPro itself
+displayed $322.82, $322.53 and $322.28 across 10 and 11 August. The internal inconsistency inside
+one product is the stronger finding and does not depend on any cross-product claim.</p>
+
+<p><b>Where the two agree, they agree exactly.</b> FY2025 revenue matches to the cent between both
+products and the filing. That is the more common outcome and is recorded so that this record is not
+only a list of discrepancies.</p>
+
+<h2 id="open">9 · Open, not yet verified</h2>
+
+<p>Nothing below may be stated on any page until it is read at its source and recorded here.</p>
+
+<ul>
+<li><b>Which paid plan unlocks Fair Value.</b> Unresolved from outside a paid account.</li>
+<li><b>A same-day capture of the AAPL analyst target and analyst count on both products</b>, with
+both timestamps, to resolve section 8.</li>
+<li>Currency and country localisation of the published prices.</li>
+<li>Whether the 60 day refund performs as published, including reply time and elapsed time to the
+money arriving.</li>
+<li>Export limits on Pro, stated as one download a day on the pricing page and untested.</li>
+<li>Screener universe size. Not counted. The InvestingPro record has 152,080 and the Finviz count
+has 11,566, so this gap is visible in any comparison.</li>
+<li>Whether Stock Analysis accepts affiliates based in Israel.</li>
+</ul>
+
+<h2 id="not-published">10 · Figures deliberately not published</h2>
+
+<ul>
+<li><b>$198.96 a year for Unlimited.</b> Computed from the monthly figure and never displayed. Held
+here as a derivation only.</li>
+<li>Any statement about what a paid tier contains, beyond what the pricing page itself states. The
+account tested was free.</li>
+</ul>
+
+<h2>Sources read at source</h2>
+
+<div class="vt">
+<table>
+<thead><tr>
+<th>Source</th>
+<th>Date read</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>stockanalysis.com company page, AAPL, logged in free</td>
+<td data-k="Date read">14 August 2026</td>
+</tr>
+<tr>
+<td>stockanalysis.com screener, logged in free</td>
+<td data-k="Date read">14 August 2026</td>
+</tr>
+<tr>
+<td>stockanalysis.com pricing page</td>
+<td data-k="Date read">14 August 2026</td>
+</tr>
+<tr>
+<td>stockanalysis.com refund and cancellation terms</td>
+<td data-k="Date read">14 August 2026</td>
+</tr>
+<tr>
+<td>stockanalysis.com company page, adidas, Xetra</td>
+<td data-k="Date read">15 August 2026</td>
+</tr>
+<tr>
+<td>stockanalysis.com company page, ASML</td>
+<td data-k="Date read">15 August 2026</td>
+</tr>
+</tbody></table></div>
+
+<h2>Related</h2>
+
+<p>The equivalent record for the product that pays us is the
+<a href="/verification/investingpro/">InvestingPro verification record</a>, counted on the same
+anchor company. The method behind both is on <a href="/how-we-test/">how we test</a>, and errors
+found after publication are logged at <a href="/corrections/">corrections</a>.</p>
+
+<p class="crumb" style="margin-top:2.4em">Maintained by Jacob Shasha · created 16 August 2026 from
+a session run 14 and 15 August 2026 · next re-check 12 November 2026</p>
+</div></main>
+<footer><div class="wrap">
+<p>Feequity publishes research about investing tools and brokers. It does not provide investment
+advice and nothing here is a recommendation to buy or sell any security.</p>
+<p>Written and maintained by <a href="/about/">Jacob Shasha</a>, a private investor and not a licensed financial adviser.</p>
+<nav><a href="/">Home</a><a href="/about/">About</a>
+<a href="/how-we-test/">How we test</a><a href="/how-we-make-money/">How we make money</a>
+<a href="/access-log/">Access log</a><a href="/corrections/">Corrections</a>
+<a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a></nav>
+<p style="margin-top:12px">&copy; 2026 Feequity</p>
+</div></footer>
+</body>
+</html>
