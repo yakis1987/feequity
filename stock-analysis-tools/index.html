@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22#1C2B36%22/><g fill=%22none%22 stroke=%22#C9A84C%22 stroke-width=%225%22 stroke-linecap=%22round%22><circle cx=%2221%22 cy=%2221%22 r=%2210%22/><circle cx=%2243%22 cy=%2243%22 r=%2210%22/><path d=%22M46 15 L18 49%22 stroke-width=%226%22/></g></svg>">
+<link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Stock Analysis Tools: What Each Free Tier Really Gives You</title>
+<meta name="description" content="We counted three tools by hand on the same companies in the same week. Where each free tier stops is different, and it is not where the marketing says.">
+<link rel="canonical" href="https://feequity.com/stock-analysis-tools/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stock Analysis Tools: What Each Free Tier Really Gives You">
+<meta property="og:description" content="We counted three tools by hand on the same companies in the same week. Where each free tier stops is different, and it is not where the marketing says.">
+<meta property="og:url" content="https://feequity.com/stock-analysis-tools/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Stock analysis tools: what each free tier really gives you","description":"Finviz, Stock Analysis and Simply Wall St counted by hand on the same companies in the same week, 14 to 16 August 2026.","url":"https://feequity.com/stock-analysis-tools/","datePublished":"2026-08-16","dateModified":"2026-08-16","author":{"@type":"Person","name":"Jacob Shasha"},"publisher":{"@type":"Organization","name":"Feequity"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://feequity.com/"},{"@type":"ListItem","position":2,"name":"Research tools","item":"https://feequity.com/research-tools/"},{"@type":"ListItem","position":3,"name":"Stock analysis tools"}]}</script>
+<script>
+/* opt out this browser for good: visit any page with ?notrack=1 · undo with ?notrack=0 */
+(function(){try{
+  var q=location.search;
+  if(q.indexOf('notrack=1')>-1){localStorage.setItem('fq_no_track','1');}
+  if(q.indexOf('notrack=0')>-1){localStorage.removeItem('fq_no_track');}
+  window.FQ_NO_TRACK = localStorage.getItem('fq_no_track')==='1';
+  if(window.FQ_NO_TRACK){window['ga-disable-G-CSBWWMNBNY']=true;}
+}catch(e){window.FQ_NO_TRACK=false;}})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSBWWMNBNY"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CSBWWMNBNY');
+</script>
+<script type="text/javascript">
+if(!window.FQ_NO_TRACK){
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
+(window,document,"clarity","script","xwrly79k01");
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var slug=location.pathname;
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if(a.hostname===location.hostname)return;
+    a.addEventListener('click',function(){
+      gtag('event','affiliate_click',{page_slug:slug,link_domain:a.hostname,
+        link_url:a.href,link_text:(a.textContent||'').trim().slice(0,90)});
+    });
+  });
+  var f=document.querySelector('form.form');
+  if(f)f.addEventListener('submit',function(){
+    gtag('event','tracker_signup',{page_slug:slug});
+  });
+});
+</script>
+<style>
+:root{--ink:#0F1720;--soft:#5A6672;--faint:#8A939C;--line:#E4E8EB;
+  --paper:#FFFFFF;--wash:#F7F9FA;--gold:#C9A84C;--slate:#1C2B36;
+  --up:#0F6E56;--down:#A32D2D;--r:10px;--measure:66ch}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--paper);
+  color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,'SF Mono',Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.top{background:var(--slate);padding:14px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;font-size:16px;font-weight:600;text-decoration:none}
+.brand span{color:var(--gold)}
+.top nav a{color:#B9C2C9;font-size:13px;text-decoration:none;margin-left:18px}
+.top nav a:hover{color:#fff}
+.hero{background:var(--wash);border-bottom:1px solid var(--line);padding:46px 0 42px}
+.hero h1{font-size:clamp(1.8rem,4.6vw,2.6rem);line-height:1.16;letter-spacing:-.025em;
+  margin-bottom:15px;max-width:20ch}
+.hero .lede{font-size:18px;color:var(--soft);max-width:58ch}
+.hero .lede b{color:var(--ink)}
+main{padding:38px 0 60px}
+h2{font-size:1.28rem;letter-spacing:-.01em;margin:2.1em 0 .6em;padding-bottom:.3em;
+  border-bottom:1px solid var(--line)}
+h2:first-child{margin-top:0}
+p,li{max-width:var(--measure)}
+p{margin-bottom:1em}
+a{color:var(--up)}
+.crumb{font-size:12px;color:var(--faint);margin-bottom:14px}
+.crumb a{color:var(--faint)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:1.4em 0}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;background:#fff;
+  display:flex;flex-direction:column}
+.card .k{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin-bottom:8px}
+.card h3{font-size:16px;margin:0 0 6px;line-height:1.3}
+.card h3 a{text-decoration:none;color:var(--ink)}
+.card h3 a:hover{color:var(--up)}
+.card p{font-size:13.5px;color:var(--soft);margin:0;max-width:none}
+.big{background:var(--slate);color:#fff;border-radius:var(--r);padding:26px 28px;margin:28px 0}
+.big h3{color:#fff;margin:0 0 .45em;font-size:1.12rem}
+.big p{color:#C4CCD2;font-size:15px;max-width:none}
+.big a.btn{display:inline-block;background:var(--gold);color:var(--slate);text-decoration:none;
+  font-weight:600;font-size:14px;padding:11px 20px;border-radius:7px;margin-top:8px}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;margin:1.5em 0}
+.pillars h3{font-size:15px;margin:0 0 5px}
+.pillars p{font-size:14px;color:var(--soft);margin:0;max-width:none}
+footer{border-top:1px solid var(--line);background:var(--wash);padding:26px 0;
+  font-size:12.5px;color:var(--soft)}
+footer p{max-width:none;margin-bottom:.7em}
+footer nav a{color:var(--soft);margin-right:16px;white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.scta{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+  align-items:center;gap:12px;padding:10px 14px;background:var(--slate);
+  box-shadow:0 -2px 14px rgba(0,0,0,.18)}
+.scta p{margin:0;max-width:none;color:#E4E8EB;font-size:13px;line-height:1.35;flex:1}
+.scta p b{color:#fff}
+.scta a{background:var(--gold);color:var(--slate);text-decoration:none;font-weight:600;
+  font-size:13px;padding:9px 14px;border-radius:6px;white-space:nowrap}
+.scta button{background:none;border:0;color:#8A939C;font-size:20px;line-height:1;
+  padding:4px 2px;cursor:pointer;font-family:inherit}
+@media (max-width:640px){.scta{display:flex}body{padding-bottom:64px}}
+@media (max-width:640px){body{font-size:16px}.top nav a{margin-left:12px;font-size:12px}
+  .hero{padding:32px 0 30px}.big{padding:20px}
+  table{font-size:13px}
+  th,td{padding:8px 6px}
+  .tag{font-size:10px;letter-spacing:0;text-transform:none;padding:3px 6px}
+  .claims th:nth-child(1),.claims td:nth-child(1){width:32%}
+  .claims th:nth-child(2),.claims td:nth-child(2){width:42%}
+  .claims th:nth-child(3),.claims td:nth-child(3){width:26%}}
+table{border-collapse:collapse;width:100%;max-width:100%;font-size:14.5px;margin:1.4em 0;
+  table-layout:fixed}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;
+  overflow-wrap:anywhere;word-break:normal;hyphens:auto}
+th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:700}
+.claims th:nth-child(1),.claims td:nth-child(1){width:34%}
+.claims th:nth-child(2),.claims td:nth-child(2){width:44%}
+.claims th:nth-child(3),.claims td:nth-child(3){width:22%}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;padding:3px 7px;border-radius:4px;line-height:1.4}
+.tag.m{background:rgba(15,110,86,.10);color:var(--up)}
+.tag.n{background:rgba(163,45,45,.10);color:var(--down)}
+.tag.u{background:rgba(138,147,156,.14);color:var(--soft)}
+.note{border-left:3px solid var(--gold);background:var(--wash);padding:14px 18px;
+  border-radius:0 var(--r) var(--r) 0;margin:1.4em 0}
+.note p:last-child{margin-bottom:0}
+.toc{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:1.6em 0;background:var(--wash)}
+.toc p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;font-weight:600}
+.toc ol{margin:0;padding-left:1.1em;columns:2;column-gap:28px}
+.toc li{margin:0 0 6px;break-inside:avoid;font-size:15px}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.35)}
+.toc a:hover{border-bottom-color:var(--gold)}
+@media(max-width:640px){.toc ol{columns:1}}
+figure{margin:1.6em 0;max-width:100%}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+figcaption{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.5;max-width:var(--measure)}
+.cta{display:block;background:var(--gold);color:var(--slate);text-decoration:none;
+  font-weight:600;font-size:15px;padding:13px 22px;border-radius:7px;text-align:center;
+  max-width:var(--measure)}
+.cta:hover{filter:brightness(1.04)}
+.disc{font-size:11.5px;color:var(--faint);margin:8px 0 0;max-width:var(--measure);line-height:1.5}
+.cta-block{margin:1.8em 0}
+.card{transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(201,168,76,.55);box-shadow:0 2px 14px rgba(15,23,32,.07)}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the best free stock analysis tool?","acceptedAnswer":{"@type":"Answer","text":"There is no single answer, because the three we counted stop in three different places. Finviz is the best if you read in the browser: 73 screener filters with only 2 locked, all 11,566 results visible with no row cap, and a one minute quote delay. Stock Analysis is the best for screening depth, with 313 metrics of which 14 are locked, but its free financial history stops at five years. Simply Wall St is the best for coverage outside the United States and the only one of the three that returns a full report for a Frankfurt listing with no US line. Counted 14 to 16 August 2026."}},{"@type":"Question","name":"Is Finviz free version good enough?","acceptedAnswer":{"@type":"Answer","text":"For reading and screening, yes, and more so than most reviews suggest. Of 73 screener filters only 2 are locked, all 128 display columns are open, a company page shows 84 metrics with a single padlock, and every one of the 11,566 results is reachable across 579 pages without an account. The footer now states a one minute quote delay rather than the 15 or 20 minutes that older reviews describe. What is locked is export and the API, so if your workflow ends in a spreadsheet you will pay on day one. Checked 15 August 2026."}},{"@type":"Question","name":"Which stock analysis tool covers non-US stocks?","acceptedAnswer":{"@type":"Answer","text":"Simply Wall St and Stock Analysis both do. Finviz does not: it publishes that it covers NYSE, NASDAQ and AMEX, and searching for adidas returns ten unrelated US listings. On adidas, listed on Deutsche Boerse Xetra with no US line, Simply Wall St returned a full report in euros with 63 analysts and European peers, structurally identical to its Apple report. Stock Analysis returned a full page in euros with German regulatory filings and 30 analysts, but without an operating metrics tab, without volume data, and from a different data supplier. Checked 15 and 16 August 2026."}},{"@type":"Question","name":"Does Simply Wall St have a free trial?","acceptedAnswer":{"@type":"Answer","text":"Yes, seven days of Premium, and it does not ask for a credit card. Signing in with a Google account was enough. That is unusual in this category: Finviz also offers a seven day Elite trial but requires a card and starts billing automatically when the trial ends. Stock Analysis offers no trial at all and instead publishes a 60 day money-back guarantee. We have not tested any refund or cancellation process on any of the three. Checked 16 August 2026."}},{"@type":"Question","name":"How many years of financial history do these tools show for free?","acceptedAnswer":{"@type":"Answer","text":"Finviz showed six years of financial statements on Apple and seven on ASML, so the depth varies by company rather than sitting at a fixed ceiling. Stock Analysis stops at five years, with both the ten year and maximum views redirecting to its pricing page, and its segment tables cut off sooner still. Simply Wall St publishes a data sources table stating ten years of company financials and thirty years of market prices, though market prices and financial statements are different things and the report interrupts you with a sign-up modal before you get far. Checked 14 to 16 August 2026."}}]}</script>
+</head>
+<body>
+<div class="top"><div class="wrap">
+<a class="brand" href="/">Fee<span>quity</span></a>
+<nav><a href="/trackers/">Trackers</a><a href="/brokers/">Brokers</a><a href="/tools/">Tools</a><a href="/research-tools/">Research tools</a></nav>
+</div></div>
+<div class="hero"><div class="wrap">
+<h1>Stock analysis tools: what each free tier really gives you</h1>
+<p class="lede">Three tools, counted by hand, on the same three companies in the same week.
+<b>All three are generous. None of them is generous about the same thing</b>, and where each one
+stops is not where its marketing suggests.</p>
+</div></div>
+<main><div class="wrap">
+<p class="crumb"><a href="/">Home</a> · <a href="/research-tools/">Research tools</a> · Stock analysis tools</p>
+
+<div class="toc"><p>On this page</p><ol>
+<li><a href="#short-answer">Short answer</a></li>
+<li><a href="#how-counted">How this was counted</a></li>
+<li><a href="#three-walls">Three tools, three completely different walls</a></li>
+<li><a href="#finviz">Finviz: everything visible, nothing exportable</a></li>
+<li><a href="#stockanalysis">Stock Analysis: the deepest screener, the shallowest history</a></li>
+<li><a href="#simplywall">Simply Wall St: the only global one, and the only one that interrupts you</a></li>
+<li><a href="#coverage">The coverage test that separates them</a></li>
+<li><a href="#fair-value">Three answers to the same valuation question</a></li>
+<li><a href="#prices">What each one costs, and what the free tier is really selling</a></li>
+<li><a href="#who">Which one you should actually open</a></li>
+</ol></div>
+
+<h2 id="short-answer">Short answer</h2>
+
+<p>If you screen the whole market and never leave the browser, use <b>Finviz</b>. It shows every
+result with no row cap and locks almost nothing, then charges you the moment you try to take the
+data out.</p>
+
+<p>If you want depth on a single company and you follow anything listed outside the United States,
+use <b>Stock Analysis</b>. Its screener is the deepest of the three by a wide margin, and its free
+history is the shallowest.</p>
+
+<p>If you want a verdict rather than a table, use <b>Simply Wall St</b>. It is the only one of the
+three that covers a Frankfurt listing with no US line at all, and the only one that stops you
+mid-page to ask for an email.</p>
+
+<p>What none of them tells you on the pricing page is the thing that actually decides it, which is
+where the free tier ends. Those three points are in three completely different places.</p>
+
+<div class="note">
+<p><b>What this page is not.</b> It is not a ranking, and there is no winner. Three products drew
+their paywall in three different places, which means the right one depends entirely on what you do.
+It is also not a review of the paid tiers. We have not paid for any of these, and where we describe
+a paid feature it comes from the vendor's own pricing page with the date attached.</p>
+</div>
+
+<h2 id="how-counted">How this was counted</h2>
+
+<p>Every figure below came from opening the product and counting, not from a feature list. Sessions
+ran between 14 and 16 August 2026, on free accounts or with no account at all, and each tool was
+put through the same three companies:</p>
+
+<ul>
+<li><b>Apple</b>, NASDAQ. The anchor company we use across the whole research tools section, so the
+numbers stay comparable page to page.</li>
+<li><b>ASML</b>, NASDAQ. A European company with a US listing, which is the easy case.</li>
+<li><b>adidas</b>, Deutsche Boerse Xetra. A German company with no US listing involved, which is
+the case that actually separates these tools.</li>
+</ul>
+
+<p>Where a limit is stated, it was found by hitting it rather than by reading about it. That
+distinction matters: two of the three describe their free tier accurately on the pricing page, and
+the third does not describe the limit that most readers will meet first.</p>
+
+<h2 id="three-walls">Three tools, three completely different walls</h2>
+
+<p>This is the finding. Every roundup of stock analysis tools compares features. Almost none of
+them compares where the free version stops, which is the only thing that determines whether you
+will ever pay.</p>
+
+<table class="claims">
+<thead><tr><th>Tool</th><th>What the free tier stops you doing</th><th>What it does not restrict</th></tr></thead>
+<tbody>
+<tr>
+<td><b>Finviz</b></td>
+<td>Taking data out. Export and API are behind Elite entirely.</td>
+<td>Reading. All 11,566 results across 579 pages, no account needed.</td>
+</tr>
+<tr>
+<td><b>Stock Analysis</b></td>
+<td>Looking backwards. Financial history stops at five years.</td>
+<td>Screening. 313 metrics, of which only 14 are locked.</td>
+</tr>
+<tr>
+<td><b>Simply Wall St</b></td>
+<td>Reading on. A sign-up modal interrupts the report partway down.</td>
+<td>Coverage. The full report exists for listings the other two do not carry.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Read that table again with your own habits in mind, because it answers the question faster than
+any feature comparison will. A screener who exports to a spreadsheet every week will hit the Finviz
+wall on day one and never notice the other two. Someone studying one company through a full cycle
+will hit the Stock Analysis wall immediately and find Finviz perfectly adequate.</p>
+
+<h2 id="finviz">Finviz: everything visible, nothing exportable</h2>
+
+<p>Counted 15 August 2026 on a free logged-in account.</p>
+
+<table class="claims">
+<thead><tr><th>Measure</th><th>Free tier</th></tr></thead>
+<tbody>
+<tr><td>Screener filters</td><td>73, of which <b>2 are locked</b> (Trades, News Keywords)</td></tr>
+<tr><td>Display columns</td><td>128 across 12 categories, <b>none locked</b></td></tr>
+<tr><td>Metrics on a company page</td><td>84, of which <b>1 is locked</b></td></tr>
+<tr><td>Screener universe</td><td>11,566 instruments</td></tr>
+<tr><td>Results shown</td><td>All 579 pages. No row cap found.</td></tr>
+<tr><td>Financial statements</td><td>6 years on Apple, 7 on ASML</td></tr>
+<tr><td>Quote delay</td><td><b>1 minute</b> for NASDAQ, NYSE and AMEX</td></tr>
+<tr><td>Export and API</td><td><b>Locked</b></td></tr>
+<tr><td>Advertising</td><td>Yes</td></tr>
+</tbody>
+</table>
+
+<figure>
+<img src="/assets/img/finviz-aapl-snapshot-trades-locked.webp" width="1000" height="128" loading="lazy" decoding="async" alt="The Finviz Apple snapshot table showing 84 metrics with a single padlock icon on the Trades row">
+<figcaption>The bottom of the Apple snapshot on Finviz, 15 August 2026. Eighty-four metrics on one screen and exactly one padlock, on Trades.</figcaption>
+</figure>
+
+<p>The quote delay is worth pausing on. Every Finviz review still in circulation describes a 15 or
+20 minute delay on the free tier, and that gap was one of the main reasons to buy Elite. The footer
+now reads one minute. Unless you trade intraday, the real-time argument for upgrading has mostly
+evaporated, and what is left is export, the API, and extended-hours data.</p>
+
+<figure>
+<img src="/assets/img/finviz-export-locked-elite-only.webp" width="1000" height="353" loading="lazy" decoding="async" alt="The Finviz export panel, which offers a Try Elite Free for 7 Days button instead of a download">
+<figcaption>Selecting Export on the free tier. Note the framing: Finviz is not selling a download button, it is selling an off-platform research process.</figcaption>
+</figure>
+
+<p>The trade-off is coherent and unusually clean. Finviz gives away the reading and charges for the
+taking. If your workflow ends in the browser, the free tier is close to complete. If it ends in a
+<a href="/tools/portfolio-tracker/">spreadsheet</a>, you will pay on the first day.</p>
+
+<h2 id="stockanalysis">Stock Analysis: the deepest screener, the shallowest history</h2>
+
+<p>Counted 14 August 2026. We have a
+<a href="/stockanalysis-free-tier/">full page on this one</a> with the complete lock list.</p>
+
+<table class="claims">
+<thead><tr><th>Measure</th><th>Free tier</th></tr></thead>
+<tbody>
+<tr><td>Screener metrics</td><td><b>313</b> across 29 categories, of which 14 are locked</td></tr>
+<tr><td>What is locked</td><td>The whole Fair Value category, the four Top Analyst metrics, three ten-year windows, Sharpe and Sortino</td></tr>
+<tr><td>Financial history</td><td><b>5 years.</b> 10Y and Max both redirect to pricing</td></tr>
+<tr><td>Second limit</td><td>Segment tables gate older columns. Gross Margin by Type was readable back only to March 2025</td></tr>
+<tr><td>Coverage</td><td>Global, including Xetra, Warsaw and Zurich</td></tr>
+<tr><td>Export</td><td>Locked. Pro allows one download a day</td></tr>
+</tbody>
+</table>
+
+<p>Four times the screener depth of Finviz, and it is not close. The pattern in what is locked is
+worth reading, because it is not arbitrary: the one, three and five year versions of a metric are
+free and only the ten year version is gated, and ordinary analyst ratings are free while the
+top-analyst layer is not. What you are being sold is length of record, not breadth of data.</p>
+
+<p>Five years is the hardest limit any of the three imposes on ordinary reading. It is enough to
+see that something happened and not enough to understand it. On adidas the free view shows a loss
+in 2023 and a 71% collapse in net income in 2022, both plainly and without softening, but it cannot
+show you 2020 or what the business looked like before any of it started.</p>
+
+<h2 id="simplywall">Simply Wall St: the only global one, and the only one that interrupts you</h2>
+
+<p>Counted 16 August 2026, in a private window with no account.</p>
+
+<table class="claims">
+<thead><tr><th>Measure</th><th>Free tier</th></tr></thead>
+<tbody>
+<tr><td>Report access</td><td>Full eight-section report loads with no account</td></tr>
+<tr><td>The actual wall</td><td>A sign-up modal appears partway down the page, around the community narratives</td></tr>
+<tr><td>Stated free limit</td><td>5 company reports a month, 1 portfolio with 10 holdings, 5 watchlists</td></tr>
+<tr><td>Screener</td><td>Filters run, but results only activate when the set is <b>under 350 companies</b></td></tr>
+<tr><td>Data timeframes</td><td>Company financials 10 years, market prices 30 years, ownership 10 years</td></tr>
+<tr><td>Trial</td><td>7 days of Premium, <b>no card required</b></td></tr>
+<tr><td>Export</td><td>Locked on Free and on Premium. Only Unlimited unlocks it</td></tr>
+</tbody>
+</table>
+
+<p>The published limit and the practical limit are different, and this is the one place where a
+pricing page misleads by omission. The plans page says five company reports a month. What you meet
+first is a modal, partway down your first report, headed sign up for free and continue analysing
+this company. Nothing on the pricing page prepares you for that.</p>
+
+<p>Two things about it are better than the category norm, though. The trial is seven days of
+Premium with no credit card, which neither of the others offers: Finviz requires a card for its
+seven day Elite trial and bills automatically at the end. And the data sources are published in a
+table with a timeframe for each type, naming S&amp;P Global Market Intelligence and specifying that
+40 of the 88 analysts covering Apple actually contribute estimates.</p>
+
+<p>One line in the sign-up modal is worth noting for what it says about how the company is
+regulated: Simply Wall St states that it provides general investment advice. That is a different
+posture from the products that state they provide none, and it is a real distinction rather than a
+wording preference.</p>
+
+<h2 id="coverage">The coverage test that separates them</h2>
+
+<p>ASML is the easy case. It is a Dutch company with a NASDAQ listing, so every tool that covers US
+exchanges covers it. All three returned a full page.</p>
+
+<p>adidas is the case that matters. It trades on Deutsche Boerse Xetra with no US listing in the
+picture.</p>
+
+<table class="claims">
+<thead><tr><th>Tool</th><th>adidas on Xetra</th><th>Any thinning?</th></tr></thead>
+<tbody>
+<tr><td><b>Simply Wall St</b></td><td>Full report in euros, 63 analysts, European peers</td><td><b>None.</b> Identical structure and sources to the Apple report</td></tr>
+<tr><td><b>Stock Analysis</b></td><td>Full page in euros with German regulatory filings, 30 analysts</td><td>Yes. No operating metrics tab, volume unavailable, different data supplier</td></tr>
+<tr><td><b>Finviz</b></td><td><b>Not present.</b> Searching ADS returns ten US listings, none of them adidas</td><td>n/a</td></tr>
+</tbody>
+</table>
+
+<p>Finviz publishes that it covers NYSE, NASDAQ and AMEX, so this is a stated scope rather than a
+gap. But it is the single fact most likely to decide the question for a reader outside the United
+States, and it appears in almost no roundup, because almost no roundup checks a company that has no
+US line.</p>
+
+<h2 id="fair-value">Three answers to the same valuation question</h2>
+
+<p>Ask these tools what Apple is worth and you get three structurally different kinds of answer.
+This is the part of the comparison that a feature table cannot express.</p>
+
+<table class="claims">
+<thead><tr><th>Tool</th><th>Fair value for Apple</th><th>What kind of number that is</th></tr></thead>
+<tbody>
+<tr><td><b>Simply Wall St</b></td><td>US$253.43, marked 20.7% overvalued, with an Edit Fair Value control</td><td>One community member's estimate, shown by name, which you are invited to override</td></tr>
+<tr><td><a href="/investingpro-review/">InvestingPro</a></td><td>$267.86</td><td>The average of 14 models the platform ran, from $204.85 to $293.22</td></tr>
+<tr><td><b>Stock Analysis</b></td><td>Not shown</td><td>The entire Fair Value category is locked on the free tier</td></tr>
+</tbody>
+</table>
+
+<figure>
+<img src="/assets/img/simplywall-st-apple-community-fair-value.webp" width="1000" height="213" loading="lazy" decoding="async" alt="The Simply Wall St header for Apple showing a share price of US$305.93 against a community fair value of US$253.43 attributed to a named user">
+<figcaption>Simply Wall St on Apple, 16 August 2026. The fair value shown by default is a community estimate attributed to a named member, not a model output.</figcaption>
+</figure>
+
+<p>Simply Wall St also shows the spread of what its members think, which on Apple was 1,663
+estimates ranging from roughly US$60 to US$390. That range is more honest than a single figure, and
+it is the opposite of how most tools present valuation. Whether a crowd estimate is better or worse
+than a model average is a question we are not going to settle here, but you should know which one
+you are looking at, and the interface does not always make that obvious.</p>
+
+<h2 id="prices">What each one costs, and what the free tier is really selling</h2>
+
+<p>Read from each vendor's own pricing page, 15 to 16 August 2026.</p>
+
+<table class="claims">
+<thead><tr><th>Tool</th><th>Paid tier</th><th>Trial</th></tr></thead>
+<tbody>
+<tr><td><b>Finviz Elite</b></td><td>$39.50 a month</td><td>7 days, <b>card required</b>, bills automatically at the end</td></tr>
+<tr><td><b>Stock Analysis Pro</b></td><td>$79 a year, or $9.99 a month stated as $119.88 a year</td><td>None. 60 day money-back guarantee instead</td></tr>
+<tr><td><b>Simply Wall St</b></td><td>Premium $10.95 a month, $131.40 yearly. Unlimited $21.50 a month, $258 yearly</td><td>7 days of Premium, <b>no card</b></td></tr>
+</tbody>
+</table>
+
+<p>Two of the three publish their price plainly, which is worth saying because it is not universal
+in this category. Stock Analysis goes further and prints the monthly plan's true annual cost of
+$119.88 next to the $79 annual option, along with the $40.88 saving. Most subscription pages avoid
+that arithmetic.</p>
+
+<p>The thing to notice across the whole table is what is being sold. Finviz sells export. Simply
+Wall St sells export too, and holds it back even from Premium subscribers paying $131.40 a year.
+Stock Analysis sells length of history. None of the three is really selling access to the data.</p>
+
+<div class="note">
+<p><b>On what we have not tested.</b> We have not paid for any of these and cannot tell you whether
+the paid tiers deliver. We also have not tested any refund or cancellation process, so where a
+guarantee is mentioned above it is the vendor's published wording and nothing more. Getting out is
+worth 15% of the score in our
+<a href="/investingpro-alternatives/">comparison methodology</a>, and we do not have first-hand
+evidence for it on any of these three yet.</p>
+</div>
+
+<h2 id="who">Which one you should actually open</h2>
+
+<p><b>Open Finviz</b> if you screen broadly and read in the browser. Seventy-three filters is fewer
+than the alternatives but covers everything ordinary, no result is hidden behind a row cap, and a
+one minute delay is real-time enough for anyone not trading intraday. You will hit the wall the
+first time you try to export.</p>
+
+<p><b>Open Stock Analysis</b> if you screen on fundamentals in detail, or if you hold anything
+listed outside the United States. Three hundred and thirteen metrics is the deepest free screener
+of the three by a factor of four. You will hit the wall the first time you want more than five
+years of history, which for most serious research is quickly.</p>
+
+<p><b>Open Simply Wall St</b> if you want a structured verdict on a company rather than a table to
+interpret yourself, or if you follow European or Asian listings that the other two thin out or drop
+entirely. You will hit the wall partway down your first report.</p>
+
+<p>And if you are choosing between these and a paid research subscription, the honest answer is
+that the free tiers here cover a large share of what
+<a href="/investingpro-review/">a paid platform</a> does. What paid tools add is depth of history,
+valuation models, and export. Two of those three are exactly what the free tiers on this page hold
+back, which is not a coincidence.</p>
+
+<div class="big">
+<h3>Start with the cost, not the tools</h3>
+<p>Before you pay for any research subscription, work out what your broker already charges you each
+year. It is usually the larger number, and no research platform is incentivised to show it to you.</p>
+<a class="btn" href="/tools/portfolio-tracker/">Get the free spreadsheet</a>
+</div>
+
+<h2 id="common-questions">Common questions</h2>
+
+<h3>What is the best free stock analysis tool?</h3>
+<p>There is no single answer, because the three we counted stop in three different places. Finviz is the best if you read in the browser: 73 screener filters with only 2 locked, all 11,566 results visible with no row cap, and a one minute quote delay. Stock Analysis is the best for screening depth, with 313 metrics of which 14 are locked, but its free financial history stops at five years. Simply Wall St is the best for coverage outside the United States and the only one of the three that returns a full report for a Frankfurt listing with no US line. Counted 14 to 16 August 2026.</p>
+
+<h3>Is Finviz free version good enough?</h3>
+<p>For reading and screening, yes, and more so than most reviews suggest. Of 73 screener filters only 2 are locked, all 128 display columns are open, a company page shows 84 metrics with a single padlock, and every one of the 11,566 results is reachable across 579 pages without an account. The footer now states a one minute quote delay rather than the 15 or 20 minutes that older reviews describe. What is locked is export and the API, so if your workflow ends in a spreadsheet you will pay on day one. Checked 15 August 2026.</p>
+
+<h3>Which stock analysis tool covers non-US stocks?</h3>
+<p>Simply Wall St and Stock Analysis both do. Finviz does not: it publishes that it covers NYSE, NASDAQ and AMEX, and searching for adidas returns ten unrelated US listings. On adidas, listed on Deutsche Boerse Xetra with no US line, Simply Wall St returned a full report in euros with 63 analysts and European peers, structurally identical to its Apple report. Stock Analysis returned a full page in euros with German regulatory filings and 30 analysts, but without an operating metrics tab, without volume data, and from a different data supplier. Checked 15 and 16 August 2026.</p>
+
+<h3>Does Simply Wall St have a free trial?</h3>
+<p>Yes, seven days of Premium, and it does not ask for a credit card. Signing in with a Google account was enough. That is unusual in this category: Finviz also offers a seven day Elite trial but requires a card and starts billing automatically when the trial ends. Stock Analysis offers no trial at all and instead publishes a 60 day money-back guarantee. We have not tested any refund or cancellation process on any of the three. Checked 16 August 2026.</p>
+
+<h3>How many years of financial history do these tools show for free?</h3>
+<p>Finviz showed six years of financial statements on Apple and seven on ASML, so the depth varies by company rather than sitting at a fixed ceiling. Stock Analysis stops at five years, with both the ten year and maximum views redirecting to its pricing page, and its segment tables cut off sooner still. Simply Wall St publishes a data sources table stating ten years of company financials and thirty years of market prices, though market prices and financial statements are different things and the report interrupts you with a sign-up modal before you get far. Checked 14 to 16 August 2026.</p>
+
+<h2 id="how-checked">How this was checked</h2>
+
+<p>Three sessions between 14 and 16 August 2026, on free accounts or with no account at all, each
+tool put through Apple, ASML and adidas. Screener metrics and padlocks were counted individually
+rather than read off a feature list. Limits were found by attempting the action. Prices were read
+on each vendor's own pricing page on the date shown.</p>
+
+<p>We have no commercial relationship with Finviz, Stock Analysis or Simply Wall St, and none of
+the links to them on this page earns us anything. Where InvestingPro is mentioned, we do have a
+partner relationship, disclosed on
+<a href="/how-we-make-money/">how we make money</a> and recorded on
+<a href="/access-log/">the access log</a>. Method in full at
+<a href="/how-we-test/">how we test</a>. All dated figures here are re-checked on a 90 day cycle.</p>
+
+<p>If any of these tools has changed since the date on a figure, we would rather hear about it than
+have it sit here wrong. Corrections get published and dated at
+<a href="/corrections/">corrections</a>.</p>
+
+</div></main>
+<div class="scta">
+<p>Free spreadsheet: <b>what your broker costs you a year</b></p>
+<a href="/tools/portfolio-tracker/">Get it</a>
+<button type="button" aria-label="Dismiss" onclick="this.parentNode.remove()">&times;</button>
+</div>
+<footer><div class="wrap">
+<p>Feequity publishes research about investing tools and brokers. It does not provide investment
+advice and nothing here is a recommendation to buy or sell any security.</p>
+<p>Written and maintained by <a href="/about/">Jacob Shasha</a>, a private investor and not a licensed financial adviser.</p>
+<nav><a href="/">Home</a><a href="/about/">About</a>
+<a href="/how-we-test/">How we test</a><a href="/how-we-make-money/">How we make money</a>
+<a href="/access-log/">Access log</a><a href="/corrections/">Corrections</a>
+<a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a></nav>
+<p style="margin-top:12px">&copy; 2026 Feequity</p>
+</div></footer>
+</body>
+</html>
